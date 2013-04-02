@@ -23,11 +23,10 @@ package
 		private var _level:Array;
 		private var _jumpReleased:Boolean;
 		
-		public function Player(lv:Array) 
+		public function Player() 
 		{
 			super();
 			graphic = new Image(IMAGE);
-			_level = lv;
 			_yspeed = 0;
 			width = 10;
 			height = 12;
@@ -46,8 +45,14 @@ package
 			// TODO: pressing a direction overrides the previous one held down ?
 			
 			_yspeed += grav;
-			var onGround:Boolean = _yspeed > 0 && _yspeed < 1 &&
-								   (_level[int(x/16)][int((y+height+1)/16)] == 1 || _level[int((x+width)/16)][int((y+height+1)/16)] == 1);
+			var x1:int = int(x / 16);
+			var x2:int = int((x + width - 1) / 16);
+			var y2:int = int((y + height) / 16);
+			if (x1 < 0) x1 = x2;
+			if (x2 >= _level.length) x2 = x1;
+			if (y2 < 0) y2 = 0;
+			if (y2 >= _level[0].length) y2 = _level[0].length - 1;
+			var onGround:Boolean = _yspeed > 0 && _yspeed < 1 && (_level[x1][y2] == 1 || _level[x2][y2] == 1);
 			if (jump && _jumpReleased && onGround)
 				_yspeed = -jumpSpeed;
 			_jumpReleased = !jump;
@@ -91,12 +96,22 @@ package
 			}
 		}
 		
+		public function setLevel(level:Array):void
+		{
+			_level = level;
+		}
+		
 		private function collideLevel():Boolean
 		{
 			var x1:int = int(x / 16);
 			var x2:int = int((x + width - 1) / 16);
 			var y1:int = int(y / 16);
 			var y2:int = int((y + height - 1) / 16);
+			
+			if (x1 < 0) x1 = x2;
+			if (x2 >= _level.length) x2 = x1;
+			if (y1 < 0) y1 = y2;
+			if (y2 >= _level[0].length) y2 = y1;
 			
 			if (x1 < 0 || x2 < 0 || y1 < 0 || y2 < 0 ||
 				x1 >= _level.length || x2 >= _level.length || y1 >= _level[0].length || y2 >= _level[0].length)

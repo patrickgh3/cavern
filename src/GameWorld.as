@@ -16,42 +16,59 @@ package
 		private const GREY:Class
 		
 		private var _player:Player;
-		private var _level:Array;
+		private var _room:Room;
+		private var roomX:int = 0;
+		private var roomY:int = 0;
 		
 		public function GameWorld() 
 		{
-			_level = new Array(10);
-			for (var i:int = 0; i < 10; i++)
-			{
-				_level[i] = new Array();
-				for (var j:int = 0; j < 8; j++)
-				{
-					if (i == 0 || i == _level.length - 1 || j == 0 || j == _level[0].length - 1)
-						_level[i][j] = 1;
-					else _level[i][j] = 0;
-					if (Math.random() < 0.1) _level[i][j] = 1;
-				}
-			}
+			_player = new Player();
+			_player.x = 32;
+			_player.y = 32;
 			
+			switchRoom(0, 0);
+		}
+		
+		override public function update():void
+		{
+			super.update();
+			if (_player.x < -_player.width / 2) {
+				_player.x += 160;
+				switchRoom(--roomX, roomY);
+			}
+			if (_player.x >= 160 - _player.width / 2) {
+				_player.x -= 160;
+				switchRoom(++roomX, roomY);
+			}
+			if (_player.y < -_player.height / 2) {
+				_player.y += 128;
+				switchRoom(roomX, --roomY);
+			}
+			if (_player.y >= 128 - _player.height / 2) {
+				_player.y -= 128;
+				switchRoom(roomX, ++roomY);
+			}
+		}
+		
+		private function switchRoom(x:int, y:int):void
+		{
+			_room = RoomContainer.getRoom(roomX, roomY);
+			
+			this.removeAll();
 			var g1:Graphic = new Image(WHITE);
 			var g2:Graphic = new Image(GREY);
-			for (i = 0; i < 10; i++)
+			for (var i:int = 0; i < 10; i++)
 			{
-				for (j = 0; j < 8; j++)
+				for (var j:int = 0; j < 8; j++)
 				{
-					if (_level[i][j] == 1)
+					if (_room.level[i][j] == 1)
 						add(new Entity(i * 16, j * 16, g1));
 					else if ((i + j) / 2 == int((i + j) / 2))
 						add(new Entity(i * 16, j * 16, g2));
 				}
 			}
-			
-			_player = new Player(_level);
-			_player.x = 32;
-			_player.y = 32;
+			_player.setLevel(_room.level);
 			add(_player);
-			
-			
 		}
 		
 	}

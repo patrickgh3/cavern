@@ -23,6 +23,7 @@ package
 		
 		override public function init():void
 		{
+			//RoomContainer.init();
 			FP.world = _gameWorld;
 		}
 	}

@@ -1,0 +1,6 @@
+<level width="160" height="128">
+  <Tiles tileset="NewTileset0" exportMode="XMLCoords" />
+  <TestEntities>
+    <TestEntity id="0" x="64" y="48" testval1="0" />
+  </TestEntities>
+</level>

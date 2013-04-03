@@ -58,6 +58,8 @@ package
 			_jumpReleased = !jump;
 			// TODO: variable jump height based on time jump held down.
 			
+			//if (collideLevel()) kill();
+			
 			var xstep:int = 0;
 			var xmax:Number = Math.abs(_xspeed);
 			var xdir:int = Math.abs(_xspeed) / _xspeed;
@@ -65,7 +67,7 @@ package
 			var ymax:Number = Math.abs(_yspeed);
 			var ydir:int = Math.abs(_yspeed) / _yspeed;
 			var diff:Number;
-			for (var n:int = 0; n < 10; n++)
+			for (var n:int = 0; n < 10; n++) // TODO: change 10 to an appropriate cap (depends on x,yspeed)
 			{
 				if (xstep < xmax)
 				{

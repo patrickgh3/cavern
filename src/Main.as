@@ -17,13 +17,12 @@ package
 		{
 			super(160, 128, 60, true);
 			FP.screen.scale = 4;
-			_gameWorld = new GameWorld();
-			
 		}
 		
 		override public function init():void
 		{
-			//RoomContainer.init();
+			RoomContainer.init();
+			_gameWorld = new GameWorld();
 			FP.world = _gameWorld;
 		}
 	}

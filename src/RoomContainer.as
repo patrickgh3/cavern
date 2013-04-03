@@ -9,8 +9,8 @@ package
 	 */
 	public class RoomContainer 
 	{
-		public static const width:int = 1;
-		public static const height:int = 1;
+		public static var width:int = 1;
+		public static var height:int = 1;
 		public static var rooms:Array;
 		
 		[Embed(source = "../levels/mainworld.oel", mimeType = "application/octet-stream")]
@@ -18,21 +18,35 @@ package
 		
 		public static function init():void
 		{
-			// load a large array 
 			var x:int, y:int, i:int, j:int;
-			var whole:Array = new Array();
-			for (i = 0; i < width; i++)
-				whole[i] = new Array();
+			// TODO: load an extra shell around the room arrays so the player can collide with those tiles.
+			// TODO: separate tile graphic data and tile type data (graphics vs. soild/not solid) for simplicity ?
 			
 			var xml:XML = FP.getXML(mainworld);
 			var node:XML;
+			width = xml.@width / 160;
+			height = xml.@height / 128;
+			
+			var whole:Array = new Array();
+			for (i = 0; i < width * 10; i++) {
+				whole[i] = new Array();
+				for (j = 0; j < height * 10; j++)
+				{
+					whole[i][j] = 0;
+				}
+			}
+			
 			for each (node in xml.Tiles.tile)
 			{
 				x = node.@x;
 				y = node.@y;
-				whole[x][y] = new Point(node.@tx, node.@ty);
+				var tx:int = node.@tx;
+				var ty:int = node.@ty;
+				if (tx == 0 && ty == 0)
+					whole[x][y] = 1;
+				else
+					whole[x][y] = 0;
 			}
-			
 			
 			rooms = new Array();
 			for (x = 0; x < width; x++)
@@ -45,16 +59,27 @@ package
 					{
 						for (j = 0; j < 8; j++)
 						{
-							rooms[x][y].level[i][j] = whole[x * 10 + i][y * 8 + j];
+							rooms[x][y].level[i][j] = whole[x*10+i][y*8+j];
 						}
 					}
 				}
 			}
+			
+			/*for (y = 0; y < 8; y++)
+			{
+				var s:String = "";
+				for (x = 0; x < 10; x++)
+				{
+					s += rooms[0][0].level[x][y] + " ";
+					s += " ";
+				}
+				trace(s);
+			}*/
 		}
 		
 		public static function getRoom(x:int, y:int):Room
 		{
-			return new Room();
+			return rooms[x][y];
 		}
 		
 	}

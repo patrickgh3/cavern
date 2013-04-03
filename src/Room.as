@@ -19,15 +19,7 @@ package
 				level[i] = new Array();
 				for (var j:int = 0; j < 8; j++)
 				{
-					if (i == 0 || i == level.length - 1 || j == 0 || j == level[0].length - 1)
-						level[i][j] = 1;
-					else level[i][j] = 0;
-					if (Math.random() < 0.1) level[i][j] = 1;
-					if (i == 9 && j == 4) level[i][j] = 0;
-					if (i == 0 && j == 4) level[i][j] = 0;
-					if (i == 4 && j == 0) level[i][j] = 0;
-					if (i == 4 && j == 7) level[i][j] = 0;
-					if (i == 4 && j == 2) level[i][j] = 1;
+					level[i][j] = 0;
 				}
 			}
 		}

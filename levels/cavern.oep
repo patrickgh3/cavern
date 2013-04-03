@@ -2,11 +2,11 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <OgmoVersion>2.1.0.5</OgmoVersion>
   <Name>cavern</Name>
-  <BackgroundColor A="255" R="125" G="160" B="255" />
-  <GridColor A="255" R="255" G="240" B="90" />
+  <BackgroundColor A="255" R="110" G="110" B="110" />
+  <GridColor A="255" R="176" G="176" B="176" />
   <LevelDefaultSize>
-    <Width>160</Width>
-    <Height>128</Height>
+    <Width>320</Width>
+    <Height>256</Height>
   </LevelDefaultSize>
   <LevelMinimumSize>
     <Width>160</Width>
@@ -49,14 +49,35 @@
         <Y>1</Y>
       </ScrollFactor>
     </LayerDefinition>
+    <LayerDefinition xsi:type="TileLayerDefinition">
+      <Name>LargeGrid</Name>
+      <Grid>
+        <Width>160</Width>
+        <Height>128</Height>
+      </Grid>
+      <ScrollFactor>
+        <X>1</X>
+        <Y>1</Y>
+      </ScrollFactor>
+      <ExportMode>XML</ExportMode>
+    </LayerDefinition>
   </LayerDefinitions>
   <Tilesets>
     <Tileset>
-      <Name>NewTileset0</Name>
+      <Name>MainTiles</Name>
       <FilePath>tileset1.png</FilePath>
       <TileSize>
         <Width>16</Width>
         <Height>16</Height>
+      </TileSize>
+      <TileSep>0</TileSep>
+    </Tileset>
+    <Tileset>
+      <Name>RoomBorder</Name>
+      <FilePath>border.png</FilePath>
+      <TileSize>
+        <Width>160</Width>
+        <Height>128</Height>
       </TileSize>
       <TileSep>0</TileSep>
     </Tileset>

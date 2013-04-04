@@ -53,20 +53,10 @@ package
 		private function switchRoom(x:int, y:int):void
 		{
 			_room = RoomContainer.getRoom(roomX, roomY);
-			
 			this.removeAll();
-			var g1:Graphic = new Image(WHITE);
-			var g2:Graphic = new Image(GREY);
 			for (var i:int = 0; i < 10; i++)
-			{
 				for (var j:int = 0; j < 8; j++)
-				{
-					if (_room.level[i][j] == 1)
-						add(new Entity(i * 16, j * 16, g1));
-					else if ((i + j) / 2 == int((i + j) / 2))
-						add(new Entity(i * 16, j * 16, g2));
-				}
-			}
+					add(_room.tiles[i][j]);
 			_player.setLevel(_room.level);
 			add(_player);
 		}

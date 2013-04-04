@@ -32,7 +32,7 @@ package
 				whole[i] = new Array();
 				for (j = 0; j < height * 10; j++)
 				{
-					whole[i][j] = 0;
+					whole[i][j] = new Point(1,0);
 				}
 			}
 			
@@ -42,10 +42,7 @@ package
 				y = node.@y;
 				var tx:int = node.@tx;
 				var ty:int = node.@ty;
-				if (tx == 0 && ty == 0)
-					whole[x][y] = 1;
-				else
-					whole[x][y] = 0;
+				whole[x][y] = new Point(tx, ty);
 			}
 			
 			rooms = new Array();
@@ -59,27 +56,18 @@ package
 					{
 						for (j = 0; j < 8; j++)
 						{
-							rooms[x][y].level[i][j] = whole[x*10+i][y*8+j];
+							var p:Point = whole[x * 10 + i][y * 8 + j];
+							rooms[x][y].tiles[i][j] = Tile.getTile(i * 16, j * 16, p.x, p.y);
+							rooms[x][y].level[i][j] = rooms[x][y].tiles[i][j].tileType;
 						}
 					}
 				}
 			}
-			
-			/*for (y = 0; y < 8; y++)
-			{
-				var s:String = "";
-				for (x = 0; x < 10; x++)
-				{
-					s += rooms[0][0].level[x][y] + " ";
-					s += " ";
-				}
-				trace(s);
-			}*/
 		}
 		
 		public static function getRoom(x:int, y:int):Room
 		{
-			return rooms[x][y];
+			return rooms[x][y].clone();
 		}
 		
 	}

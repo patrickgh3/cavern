@@ -28,7 +28,11 @@ package
 		public static function getTile(xpos:int, ypos:int, x:int, y:int):Tile
 		{
 			var t:int = 0;
+			
 			if (x == 0 && y == 0) t = 1;
+			else if (y == 1) t = 1;
+			else if (y == 2) t = 0;
+			
 			
 			return new Tile(xpos, ypos, x, y, t);
 		}

@@ -16,6 +16,7 @@ package
 		private const GREY:Class
 		
 		private var _player:Player;
+		private var _blackfade:BlackFade;
 		private var _room:Room;
 		private var roomX:int = 0;
 		private var roomY:int = 0;
@@ -25,6 +26,7 @@ package
 			_player = new Player();
 			_player.x = 32;
 			_player.y = 32;
+			var ps:PlayerSprite = new PlayerSprite(_player);
 			
 			switchRoom(0, 0);
 		}
@@ -59,6 +61,25 @@ package
 					add(_room.tiles[i][j]);
 			_player.setLevel(_room.level);
 			add(_player);
+			add(_player.getSprite());
+			if (_blackfade != null) add(_blackfade);
+		}
+		
+		public function playerKilled():void
+		{
+			remove(_player);
+			remove(_player.getSprite());
+			_blackfade = new BlackFade();
+			add(_blackfade);
+		}
+		
+		public function addPlayer():void
+		{
+			_player = new Player();
+			_player.x = 32;
+			_player.y = 32;
+			var ps:PlayerSprite = new PlayerSprite(_player);
+			switchRoom(roomX, roomY);
 		}
 		
 	}

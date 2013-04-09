@@ -22,11 +22,11 @@ package
 		private var _yspeed:Number;
 		private var _level:Array;
 		private var _jumpReleased:Boolean;
+		private var _sprite:PlayerSprite;
 		
 		public function Player() 
 		{
 			super();
-			graphic = new Image(IMAGE);
 			_yspeed = 0;
 			width = 10;
 			height = 12;
@@ -37,6 +37,12 @@ package
 			var right:Boolean = Input.check(Key.RIGHT);
 			var left:Boolean = Input.check(Key.LEFT);
 			var jump:Boolean = Input.check(Key.Z) || Input.check(Key.UP);
+			var kill:Boolean = Input.check(Key.R) || Input.check(Key.Q);
+			
+			if (kill) {
+				this.kill();
+				return;
+			}
 			
 			if (right && !left) _xspeed = runSpeed;
 			else if (left && !right) _xspeed = -runSpeed;
@@ -45,16 +51,9 @@ package
 			// TODO: pressing a direction overrides the previous one held down ?
 			
 			_yspeed += grav;
-			var x1:int = int(x / 16);
-			var x2:int = int((x + width - 1) / 16);
-			var y2:int = int((y + height) / 16);
-			if (x1 < 0) x1 = x2;
-			if (x2 >= _level.length) x2 = x1;
-			if (y2 < 0) y2 = 0;
-			if (y2 >= _level[0].length) y2 = _level[0].length - 1;
-			var onGround:Boolean = _yspeed > 0 && _yspeed < 1 && (_level[x1][y2] == 1 || _level[x2][y2] == 1);
-			if (jump && _jumpReleased && onGround)
+			if (jump && _jumpReleased && onGround()) {
 				_yspeed = -jumpSpeed;
+			}
 			_jumpReleased = !jump;
 			// TODO: variable jump height based on time jump held down.
 			
@@ -123,6 +122,43 @@ package
 				   _level[x1][y2] == 1 ||
 				   _level[x2][y1] == 1 ||
 				   _level[x2][y2] == 1;
+		}
+		
+		public function kill():void
+		{
+			GameWorld(FP.world).playerKilled();
+		}
+		
+		public function getSprite():Entity
+		{
+			return _sprite;
+		}
+		
+		public function setSprite(ps:PlayerSprite):void
+		{
+			_sprite = ps;
+		}
+		
+		public function getXSpeed():Number
+		{
+			return _xspeed;
+		}
+		
+		public function getYSpeed():Number
+		{
+			return _yspeed;
+		}
+		
+		public function onGround():Boolean
+		{
+			var x1:int = int(x / 16);
+			var x2:int = int((x + width - 1) / 16);
+			var y2:int = int((y + height) / 16);
+			if (x1 < 0) x1 = x2;
+			if (x2 >= _level.length) x2 = x1;
+			if (y2 < 0) y2 = 0;
+			if (y2 >= _level[0].length) y2 = _level[0].length - 1;
+			return (_level[x1][y2] == 1 || _level[x2][y2] == 1) && _yspeed >= 0;
 		}
 		
 	}

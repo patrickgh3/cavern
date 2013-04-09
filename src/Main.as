@@ -3,7 +3,7 @@ package
 	import net.flashpunk.Engine;
 	import net.flashpunk.FP;
 	
-	[SWF(width="640", height="512", frameRate = "-1", backgroundColor="#000000")]
+	[SWF(width="960", height="768", frameRate = "-1", backgroundColor="#000000")]
 	
 	/**
 	 * Entry point into the program.
@@ -16,7 +16,7 @@ package
 		public function Main():void
 		{
 			super(160, 128, 60, true);
-			FP.screen.scale = 4;
+			FP.screen.scale = 6;
 		}
 		
 		override public function init():void

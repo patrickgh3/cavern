@@ -56,9 +56,9 @@ package
 		{
 			_room = RoomContainer.getRoom(roomX, roomY);
 			this.removeAll();
-			for (var i:int = 0; i < 10; i++)
-				for (var j:int = 0; j < 8; j++)
-					add(_room.tiles[i][j]);
+			for (var i:int = 0; i < 12; i++)
+				for (var j:int = 0; j < 10; j++)
+					if (_room.tiles[i][j] != null) add(_room.tiles[i][j]);
 			_player.setLevel(_room.level);
 			add(_player);
 			add(_player.getSprite());

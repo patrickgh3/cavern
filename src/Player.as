@@ -49,7 +49,6 @@ package
 			else _xspeed = 0;
 			// TODO: tapping right and left make the player move slowly to allow precision positioning ?
 			// TODO: pressing a direction overrides the previous one held down ?
-			
 			_yspeed += grav;
 			if (jump && _jumpReleased && onGround()) {
 				_yspeed = -jumpSpeed;
@@ -88,7 +87,7 @@ package
 						ystep++;
 						if (collideLevel())
 						{
-							y = int(y - ydir) + 0.5;
+							y -= diff;
 							ystep--;
 							_yspeed = 0;
 						}
@@ -108,20 +107,18 @@ package
 			var x2:int = int((x + width - 1) / 16);
 			var y1:int = int(y / 16);
 			var y2:int = int((y + height - 1) / 16);
-			
-			if (x1 < 0) x1 = x2;
-			if (x2 >= _level.length) x2 = x1;
-			if (y1 < 0) y1 = y2;
-			if (y2 >= _level[0].length) y2 = y1;
-			
-			if (x1 < 0 || x2 < 0 || y1 < 0 || y2 < 0 ||
-				x1 >= _level.length || x2 >= _level.length || y1 >= _level[0].length || y2 >= _level[0].length)
-				trace("Player's collideLevel: out of bounds.\nx1: " + x1 + "    x2: " + x2 + "    y1: " + y1 + "    y2: " + y2);
+			if (x < 0) x1 = -1;
+			if (y < 0) y1 = -1;
 				
-			return _level[x1][y1] == 1 ||
-				   _level[x1][y2] == 1 ||
-				   _level[x2][y1] == 1 ||
-				   _level[x2][y2] == 1;
+			return getLevel(x1, y1) == 1 ||
+				   getLevel(x1, y2) == 1 ||
+				   getLevel(x2, y1) == 1 ||
+				   getLevel(x2, y2) == 1;
+		}
+		
+		private function getLevel(x:int, y:int):int
+		{
+			return _level[x + 1][y + 1];
 		}
 		
 		public function kill():void
@@ -154,11 +151,9 @@ package
 			var x1:int = int(x / 16);
 			var x2:int = int((x + width - 1) / 16);
 			var y2:int = int((y + height) / 16);
-			if (x1 < 0) x1 = x2;
-			if (x2 >= _level.length) x2 = x1;
-			if (y2 < 0) y2 = 0;
-			if (y2 >= _level[0].length) y2 = _level[0].length - 1;
-			return (_level[x1][y2] == 1 || _level[x2][y2] == 1) && _yspeed >= 0;
+			if (x < 0) x1 = -1;
+			
+			return (getLevel(x1, y2) == 1 || getLevel(x2, y2) == 1) && _yspeed >= 0;
 		}
 		
 	}

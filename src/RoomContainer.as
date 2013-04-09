@@ -9,8 +9,8 @@ package
 	 */
 	public class RoomContainer 
 	{
-		public static var width:int = 1;
-		public static var height:int = 1;
+		public static var width:int;
+		public static var height:int;
 		public static var rooms:Array;
 		
 		[Embed(source = "../levels/mainworld.oel", mimeType = "application/octet-stream")]
@@ -19,8 +19,6 @@ package
 		public static function init():void
 		{
 			var x:int, y:int, i:int, j:int;
-			// TODO: load an extra shell around the room arrays so the player can collide with those tiles.
-			// TODO: separate tile graphic data and tile type data (graphics vs. soild/not solid) for simplicity ?
 			
 			var xml:XML = FP.getXML(mainworld);
 			var node:XML;
@@ -30,7 +28,7 @@ package
 			var whole:Array = new Array();
 			for (i = 0; i < width * 10; i++) {
 				whole[i] = new Array();
-				for (j = 0; j < height * 10; j++)
+				for (j = 0; j < height * 8; j++)
 				{
 					whole[i][j] = new Point(1,0);
 				}
@@ -52,11 +50,29 @@ package
 				for (y = 0; y < height; y++)
 				{
 					rooms[x][y] = new Room();
-					for (i = 0; i < 10; i++)
+					// inner section (10 x 8)
+					for (i = 1; i < 11; i++)
 					{
-						for (j = 0; j < 8; j++)
+						for (j = 1; j < 9; j++)
 						{
-							var p:Point = whole[x * 10 + i][y * 8 + j];
+							var p:Point = whole[x * 10 + (i - 1)][y * 8 + (j - 1)];
+							rooms[x][y].tiles[i][j] = Tile.getTile((i - 1) * 16, (j - 1) * 16, p.x, p.y);
+							rooms[x][y].level[i][j] = rooms[x][y].tiles[i][j].tileType;
+						}
+					}
+					// outer shell
+					for (i = 0; i < 12; i ++)
+					{
+						for (j = 0; j < 10; j++)
+						{
+							if ((i != 0 && i != 11) && (j != 0 && j != 9)) continue;
+							var a:int = x * 10 + i - 1;
+							var b:int = y * 8 + j - 1;
+							if (a < 0 || a >= whole.length || b < 0 || b >= whole[0].length)
+								p = new Point(1, 1);
+							else
+								p = whole[a][b];
+							
 							rooms[x][y].tiles[i][j] = Tile.getTile(i * 16, j * 16, p.x, p.y);
 							rooms[x][y].level[i][j] = rooms[x][y].tiles[i][j].tileType;
 						}

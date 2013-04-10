@@ -13,6 +13,7 @@ package
 		public var level:Array;
 		public var tiles:Array;
 		public var entities:Array;
+		public var sound:String;
 		
 		public function Room() 
 		{
@@ -40,6 +41,7 @@ package
 					if (tiles[i][j] != null) r.tiles[i][j] = tiles[i][j].clone();
 				}
 			}
+			r.sound = sound;
 			return r;
 		}
 		

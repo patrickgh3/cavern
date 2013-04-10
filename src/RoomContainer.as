@@ -34,6 +34,15 @@ package
 				}
 			}
 			
+			var sounds:Array = new Array();
+			for (i = 0; i < width; i++) sounds[i] = new Array();
+			for each (node in xml.RoomData.RoomProperties)
+			{
+				x = node.@x / 160;
+				y = node.@y / 128;
+				sounds[x][y] = node.@sound;
+			}
+			
 			for each (node in xml.Tiles.tile)
 			{
 				x = node.@x;
@@ -50,6 +59,7 @@ package
 				for (y = 0; y < height; y++)
 				{
 					rooms[x][y] = new Room();
+					rooms[x][y].sound = sounds[x][y];
 					// inner section (10 x 8)
 					for (i = 1; i < 11; i++)
 					{

@@ -50,6 +50,7 @@ package
 				_player.y -= 128;
 				switchRoom(roomX, ++roomY);
 			}
+			Ambiance.update();
 		}
 		
 		private function switchRoom(x:int, y:int):void
@@ -63,6 +64,7 @@ package
 			add(_player);
 			add(_player.getSprite());
 			if (_blackfade != null) add(_blackfade);
+			Ambiance.switchTo(_room.sound);
 		}
 		
 		public function playerKilled():void

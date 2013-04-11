@@ -22,7 +22,9 @@ package
 		private var _yspeed:Number;
 		private var _level:Array;
 		private var _jumpReleased:Boolean;
+		private var _killed:Boolean;
 		private var _sprite:PlayerSprite;
+
 		
 		public function Player() 
 		{
@@ -37,9 +39,11 @@ package
 			var right:Boolean = Input.check(Key.RIGHT);
 			var left:Boolean = Input.check(Key.LEFT);
 			var jump:Boolean = Input.check(Key.Z) || Input.check(Key.UP);
-			var kill:Boolean = Input.check(Key.R) || Input.check(Key.Q);
+			var suicide:Boolean = Input.check(Key.R) || Input.check(Key.Q);
 			
-			if (kill) {
+			_killed = false;
+			
+			if (suicide) {
 				this.kill();
 				return;
 			}
@@ -124,6 +128,10 @@ package
 		
 		public function kill():void
 		{
+			if (_killed) return;
+			_killed = true;
+			_xspeed = 0;
+			_yspeed = 0;
 			GameWorld(FP.world).playerKilled();
 		}
 		

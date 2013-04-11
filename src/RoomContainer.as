@@ -66,12 +66,12 @@ package
 						for (j = 1; j < 9; j++)
 						{
 							var p:Point = whole[x * 10 + (i - 1)][y * 8 + (j - 1)];
-							rooms[x][y].tiles[i][j] = Tile.getTile((i - 1) * 16, (j - 1) * 16, p.x, p.y);
+							rooms[x][y].tiles[i][j] = Tile.getTile((i - 1) * 16, (j - 1) * 16, p.x, p.y, rooms[x][y]);
 							rooms[x][y].level[i][j] = rooms[x][y].tiles[i][j].tileType;
 						}
 					}
 					// outer shell
-					for (i = 0; i < 12; i ++)
+					for (i = 0; i < 12; i++)
 					{
 						for (j = 0; j < 10; j++)
 						{
@@ -83,12 +83,20 @@ package
 							else
 								p = whole[a][b];
 							
-							rooms[x][y].tiles[i][j] = Tile.getTile(i * 16, j * 16, p.x, p.y);
+							rooms[x][y].tiles[i][j] = Tile.getTile(i * 16, j * 16, p.x, p.y, rooms[x][y]);
 							rooms[x][y].level[i][j] = rooms[x][y].tiles[i][j].tileType;
 						}
 					}
 				}
 			}
+			/*
+			for (x = 0; x < width; x++)
+				for (y = 0; y < height; y++)
+					for (i = 0; i < 12; i++)
+						for (j = 0; j < 10; j++)
+						{
+							rooms[x][y].tiles[i][j].extraInit();
+						}*/
 		}
 		
 		public static function getRoom(x:int, y:int):Room

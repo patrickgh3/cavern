@@ -21,10 +21,11 @@ package
 		
 		override public function init():void
 		{
-			RoomContainer.init();
-			Ambiance.init();
 			_gameWorld = new GameWorld();
 			FP.world = _gameWorld;
+			RoomContainer.init();
+			Ambiance.init();
+			_gameWorld.init();
 		}
 	}
 	

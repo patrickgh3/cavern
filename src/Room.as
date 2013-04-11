@@ -12,8 +12,9 @@ package
 		
 		public var level:Array;
 		public var tiles:Array;
-		public var entities:Array;
 		public var sound:String;
+		
+		public var instakillEntities:Array;
 		
 		public function Room() 
 		{
@@ -28,20 +29,27 @@ package
 					level[i][j] = 0;
 				}
 			}
+			instakillEntities = new Array();
 		}
 		
 		public function clone():Room
 		{
 			var r:Room = new Room();
+			r.sound = sound;
 			for (var i:int = 0; i < width; i++)
 			{
 				for (var j:int = 0; j < height; j++)
 				{
 					r.level[i][j] = level[i][j];
-					if (tiles[i][j] != null) r.tiles[i][j] = tiles[i][j].clone();
+					if (tiles[i][j] != null) r.tiles[i][j] = tiles[i][j].clone(r);
+					r.tiles[i][j].roomStart();
 				}
-			}
-			r.sound = sound;
+			}/*
+			for (i = 0; i < instakillEntities.length; i++)
+			{
+				r.instakillEntities.push(instakillEntities[i]);
+			}*/
+			
 			return r;
 		}
 		

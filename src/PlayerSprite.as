@@ -23,7 +23,7 @@ package
 		private const landTime:int = 6;
 		
 		private var parent:Player;
-		private var sprite:Spritemap = new Spritemap(src, 16, 16);
+		private var sprite:Spritemap;
 		private var anim:String;
 		private var count:int;
 		private var lastYSpeed:int;
@@ -34,6 +34,7 @@ package
 			parent = p;
 			parent.setSprite(this);
 			
+			sprite = new Spritemap(src, 16, 16);
 			graphic = sprite;
 		}
 		

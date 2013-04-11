@@ -94,6 +94,7 @@ package
 					}
 				}
 			}
+			if (collideLevel(2)) this.kill();
 		}
 		
 		public function setLevel(level:Array):void
@@ -101,7 +102,7 @@ package
 			_level = level;
 		}
 		
-		private function collideLevel():Boolean
+		private function collideLevel(tiletype:int = 1):Boolean
 		{
 			var x1:int = int(x / 16);
 			var x2:int = int((x + width - 1) / 16);
@@ -110,10 +111,10 @@ package
 			if (x < 0) x1 = -1;
 			if (y < 0) y1 = -1;
 				
-			return getLevel(x1, y1) == 1 ||
-				   getLevel(x1, y2) == 1 ||
-				   getLevel(x2, y1) == 1 ||
-				   getLevel(x2, y2) == 1;
+			return getLevel(x1, y1) == tiletype ||
+				   getLevel(x1, y2) == tiletype ||
+				   getLevel(x2, y1) == tiletype ||
+				   getLevel(x2, y2) == tiletype;
 		}
 		
 		private function getLevel(x:int, y:int):int

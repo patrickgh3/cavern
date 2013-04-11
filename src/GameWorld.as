@@ -18,17 +18,21 @@ package
 		private var _player:Player;
 		private var _blackfade:BlackFade;
 		private var _room:Room;
-		private var roomX:int = 0;
+		private var roomX:int = 2;
 		private var roomY:int = 0;
+		private var spawnX:int = 32;
+		private var spawnY:int = 32;
+		private var spawnRoomX:int;
+		private var spawnRoomY:int;
 		
 		public function GameWorld() 
 		{
 			_player = new Player();
-			_player.x = 32;
-			_player.y = 32;
+			_player.x = spawnX;
+			_player.y = spawnY;
 			var ps:PlayerSprite = new PlayerSprite(_player);
 			
-			switchRoom(0, 0);
+			switchRoom(roomX, roomY);
 		}
 		
 		override public function update():void
@@ -37,10 +41,18 @@ package
 			if (_player.x < -_player.width / 2) {
 				_player.x += 160;
 				switchRoom(--roomX, roomY);
+				spawnX = 16 * 9 + (8 - _player.width / 2);
+				spawnY = _player.y;
+				spawnRoomX = roomX;
+				spawnRoomY = roomY;
 			}
 			if (_player.x >= 160 - _player.width / 2) {
 				_player.x -= 160;
 				switchRoom(++roomX, roomY);
+				spawnX = (8 - _player.width / 2);
+				spawnY = _player.y;
+				spawnRoomX = roomX;
+				spawnRoomY = roomY;
 			}
 			if (_player.y < -_player.height / 2) {
 				_player.y += 128;
@@ -77,10 +89,10 @@ package
 		
 		public function addPlayer():void
 		{
-			_player = new Player();
-			_player.x = 32;
-			_player.y = 32;
-			var ps:PlayerSprite = new PlayerSprite(_player);
+			_player.x = spawnX;
+			_player.y = spawnY;
+			roomX = spawnRoomX;
+			roomY = spawnRoomY;
 			switchRoom(roomX, roomY);
 		}
 		

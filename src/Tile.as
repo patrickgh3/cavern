@@ -10,6 +10,10 @@ package
 	public class Tile extends Entity
 	{
 		public var tileType:int;
+		/* 0 - empty
+		 * 1 - solid
+		 * 2 - instakill
+		 */
 		private var _x:int;
 		private var _y:int
 		
@@ -29,10 +33,9 @@ package
 		{
 			var t:int = 0;
 			
-			if (x == 0 && y == 0) t = 1;
+			if (y == 0) t = 2;
 			else if (y == 1) t = 1;
 			else if (y == 2) t = 0;
-			
 			
 			return new Tile(xpos, ypos, x, y, t);
 		}

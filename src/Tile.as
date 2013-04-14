@@ -32,15 +32,13 @@ package
 			graphic = new Image(TILES, new Rectangle(x * 16, y * 16, 16, 16));
 		}
 		
-		public function roomStart():void
-		{
-			
-		}
+		public function roomStart():void { }
 		
 		public static function getTile(xpos:int, ypos:int, x:int, y:int, r:Room):Tile
 		{
 			if (x == 0 && y == 0) return new LavaTile(xpos, ypos, r, LavaTile.CENTER);
 			else if (x == 1 && y == 0) return new LavaTile(xpos, ypos, r, LavaTile.TOP);
+			else if (x == 2 && y == 0) return new CrumbleTile(xpos, ypos, r);
 			
 			var t:int = 0;
 			if (y == 0) t = 2;
@@ -53,6 +51,8 @@ package
 		{
 			return new Tile(x, y, _x, _y, r, tileType);
 		}
+		
+		public function touch():void { }
 		
 	}
 

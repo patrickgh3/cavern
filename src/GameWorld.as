@@ -10,20 +10,15 @@ package
 	 */
 	public class GameWorld extends World
 	{
-		[Embed(source = "/../assets/solidtile.png")]
-		private const WHITE:Class
-		[Embed(source = "/../assets/bgtile.png")]
-		private const GREY:Class
-		
 		public var _player:Player;
 		private var _blackfade:BlackFade;
-		private var _room:Room;
+		public var _room:Room;
 		private var roomX:int = 2;
 		private var roomY:int = 0;
 		private var spawnX:int = 32;
 		private var spawnY:int = 32;
-		private var spawnRoomX:int;
-		private var spawnRoomY:int;
+		private var spawnRoomX:int = roomX;
+		private var spawnRoomY:int = roomY;
 		
 		public function GameWorld() 
 		{

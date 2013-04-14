@@ -78,6 +78,7 @@ package
 					xstep++;
 					if (collideLevel())
 					{
+						touchTiles(); // TODO: don't touch tiles multiple times?
 						x -= diff;
 						xstep--;
 					}
@@ -91,6 +92,7 @@ package
 						ystep++;
 						if (collideLevel())
 						{
+							touchTiles();
 							y -= diff;
 							ystep--;
 							_yspeed = 0;
@@ -119,6 +121,30 @@ package
 				   getLevel(x1, y2) == tiletype ||
 				   getLevel(x2, y1) == tiletype ||
 				   getLevel(x2, y2) == tiletype;
+		}
+		
+		private function touchTiles():void
+		{
+			var x1:int = int(x / 16);
+			var x2:int = int((x + width - 1) / 16);
+			var y1:int = int(y / 16);
+			var y2:int = int((y + height - 1) / 16);
+			if (x < 0) x1 = -1;
+			if (y < 0) y1 = -1;
+			x1 += 1;
+			y1 += 1;
+			x2 += 1;
+			y2 += 1;
+			touchTile(x1, y1);
+			touchTile(x1, y2);
+			touchTile(x2, y1);
+			touchTile(x2, y2);
+		}
+		
+		private function touchTile(x:int, y:int):void
+		{
+			if (GameWorld(FP.world)._room.tiles[x][y] != null)
+				GameWorld(FP.world)._room.tiles[x][y].touch();
 		}
 		
 		private function getLevel(x:int, y:int):int

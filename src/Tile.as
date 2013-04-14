@@ -39,6 +39,7 @@ package
 			if (x == 0 && y == 0) return new LavaTile(xpos, ypos, r, LavaTile.CENTER);
 			else if (x == 1 && y == 0) return new LavaTile(xpos, ypos, r, LavaTile.TOP);
 			else if (x == 2 && y == 0) return new CrumbleTile(xpos, ypos, r);
+			else if (x == 3 && y == 0) return new LavaDropTile(xpos, ypos, r);
 			
 			var t:int = 0;
 			if (y == 0) t = 2;

@@ -3,7 +3,7 @@
   <OgmoVersion>2.1.0.5</OgmoVersion>
   <Name>cavern</Name>
   <BackgroundColor A="255" R="110" G="110" B="110" />
-  <GridColor A="255" R="176" G="176" B="176" />
+  <GridColor A="0" R="176" G="176" B="176" />
   <LevelDefaultSize>
     <Width>320</Width>
     <Height>256</Height>

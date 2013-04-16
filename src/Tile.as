@@ -40,6 +40,8 @@ package
 			else if (x == 1 && y == 0) return new LavaTile(xpos, ypos, r, LavaTile.TOP);
 			else if (x == 2 && y == 0) return new CrumbleTile(xpos, ypos, r);
 			else if (x == 3 && y == 0) return new LavaDropTile(xpos, ypos, r);
+			else if (x == 6 && y == 0) return new SwitchTile(xpos, ypos, r, false);
+			else if (x == 7 && y == 0) return new SwitchTile(xpos, ypos, r, true);			
 			
 			var t:int = 0;
 			if (y == 0) t = 2;

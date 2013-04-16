@@ -17,6 +17,7 @@ package tiles
 		[Embed(source = "/../assets/sound/switch_off.mp3")]
 		private const off:Class;
 		
+		public static var numTiles:int = 0; // these values are set in Room's clone function. kinda messy.
 		public static var numActivated:int = 0;
 		
 		private var activated:Boolean;
@@ -34,8 +35,8 @@ package tiles
 			sfxOff = new Sfx(off);
 			sprite = new Spritemap(src, 16, 16);
 			graphic = sprite;
-			if (activated) sprite.setFrame(0, 0);
-			else sprite.setFrame(1, 0);
+			if (activated) sprite.setFrame(1, 0);
+			else sprite.setFrame(0, 0);
 		}
 		
 		override public function update():void
@@ -58,13 +59,13 @@ package tiles
 				activated = !activated;
 				if (activated)
 				{
-					sprite.setFrame(0, 0);
+					sprite.setFrame(1, 0);
 					numActivated++;
 					sfxOn.play();
 				}
 				else
 				{
-					sprite.setFrame(1, 0);
+					sprite.setFrame(0, 0);
 					numActivated--;
 					sfxOff.play();
 				}
@@ -75,6 +76,11 @@ package tiles
 		override public function clone(r:Room):Tile
 		{
 			return new SwitchTile(x, y, r, activated);
+		}
+		
+		public function isActivated():Boolean
+		{
+			return activated;
 		}
 		
 	}

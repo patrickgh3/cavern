@@ -1,6 +1,7 @@
 package  
 {
 	import net.flashpunk.Entity;
+	import tiles.SwitchTile;
 	
 	/**
 	 * Holds the data for a room in the game (10 by 12 tiles, including outer edges).
@@ -34,6 +35,8 @@ package
 		
 		public function clone():Room
 		{
+			SwitchTile.numTiles = 0;
+			SwitchTile.numActivated = 0;
 			var r:Room = new Room();
 			r.sound = sound;
 			for (var i:int = 0; i < width; i++)
@@ -41,8 +44,14 @@ package
 				for (var j:int = 0; j < height; j++)
 				{
 					r.level[i][j] = level[i][j];
-					if (tiles[i][j] != null) r.tiles[i][j] = tiles[i][j].clone(r);
+					if (tiles[i][j] != null) r.tiles[i][j] = Tile(tiles[i][j]).clone(r);
 					r.tiles[i][j].roomStart();
+					if (r.tiles[i][j] is SwitchTile)
+					{
+						trace("tile found");
+						SwitchTile.numTiles++;
+						if (SwitchTile(r.tiles[i][j]).isActivated()) SwitchTile.numActivated++;
+					}
 				}
 			}/*
 			for (i = 0; i < instakillEntities.length; i++)

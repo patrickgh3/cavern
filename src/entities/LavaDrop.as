@@ -50,6 +50,11 @@ package entities
 				count++;
 			}
 			
+			if (GameWorld(FP.world)._room.level[int(x / 16 + 1)][int((y + 7) / 16 + 1)] == Tile.INSTAKILL)
+			{
+				FP.world.remove(this);
+			}
+			
 			while (GameWorld(FP.world)._room.level[int(x / 16 + 1)][int((y + 7) / 16 + 1)] == Tile.SOLID)
 			{
 				splashed = true;

@@ -2401,6 +2401,7 @@
     <tile x="59" y="38" tx="4" ty="1" />
     <tile x="59" y="39" tx="4" ty="1" />
     <tile x="60" y="2" tx="4" ty="1" />
+    <tile x="60" y="3" tx="2" ty="2" />
     <tile x="60" y="4" tx="4" ty="1" />
     <tile x="60" y="32" tx="2" ty="1" />
     <tile x="60" y="33" tx="2" ty="1" />
@@ -2419,6 +2420,7 @@
     <tile x="60" y="46" tx="0" ty="1" />
     <tile x="60" y="47" tx="0" ty="1" />
     <tile x="61" y="2" tx="4" ty="1" />
+    <tile x="61" y="3" tx="2" ty="2" />
     <tile x="61" y="4" tx="4" ty="1" />
     <tile x="61" y="32" tx="2" ty="1" />
     <tile x="61" y="33" tx="2" ty="1" />
@@ -2437,6 +2439,7 @@
     <tile x="61" y="46" tx="0" ty="1" />
     <tile x="61" y="47" tx="0" ty="1" />
     <tile x="62" y="2" tx="4" ty="1" />
+    <tile x="62" y="3" tx="2" ty="2" />
     <tile x="62" y="4" tx="4" ty="1" />
     <tile x="62" y="5" tx="4" ty="1" />
     <tile x="62" y="6" tx="4" ty="1" />
@@ -2457,6 +2460,9 @@
     <tile x="62" y="46" tx="1" ty="1" />
     <tile x="62" y="47" tx="0" ty="1" />
     <tile x="63" y="2" tx="4" ty="1" />
+    <tile x="63" y="3" tx="2" ty="2" />
+    <tile x="63" y="4" tx="2" ty="2" />
+    <tile x="63" y="5" tx="2" ty="2" />
     <tile x="63" y="6" tx="4" ty="1" />
     <tile x="63" y="32" tx="2" ty="1" />
     <tile x="63" y="33" tx="2" ty="1" />
@@ -2784,5 +2790,10 @@
     <tile x="7" y="4" id="0" />
     <tile x="7" y="5" id="0" />
   </LargeGrid>
-  <RoomData />
+  <RoomData>
+    <MemoryTile id="0" x="1168" y="576" states="1111111100000000" />
+    <MemoryTile id="1" x="1184" y="576" states="1111000011110000" />
+    <MemoryTile id="2" x="1200" y="576" states="1100010110010100" />
+    <MemoryTile id="3" x="1008" y="592" states="1111111100000000" />
+  </RoomData>
 </level>

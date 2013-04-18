@@ -2,6 +2,7 @@ package
 {
 	import net.flashpunk.Entity;
 	import tiles.SwitchTile;
+	import tiles.MemoryTile;
 	
 	/**
 	 * Holds the data for a room in the game (10 by 12 tiles, including outer edges).
@@ -37,6 +38,9 @@ package
 		{
 			SwitchTile.numTiles = 0;
 			SwitchTile.numActivated = 0;
+			MemoryTile.count = 0;
+			MemoryTile.innercount = 0;
+			
 			var r:Room = new Room();
 			r.sound = sound;
 			for (var i:int = 0; i < width; i++)

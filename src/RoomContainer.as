@@ -3,6 +3,7 @@ package
 	import net.flashpunk.FP;
 	import flash.utils.ByteArray;
 	import flash.geom.Point;
+	import tiles.MemoryTile;
 	
 	/**
 	 * Holds an array of rooms.
@@ -89,6 +90,18 @@ package
 					}
 				}
 			}
+			
+			for each (node in xml.RoomData.MemoryTile)
+			{
+				// devil magic
+				x = node.@x / 16;
+				y = node.@y / 16;
+				rooms[int(x / 10)][int(y / 8)].tiles[x % 10 + 1][y % 8 + 1] =
+					new MemoryTile((x % 10) * 16, (y % 8) * 16, rooms[int(x / 10)][int(y / 8)], node.@states);
+				rooms[int(x / 10)][int(y / 8)].level[x % 10 + 1][y % 8 + 1] =
+					rooms[int(x / 10)][int(y / 8)].tiles[x % 10 + 1][y % 8 + 1].tileType;
+			}
+			
 			/*
 			for (x = 0; x < width; x++)
 				for (y = 0; y < height; y++)

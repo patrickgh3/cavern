@@ -4,6 +4,7 @@ package
 	import net.flashpunk.Graphic;
 	import net.flashpunk.World;
 	import net.flashpunk.graphics.Image;
+	import tiles.MemoryTile;
 	
 	/**
 	 * Main game world.
@@ -36,6 +37,7 @@ package
 		
 		override public function update():void
 		{
+			MemoryTile.update();
 			super.update();
 			
 			if (_player.x < -_player.width / 2) {

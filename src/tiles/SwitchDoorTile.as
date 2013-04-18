@@ -7,13 +7,13 @@ package tiles
 	 */
 	public class SwitchDoorTile extends Tile
 	{
+		[Embed(source = "/../assets/switchdoor.png")]
+		private const src:Class;
+		
 		private static const numframes:int = 4;
 		private static const animspeed:int = 20;
 		private var count:int;
 		private var sprite:Spritemap;
-		
-		[Embed(source = "/../assets/switchdoor.png")]
-		private const src:Class;
 		
 		public function SwitchDoorTile(xpos:int, ypos:int, r:Room) 
 		{
@@ -37,15 +37,17 @@ package tiles
 				sprite.setFrame(count / animspeed, 0);
 			}
 			
+			// fully open
 			if (count == numframes * animspeed && tileType == Tile.SOLID)
 			{
 				tileType = Tile.EMPTY;
-				_room.level[(x / 16) + 1][(y / 16) + 1] = Tile.EMPTY;
+				setLevel(tileType);
 			}
+			// closed
 			else if (count < numframes * animspeed && tileType == Tile.EMPTY)
 			{
 				tileType = Tile.SOLID;
-				_room.level[(x / 16) + 1][(y / 16) + 1] = Tile.SOLID;
+				setLevel(tileType);
 			}
 		}
 		

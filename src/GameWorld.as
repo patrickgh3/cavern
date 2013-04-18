@@ -77,8 +77,6 @@ package
 			for (var i:int = 0; i < 12; i++)
 				for (var j:int = 0; j < 10; j++)
 					if (_room.tiles[i][j] != null) add(_room.tiles[i][j]);
-			for (i = 0; i < _room.instakillEntities.length; i++)
-				add(_room.instakillEntities[i]);
 			_player.setLevel(_room.level);
 			add(_player);
 			add(_player.getSprite());
@@ -104,7 +102,7 @@ package
 			lookingforspawn = false;
 		}
 		
-		public function addPlayer():void
+		public function fadeIn():void
 		{
 			_player.x = spawnX;
 			_player.y = spawnY;

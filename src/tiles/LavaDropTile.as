@@ -9,8 +9,8 @@ package tiles
 	 */
 	public class LavaDropTile extends Tile
 	{
-		private var count:int = dropRate / 2;
 		private const dropRate:int = 70;
+		private var count:int = dropRate / 2;
 		
 		public function LavaDropTile(xpos:int, ypos:int, r:Room) 
 		{

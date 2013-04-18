@@ -10,15 +10,14 @@ package entities
 	{
 		[Embed(source = "/../assets/lavadrop.png")]
 		private const src:Class;
-		//[Embed(source = "/../levels/tileset1.png")] // enable for fun times
-		//private const src:Class;
+		
+		private const yaccel:Number = 0.1;
+		private const animSpeed:int = 4;
 		
 		private var yspeed:Number = 0.5;
-		private const yaccel:Number = 0.1;
-		private var sprite:Spritemap;
 		private var splashed:Boolean = false;
 		private var count:int = 0;
-		private var animSpeed:int = 4;
+		private var sprite:Spritemap;
 		
 		public function LavaDrop(x:int, y:int) 
 		{

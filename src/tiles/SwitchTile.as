@@ -30,11 +30,13 @@ package tiles
 		public function SwitchTile(xpos:int, ypos:int, r:Room, switchstatus:Boolean)
 		{
 			super(xpos, ypos, 0, 0, r, Tile.SOLID);
-			activated = switchstatus;
-			sfxOn = new Sfx(on);
-			sfxOff = new Sfx(off);
 			sprite = new Spritemap(src, 16, 16);
 			graphic = sprite;
+			activated = switchstatus;
+			
+			sfxOn = new Sfx(on);
+			sfxOff = new Sfx(off);
+			
 			if (activated) sprite.setFrame(1, 0);
 			else sprite.setFrame(0, 0);
 		}
@@ -42,6 +44,7 @@ package tiles
 		override public function update():void
 		{
 			if (player == null) player = GameWorld(FP.world)._player;
+			// if touched last and player is not near us
 			if (touchedLast && !(
 				x - 1 < player.x + player.width
 				&& x + 17 > player.x

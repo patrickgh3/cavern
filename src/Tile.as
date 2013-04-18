@@ -10,6 +10,9 @@ package
 	 */
 	public class Tile extends Entity
 	{
+		[Embed(source = "/../levels/tileset1.png")]
+		private const TILES:Class;
+		
 		public static const EMPTY:int = 0;
 		public static const SOLID:int = 1;
 		public static const INSTAKILL:int = 2;
@@ -18,9 +21,6 @@ package
 		protected var _x:int;
 		protected var _y:int
 		protected var _room:Room;
-		
-		[Embed(source = "/../levels/tileset1.png")]
-		private const TILES:Class;
 		
 		public function Tile(xpos:int, ypos:int, x:int, y:int, r:Room, type:int) 
 		{
@@ -34,6 +34,18 @@ package
 		
 		public function roomStart():void { }
 		
+		public function touch():void { }
+		
+		public function clone(r:Room):Tile
+		{
+			return new Tile(x, y, _x, _y, r, tileType);
+		}
+		
+		protected function setLevel(tiletype:int):void
+		{
+			_room.level[(x / 16) + 1][(y / 16) + 1] = tiletype;
+		}
+		
 		public static function getTile(xpos:int, ypos:int, x:int, y:int, r:Room):Tile
 		{
 			if (x == 0 && y == 0) return new LavaTile(xpos, ypos, r, LavaTile.CENTER);
@@ -46,17 +58,10 @@ package
 			
 			var t:int = 0;
 			if (y == 0) t = 2;
-			else if (y == 1) t = 1;
-			else if (y == 2) t = 0;
+			else if (y == 1) t = SOLID;
+			else if (y == 2) t = EMPTY;
 			return new Tile(xpos, ypos, x, y, r, t);
 		}
-		
-		public function clone(r:Room):Tile
-		{
-			return new Tile(x, y, _x, _y, r, tileType);
-		}
-		
-		public function touch():void { }
 		
 	}
 

@@ -1,7 +1,9 @@
 package tiles 
 {
 	import entities.Instakiller;
+	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Spritemap;
+	
 	/**
 	 * Animated lava tile.
 	 */
@@ -12,7 +14,7 @@ package tiles
 		
 		public static const CENTER:int = 1;
 		public static const TOP:int = 2;
-		private static const animRate:int = 40;
+		private const animRate:int = 40;
 		
 		private var lavatype:int;
 		private var count:int;
@@ -20,10 +22,11 @@ package tiles
 		
 		public function LavaTile(xpos:int, ypos:int, r:Room, lavatype:int) 
 		{
-			super(xpos, ypos, 0, 0, r, 0);
-			this.lavatype = lavatype;
+			super(xpos, ypos, 0, 0, r, Tile.EMPTY);
 			sprite = new Spritemap(src, 16, 16);
 			graphic = sprite;
+			this.lavatype = lavatype;
+			
 			if (lavatype == CENTER)
 			{
 				tileType = Tile.INSTAKILL;
@@ -51,17 +54,17 @@ package tiles
 			}
 		}
 		
-		override public function clone(r:Room):Tile
-		{
-			return new LavaTile(x, y, r, lavatype);
-		}
-		
 		override public function roomStart():void
 		{
 			if (lavatype == TOP)
 			{
-				_room.instakillEntities.push(new Instakiller(x, y + 4, 16, 12));
+				FP.world.add(new Instakiller(x, y + 4, 16, 12));
 			}
+		}
+		
+		override public function clone(r:Room):Tile
+		{
+			return new LavaTile(x, y, r, lavatype);
 		}
 		
 	}

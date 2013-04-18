@@ -13,9 +13,9 @@ package tiles
 		
 		private const crumbleTime:int = 30;
 		
-		private var sprite:Spritemap;
 		private var count:int = 0;
 		private var crumbling:Boolean;
+		private var sprite:Spritemap;
 		
 		public function CrumbleTile(xpos:int, ypos:int, r:Room) 
 		{
@@ -32,15 +32,10 @@ package tiles
 				Image(graphic).alpha = 1 - count / crumbleTime;
 				if (count == crumbleTime)
 				{
-					_room.level[(x / 16) + 1][(y / 16) + 1] = 0;
+					setLevel(Tile.EMPTY);
 					Image(graphic).alpha = 0;
 				}
 			}
-		}
-		
-		override public function clone(r:Room):Tile
-		{
-			return new CrumbleTile(x, y, r);
 		}
 		
 		override public function touch():void
@@ -48,7 +43,13 @@ package tiles
 			if (!crumbling)
 			{
 				crumbling = true;
+				// todo: play sfx here
 			}
+		}
+		
+		override public function clone(r:Room):Tile
+		{
+			return new CrumbleTile(x, y, r);
 		}
 		
 	}

@@ -6,16 +6,16 @@ package
 	import tiles.MemoryTile;
 	
 	/**
-	 * Holds an array of rooms.
+	 * Holds an array of rooms, initialized on startup.
 	 */
 	public class RoomContainer 
 	{
+		[Embed(source = "../levels/mainworld.oel", mimeType = "application/octet-stream")]
+		public static const mainworld:Class;
+		
 		public static var width:int;
 		public static var height:int;
 		public static var rooms:Array;
-		
-		[Embed(source = "../levels/mainworld.oel", mimeType = "application/octet-stream")]
-		public static const mainworld:Class;
 		
 		public static function init():void
 		{
@@ -101,15 +101,6 @@ package
 				rooms[int(x / 10)][int(y / 8)].level[x % 10 + 1][y % 8 + 1] =
 					rooms[int(x / 10)][int(y / 8)].tiles[x % 10 + 1][y % 8 + 1].tileType;
 			}
-			
-			/*
-			for (x = 0; x < width; x++)
-				for (y = 0; y < height; y++)
-					for (i = 0; i < 12; i++)
-						for (j = 0; j < 10; j++)
-						{
-							rooms[x][y].tiles[i][j].extraInit();
-						}*/
 		}
 		
 		public static function getRoom(x:int, y:int):Room

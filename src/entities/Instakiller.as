@@ -9,29 +9,28 @@ package entities
 	 */
 	public class Instakiller extends Entity
 	{
-		private var _player:Player;
+		private var player:Player;
 		
 		public function Instakiller(x:int, y:int, w:int, h:int) 
 		{
 			super(x, y);
 			width = w;
 			height = h;
-			//graphic = Image.createRect(width, height, 0xffffff);
 		}
 		
 		override public function update():void
 		{
-			if (_player == null) _player = GameWorld(FP.world)._player;
+			if (player == null) player = GameWorld(FP.world)._player;
 			if (collidePlayer())
-				_player.kill();
+				player.kill();
 		}
 		
 		private function collidePlayer():Boolean
 		{
-			return x < _player.x + _player.width
-				   && x + width > _player.x
-				   && y < _player.y + _player.height
-				   && y + height > _player.y;
+			return x < player.x + player.width
+				   && x + width > player.x
+				   && y < player.y + player.height
+				   && y + height > player.y;
 		}
 		
 	}

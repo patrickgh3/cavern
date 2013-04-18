@@ -29,7 +29,7 @@ package
 			}
 			else if (count == fadeTime + waitTime)
 			{
-				GameWorld(FP.world).addPlayer();
+				GameWorld(FP.world).fadeIn();
 			}
 			else if ((count > fadeTime + waitTime) && (count < waitTime + 2 * fadeTime))
 			{

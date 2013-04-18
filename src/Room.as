@@ -16,8 +16,6 @@ package
 		public var tiles:Array;
 		public var sound:String;
 		
-		public var instakillEntities:Array;
-		
 		public function Room() 
 		{
 			level = new Array(width);
@@ -31,7 +29,6 @@ package
 					level[i][j] = 0;
 				}
 			}
-			instakillEntities = new Array();
 		}
 		
 		public function clone():Room
@@ -43,6 +40,7 @@ package
 			
 			var r:Room = new Room();
 			r.sound = sound;
+			
 			for (var i:int = 0; i < width; i++)
 			{
 				for (var j:int = 0; j < height; j++)
@@ -50,18 +48,14 @@ package
 					r.level[i][j] = level[i][j];
 					if (tiles[i][j] != null) r.tiles[i][j] = Tile(tiles[i][j]).clone(r);
 					r.tiles[i][j].roomStart();
+					
 					if (r.tiles[i][j] is SwitchTile)
 					{
-						trace("tile found");
 						SwitchTile.numTiles++;
 						if (SwitchTile(r.tiles[i][j]).isActivated()) SwitchTile.numActivated++;
 					}
 				}
-			}/*
-			for (i = 0; i < instakillEntities.length; i++)
-			{
-				r.instakillEntities.push(instakillEntities[i]);
-			}*/
+			}
 			
 			return r;
 		}
@@ -73,7 +67,6 @@ package
 				var s:String = "";
 				for (var x:int = 0; x < width; x++)
 				{
-					//s += r.level[x][y] + " ";
 					if (r.level[x][y] == 1) s += "Q ";
 					else s += "- ";
 					s += " ";

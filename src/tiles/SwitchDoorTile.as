@@ -10,8 +10,8 @@ package tiles
 		[Embed(source = "/../assets/switchdoor.png")]
 		private const src:Class;
 		
-		private static const numframes:int = 4;
-		private static const animspeed:int = 20;
+		private static const numframes:int = 8;
+		private static const animspeed:int = 5;
 		private var count:int;
 		private var sprite:Spritemap;
 		

@@ -16,6 +16,7 @@ package
 		public static const EMPTY:int = 0;
 		public static const SOLID:int = 1;
 		public static const INSTAKILL:int = 2;
+		public static const FACTORY_TEMP:int = 3;
 		
 		public var tileType:int;
 		protected var _x:int;
@@ -54,7 +55,8 @@ package
 			else if (x == 3 && y == 0) return new LavaDropTile(xpos, ypos, r);
 			else if (x == 5 && y == 0) return new SwitchDoorTile(xpos, ypos, r);
 			else if (x == 6 && y == 0) return new SwitchTile(xpos, ypos, r, false);
-			else if (x == 7 && y == 0) return new SwitchTile(xpos, ypos, r, true);		
+			else if (x == 7 && y == 0) return new SwitchTile(xpos, ypos, r, true);
+			else if (x == 6 && y == 1) return new FactoryTile(xpos, ypos, r);
 			
 			var t:int = 0;
 			if (y == 0) t = 2;

@@ -3,6 +3,7 @@ package
 	import net.flashpunk.FP;
 	import flash.utils.ByteArray;
 	import flash.geom.Point;
+	import tiles.FactoryTile;
 	import tiles.MemoryTile;
 	
 	/**
@@ -86,6 +87,39 @@ package
 							
 							rooms[x][y].tiles[i][j] = Tile.getTile(i * 16, j * 16, p.x, p.y, rooms[x][y]);
 							rooms[x][y].level[i][j] = rooms[x][y].tiles[i][j].tileType;
+						}
+					}
+				}
+			}
+			
+			for (x = 0; x < width; x++)
+			{
+				for (y = 0; y < height; y++)
+				{
+					for (i = 1; i < 11; i++)
+					{
+						for (j = 1; j < 9; j++)
+						{
+							if (rooms[x][y].tiles[i][j] is FactoryTile) (rooms[x][y].tiles[i][j] as FactoryTile).createGraphic();
+						}
+					}
+				}
+			}
+			for (x = 0; x < width; x++)
+			{
+				for (y = 0; y < height; y++)
+				{
+					for (i = 0; i < 12; i++)
+					{
+						for (j = 0; j < 10; j++)
+						{
+							if ((x == 0 && i == 0) || (x == width - 1 && i == 11) || (y == 0 && j == 0) || (y == height - 1 && j == 9))
+								continue;
+							if (rooms[x][y].level[i][j] == Tile.FACTORY_TEMP)
+							{
+								rooms[x][y].tiles[i][j].tileType = Tile.SOLID;
+								rooms[x][y].level[i][j] = Tile.SOLID;
+							}
 						}
 					}
 				}

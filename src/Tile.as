@@ -57,6 +57,8 @@ package
 			else if (x == 6 && y == 0) return new SwitchTile(xpos, ypos, r, false);
 			else if (x == 7 && y == 0) return new SwitchTile(xpos, ypos, r, true);
 			else if (x == 6 && y == 1) return new FactoryTile(xpos, ypos, r);
+			else if (x == 7 && y == 1) return new LightningTile(xpos, ypos, r, LightningTile.VERTICAL);
+			else if (x == 6 && y == 2) return new LightningTile(xpos, ypos, r, LightningTile.HORIZONTAL);
 			
 			var t:int = 0;
 			if (y == 0) t = 2;

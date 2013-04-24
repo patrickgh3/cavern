@@ -14,17 +14,21 @@ package
 		[Embed(source = "/../assets/player.png")]
 		private const IMAGE:Class;
 		
+		private const noclipSpeed:Number = 3;
 		private const runSpeed:Number = 1.5;
 		private const grav:Number = 0.13;
 		private const jumpSpeed:Number = 2.89;
+		
+		private const gravcutoff:Number = -1;
+		private const extragrav:Number = 0.4;
 		
 		private var _xspeed:Number;
 		private var _yspeed:Number;
 		private var _level:Array;
 		private var _jumpReleased:Boolean;
-		private var _killed:Boolean;
 		private var _sprite:PlayerSprite;
-
+		public var noclip:Boolean = false;
+		public var dead:Boolean = false;
 		
 		public function Player() 
 		{
@@ -41,10 +45,27 @@ package
 			var jump:Boolean = Input.check(Key.Z) || Input.check(Key.UP);
 			var suicide:Boolean = Input.check(Key.R) || Input.check(Key.Q);
 			
-			_killed = false;
+			dead = false;
 			
 			if (suicide) {
-				this.kill();
+				GameWorld(FP.world).killPlayer();
+				return;
+			}
+			
+			if (Input.pressed(Key.N))
+				noclip = !noclip;
+			if (noclip)
+			{
+				var up:Boolean = Input.check(Key.UP);
+				var down:Boolean = Input.check(Key.DOWN);
+				if (right && !left)
+					x += noclipSpeed;
+				else if (left && !right)
+					x -= noclipSpeed;
+				if (down && !up)
+					y += noclipSpeed;
+				else if (up && !down)
+					y -= noclipSpeed;
 				return;
 			}
 			
@@ -52,13 +73,12 @@ package
 			else if (left && !right) _xspeed = -runSpeed;
 			else _xspeed = 0;
 			// TODO: tapping right and left make the player move slowly to allow precision positioning ?
-			// TODO: pressing a direction overrides the previous one held down ?
 			_yspeed += grav;
+			if (_yspeed < gravcutoff && !jump) _yspeed += extragrav;
 			if (jump && _jumpReleased && onGround()) {
 				_yspeed = -jumpSpeed;
 			}
 			_jumpReleased = !jump;
-			// TODO: variable jump height based on time jump held down.
 			
 			//if (collideLevel()) kill();
 			
@@ -69,14 +89,14 @@ package
 			var ymax:Number = Math.abs(_yspeed);
 			var ydir:int = Math.abs(_yspeed) / _yspeed;
 			var diff:Number;
-			for (var n:int = 0; n < 10; n++) // TODO: change 10 to an appropriate cap (depends on x,yspeed)
+			for (var n:int = 0; n < Math.abs(_xspeed) + Math.abs(_yspeed); n++)
 			{
 				if (xstep < xmax)
 				{
 					diff = xdir * Math.min(1, (xmax - xstep));
 					x += diff;
 					xstep++;
-					if (collideLevel())
+					if (collideLevel()) // || collideMovingBlock()
 					{
 						touchTiles(); // TODO: don't touch tiles multiple times?
 						x -= diff;
@@ -90,9 +110,9 @@ package
 						diff = ydir * Math.min(1, (ymax - ystep));
 						y += diff;
 						ystep++;
-						if (collideLevel())
+						if (collideLevel()) // || collideMovingBlock()
 						{
-							touchTiles();
+							touchTiles(); // multi touch?
 							y -= diff;
 							ystep--;
 							_yspeed = 0;
@@ -100,7 +120,7 @@ package
 					}
 				}
 			}
-			if (collideLevel(2)) this.kill();
+			if (collideLevel(2)) GameWorld(FP.world).killPlayer();
 		}
 		
 		public function setLevel(level:Array):void
@@ -154,11 +174,9 @@ package
 		
 		public function kill():void
 		{
-			if (_killed) return;
-			_killed = true;
 			_xspeed = 0;
 			_yspeed = 0;
-			GameWorld(FP.world).playerKilled();
+			dead = true;
 		}
 		
 		public function getSprite():Entity

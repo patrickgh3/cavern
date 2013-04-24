@@ -21,6 +21,7 @@ package
 		private var spawnRoomX:int = roomX;
 		private var spawnRoomY:int = roomY;
 		private var lookingforspawn:Boolean = false;
+		private var killplayernext:Boolean = false;
 		
 		public function GameWorld() 
 		{
@@ -37,28 +38,34 @@ package
 		
 		override public function update():void
 		{
+			if (killplayernext)
+			{
+				killplayernext = false;
+				playerKilled();
+			}
+			
 			MemoryTile.update();
 			super.update();
 			
 			if (_player.x < -_player.width / 2) {
 				_player.x += 160;
 				switchRoom(--roomX, roomY);
-				setSpawn();
+				if (!_player.noclip) setSpawn();
 			}
 			if (_player.x >= 160 - _player.width / 2) {
 				_player.x -= 160;
 				switchRoom(++roomX, roomY);
-				setSpawn();
+				if (!_player.noclip) setSpawn();
 			}
 			if (_player.y < -_player.height / 2) {
 				_player.y += 128;
 				switchRoom(roomX, --roomY);
-				lookingforspawn = true;
+				if (!_player.noclip) lookingforspawn = true;
 			}
 			if (_player.y >= 128 - _player.height / 2) {
 				_player.y -= 128;
 				switchRoom(roomX, ++roomY);
-				lookingforspawn = true;
+				if (!_player.noclip) lookingforspawn = true;
 			}
 			
 			Ambiance.update();
@@ -93,10 +100,16 @@ package
 			spawnRoomY = roomY;
 		}
 		
+		public function killPlayer():void
+		{
+			killplayernext = true;
+		}
+		
 		public function playerKilled():void
 		{
 			remove(_player);
 			remove(_player.getSprite());
+			_player.kill();
 			_blackfade = new BlackFade();
 			add(_blackfade);
 			lookingforspawn = false;
@@ -106,6 +119,7 @@ package
 		{
 			_player.x = spawnX;
 			_player.y = spawnY;
+			_player.dead = false;
 			roomX = spawnRoomX;
 			roomY = spawnRoomY;
 			switchRoom(roomX, roomY);

@@ -46,6 +46,12 @@ package
 			if (parent.getXSpeed() > 0) sprite.flipped = false;
 			else if (parent.getXSpeed() < 0) sprite.flipped = true;
 			
+			if (parent.noclip)
+			{
+				sprite.setFrame(0, 0);
+				return;
+			}
+			
 			var onGround:Boolean = parent.onGround();
 			var prev:String = anim;
 			if (onGround && anim == "jump" && lastYSpeed > 1.5)

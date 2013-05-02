@@ -2505,7 +2505,7 @@
     <tile x="63" y="34" tx="2" ty="2" />
     <tile x="63" y="35" tx="3" ty="1" />
     <tile x="63" y="36" tx="2" ty="2" />
-    <tile x="63" y="37" tx="2" ty="2" />
+    <tile x="63" y="37" tx="0" ty="4" />
     <tile x="63" y="38" tx="2" ty="2" />
     <tile x="63" y="39" tx="2" ty="2" />
     <tile x="63" y="40" tx="0" ty="2" />
@@ -2558,8 +2558,8 @@
     <tile x="65" y="32" tx="2" ty="1" />
     <tile x="65" y="33" tx="2" ty="1" />
     <tile x="65" y="34" tx="2" ty="2" />
-    <tile x="65" y="35" tx="2" ty="2" />
-    <tile x="65" y="36" tx="2" ty="2" />
+    <tile x="65" y="35" tx="0" ty="4" />
+    <tile x="65" y="36" tx="0" ty="4" />
     <tile x="65" y="37" tx="2" ty="2" />
     <tile x="65" y="38" tx="2" ty="2" />
     <tile x="65" y="39" tx="3" ty="1" />
@@ -2583,8 +2583,8 @@
     <tile x="66" y="32" tx="2" ty="1" />
     <tile x="66" y="33" tx="2" ty="1" />
     <tile x="66" y="34" tx="2" ty="2" />
-    <tile x="66" y="35" tx="2" ty="2" />
-    <tile x="66" y="36" tx="2" ty="2" />
+    <tile x="66" y="35" tx="0" ty="4" />
+    <tile x="66" y="36" tx="0" ty="4" />
     <tile x="66" y="37" tx="2" ty="2" />
     <tile x="66" y="38" tx="3" ty="1" />
     <tile x="66" y="39" tx="2" ty="1" />
@@ -2608,7 +2608,7 @@
     <tile x="67" y="32" tx="2" ty="1" />
     <tile x="67" y="33" tx="2" ty="1" />
     <tile x="67" y="34" tx="2" ty="2" />
-    <tile x="67" y="35" tx="2" ty="2" />
+    <tile x="67" y="35" tx="0" ty="4" />
     <tile x="67" y="36" tx="2" ty="2" />
     <tile x="67" y="37" tx="2" ty="2" />
     <tile x="67" y="38" tx="3" ty="1" />
@@ -3401,6 +3401,5 @@
     <MemoryTile id="0" x="1168" y="576" states="1111111100000000" />
     <MemoryTile id="1" x="1184" y="576" states="1111000011110000" />
     <MemoryTile id="2" x="1200" y="576" states="1100010110010100" />
-    <MemoryTile id="3" x="1008" y="592" states="1111111100000000" />
   </RoomData>
 </level>

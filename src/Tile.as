@@ -59,6 +59,7 @@ package
 			else if (x == 6 && y == 1) return new FactoryTile(xpos, ypos, r);
 			else if (x == 7 && y == 1) return new LightningTile(xpos, ypos, r, LightningTile.VERTICAL);
 			else if (x == 6 && y == 2) return new LightningTile(xpos, ypos, r, LightningTile.HORIZONTAL);
+			else if (x == 0 && y == 4) return new StaticTile(xpos, ypos, r, StaticTile.BLOCK);
 			
 			var t:int = 0;
 			if (y == 0) t = 2;

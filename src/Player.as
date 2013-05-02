@@ -25,6 +25,9 @@ package
 		
 		private var _xspeed:Number;
 		private var _yspeed:Number;
+		private var _extraxspeed:Number = 0;
+		private var _extrayspeed:Number = 0;
+		
 		private var _level:Array;
 		private var _jumpReleased:Boolean;
 		private var _sprite:PlayerSprite;
@@ -72,27 +75,37 @@ package
 				return;
 			}
 			
+			var blockbelow:Entity = collideActors(MovingBlock, 0, 1);
+			if (blockbelow != null)
+			{
+				_extraxspeed = MovingBlock(blockbelow).xspeed;
+				_extrayspeed = MovingBlock(blockbelow).yspeed;
+			}
+			else
+			{
+				_extraxspeed = 0;
+				_extrayspeed = 0;
+			}
+			
 			if (right && !left) _xspeed = runSpeed;
 			else if (left && !right) _xspeed = -runSpeed;
 			else _xspeed = 0;
 			// TODO: tapping right and left make the player move slowly to allow precision positioning ?
-			_yspeed += grav;
-			if (_yspeed < gravcutoff && !jump) _yspeed += extragrav;
+			if (!onGround()) _yspeed += grav;
+			if (_yspeed < gravcutoff && !jump && !onGround()) _yspeed += extragrav;
 			if (jump && _jumpReleased && onGround()) {
 				_yspeed = -jumpSpeed;
 			}
 			_jumpReleased = !jump;
 			
-			//if (collideLevel()) kill();
-			
 			var xstep:int = 0;
-			var xmax:Number = Math.abs(_xspeed);
-			var xdir:int = Math.abs(_xspeed) / _xspeed;
+			var xmax:Number = Math.abs(_xspeed + _extraxspeed);
+			var xdir:int = Util.sign(_xspeed + _extraxspeed);
 			var ystep:int = 0;
-			var ymax:Number = Math.abs(_yspeed);
-			var ydir:int = Math.abs(_yspeed) / _yspeed;
+			var ymax:Number = Math.abs(_yspeed + _extrayspeed);
+			var ydir:int = Util.sign(_yspeed + _extrayspeed);
 			var diff:Number;
-			for (var n:int = 0; n < Math.abs(_xspeed) + Math.abs(_yspeed); n++)
+			for (var n:int = 0; n < xmax + ymax; n++)
 			{
 				if (xstep < xmax)
 				{
@@ -123,6 +136,7 @@ package
 					}
 				}
 			}
+			
 			if (collideLevel(2)) GameWorld(FP.world).killPlayer();
 		}
 		
@@ -147,15 +161,15 @@ package
 				   getLevel(x2, y2) == tiletype;
 		}
 		
-		private function collideActors(target:Class, xoffset:int = 0, yoffset:int = 0):Boolean
+		private function collideActors(target:Class, xoffset:int = 0, yoffset:int = 0):Entity
 		{
 			if (target != MovingBlock)
 			{
 				trace("Invalid class for collideActors.");
-				return false;
+				return null;
 			}
 			
-			var collision:Boolean = false;
+			var collision:Entity = null;
 			x += xoffset;
 			y += yoffset;
 			
@@ -168,7 +182,7 @@ package
 				   && x + width - 0.5 > other.x   // 0.5 ??? not sure why this has to be this way
 				   && y < other.y + other.height
 				   && y + height - 1 > other.y)
-				   collision = true;
+				   collision = other;
 			}
 			
 			x -= xoffset;

@@ -3401,6 +3401,7 @@
     <MemoryTile id="0" x="1168" y="576" states="1111111100000000" />
     <MemoryTile id="1" x="1184" y="576" states="1111000011110000" />
     <MemoryTile id="2" x="1200" y="576" states="1100010110010100" />
-    <MovingBlock id="3" x="1056" y="560" />
+    <MovingBlock id="3" x="1072" y="592" />
+    <MovingBlock id="4" x="1088" y="560" />
   </RoomData>
 </level>

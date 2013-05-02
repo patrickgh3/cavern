@@ -25,13 +25,14 @@ package
 		
 		private var _xspeed:Number;
 		private var _yspeed:Number;
-		private var _extraxspeed:Number = 0;
-		private var _extrayspeed:Number = 0;
+		public var _extraxspeed:Number;
+		public var _extrayspeed:Number = 0;
 		
 		private var _level:Array;
 		private var _jumpReleased:Boolean;
 		private var _sprite:PlayerSprite;
 		private var _actors:Array;
+		private var _onBlockLast:MovingBlock;
 		
 		public var noclip:Boolean = false;
 		public var dead:Boolean = false;
@@ -53,7 +54,7 @@ package
 			
 			dead = false;
 			
-			if (suicide) {
+			if (suicide || collideLevel(Tile.SOLID)) {
 				GameWorld(FP.world).killPlayer();
 				return;
 			}
@@ -75,23 +76,11 @@ package
 				return;
 			}
 			
-			var blockbelow:Entity = collideActors(MovingBlock, 0, 1);
-			if (blockbelow != null)
-			{
-				_extraxspeed = MovingBlock(blockbelow).xspeed;
-				_extrayspeed = MovingBlock(blockbelow).yspeed;
-			}
-			else
-			{
-				_extraxspeed = 0;
-				_extrayspeed = 0;
-			}
-			
 			if (right && !left) _xspeed = runSpeed;
 			else if (left && !right) _xspeed = -runSpeed;
 			else _xspeed = 0;
 			// TODO: tapping right and left make the player move slowly to allow precision positioning ?
-			if (!onGround()) _yspeed += grav;
+			_yspeed += grav;
 			if (_yspeed < gravcutoff && !jump && !onGround()) _yspeed += extragrav;
 			if (jump && _jumpReleased && onGround()) {
 				_yspeed = -jumpSpeed;
@@ -137,7 +126,11 @@ package
 				}
 			}
 			
-			if (collideLevel(2)) GameWorld(FP.world).killPlayer();
+			var blockbelow:Entity = collideActors(MovingBlock, 0, 1);
+			if (blockbelow == null)
+				_extraxspeed = 0.0;
+			
+			if (collideLevel(Tile.INSTAKILL)) GameWorld(FP.world).killPlayer();
 		}
 		
 		public function setRoom(level:Array, actors:Array):void
@@ -257,7 +250,7 @@ package
 			
 			return (
 				   ((getLevel(x1, y2) == 1 || getLevel(x2, y2) == 1) && _yspeed >= 0)
-				   || collideActors(MovingBlock, 0, 1)
+				   || collideActors(MovingBlock, 0, 2)
 				   )
 				   && _yspeed >= 0;
 		}

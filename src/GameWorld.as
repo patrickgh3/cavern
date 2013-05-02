@@ -14,7 +14,7 @@ package
 		public var _player:Player;
 		private var _blackfade:BlackFade;
 		public var _room:Room;
-		private var roomX:int = 6;
+		private var roomX:int = 8;
 		private var roomY:int = 4;
 		private var spawnX:int = 48;
 		private var spawnY:int = 32;

@@ -143,7 +143,7 @@ package
 				x = node.@x / 16;
 				y = node.@y / 16;
 				rooms[int(x / 10)][int(y / 8)].actors.push(
-					new MovingBlock((x % 10) * 16, (y % 8) * 16));
+					new MovingBlock((x % 10) * 16, (y % 8) * 16, node.@speed, node.@path));
 			}
 		}
 		

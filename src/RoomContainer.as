@@ -5,6 +5,7 @@ package
 	import flash.geom.Point;
 	import tiles.FactoryTile;
 	import tiles.MemoryTile;
+	import entities.MovingBlock;
 	
 	/**
 	 * Holds an array of rooms, initialized on startup.
@@ -134,6 +135,15 @@ package
 					new MemoryTile((x % 10) * 16, (y % 8) * 16, rooms[int(x / 10)][int(y / 8)], node.@states);
 				rooms[int(x / 10)][int(y / 8)].level[x % 10 + 1][y % 8 + 1] =
 					rooms[int(x / 10)][int(y / 8)].tiles[x % 10 + 1][y % 8 + 1].tileType;
+			}
+			
+			for each (node in xml.RoomData.MovingBlock)
+			{
+				// devil magic
+				x = node.@x / 16;
+				y = node.@y / 16;
+				rooms[int(x / 10)][int(y / 8)].actors.push(
+					new MovingBlock((x % 10) * 16, (y % 8) * 16));
 			}
 		}
 		

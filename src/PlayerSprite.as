@@ -29,7 +29,7 @@ package
 		private var lastYSpeed:int;
 		private var lastOnGround:Boolean;
 		
-		public function PlayerSprite(p:Player) 
+		public function PlayerSprite(p:Player)
 		{
 			parent = p;
 			parent.setSprite(this);

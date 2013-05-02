@@ -1,5 +1,6 @@
 package  
 {
+	import entities.MovingBlock;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.FP;
@@ -27,6 +28,8 @@ package
 		private var _level:Array;
 		private var _jumpReleased:Boolean;
 		private var _sprite:PlayerSprite;
+		private var _actors:Array;
+		
 		public var noclip:Boolean = false;
 		public var dead:Boolean = false;
 		
@@ -96,7 +99,7 @@ package
 					diff = xdir * Math.min(1, (xmax - xstep));
 					x += diff;
 					xstep++;
-					if (collideLevel()) // || collideMovingBlock()
+					if (collideLevel() || collideActors(MovingBlock))
 					{
 						touchTiles(); // TODO: don't touch tiles multiple times?
 						x -= diff;
@@ -110,7 +113,7 @@ package
 						diff = ydir * Math.min(1, (ymax - ystep));
 						y += diff;
 						ystep++;
-						if (collideLevel()) // || collideMovingBlock()
+						if (collideLevel() || collideActors(MovingBlock))
 						{
 							touchTiles(); // multi touch?
 							y -= diff;
@@ -123,9 +126,10 @@ package
 			if (collideLevel(2)) GameWorld(FP.world).killPlayer();
 		}
 		
-		public function setLevel(level:Array):void
+		public function setRoom(level:Array, actors:Array):void
 		{
 			_level = level;
+			_actors = actors;
 		}
 		
 		private function collideLevel(tiletype:int = 1):Boolean
@@ -141,6 +145,36 @@ package
 				   getLevel(x1, y2) == tiletype ||
 				   getLevel(x2, y1) == tiletype ||
 				   getLevel(x2, y2) == tiletype;
+		}
+		
+		private function collideActors(target:Class, xoffset:int = 0, yoffset:int = 0):Boolean
+		{
+			if (target != MovingBlock)
+			{
+				trace("Invalid class for collideActors.");
+				return false;
+			}
+			
+			var collision:Boolean = false;
+			x += xoffset;
+			y += yoffset;
+			
+			for (var i:int = 0; i < _actors.length; i++)
+			{
+				var other:Entity = Entity(_actors[i]);
+				if (!other is target) continue;
+				
+				if (x < other.x + other.width
+				   && x + width - 0.5 > other.x   // 0.5 ??? not sure why this has to be this way
+				   && y < other.y + other.height
+				   && y + height - 1 > other.y)
+				   collision = true;
+			}
+			
+			x -= xoffset;
+			y -= yoffset;
+			
+			return collision;
 		}
 		
 		private function touchTiles():void
@@ -201,12 +235,17 @@ package
 		
 		public function onGround():Boolean
 		{
+			
 			var x1:int = int(x / 16);
 			var x2:int = int((x + width - 1) / 16);
 			var y2:int = int((y + height) / 16);
 			if (x < 0) x1 = -1;
 			
-			return (getLevel(x1, y2) == 1 || getLevel(x2, y2) == 1) && _yspeed >= 0;
+			return (
+				   ((getLevel(x1, y2) == 1 || getLevel(x2, y2) == 1) && _yspeed >= 0)
+				   || collideActors(MovingBlock, 0, 1)
+				   )
+				   && _yspeed >= 0;
 		}
 		
 	}

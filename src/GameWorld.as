@@ -14,8 +14,8 @@ package
 		public var _player:Player;
 		private var _blackfade:BlackFade;
 		public var _room:Room;
-		private var roomX:int = 7;
-		private var roomY:int = 2;
+		private var roomX:int = 6;
+		private var roomY:int = 4;
 		private var spawnX:int = 48;
 		private var spawnY:int = 32;
 		private var spawnRoomX:int = roomX;
@@ -80,11 +80,15 @@ package
 		private function switchRoom(x:int, y:int):void
 		{
 			_room = RoomContainer.getRoom(roomX, roomY);
+			
 			this.removeAll();
 			for (var i:int = 0; i < 12; i++)
 				for (var j:int = 0; j < 10; j++)
 					if (_room.tiles[i][j] != null) add(_room.tiles[i][j]);
-			_player.setLevel(_room.level);
+			for (i = 0; i < _room.actors.length; i++)
+				add(_room.actors[i]);
+			
+			_player.setRoom(_room.level, _room.actors);
 			add(_player);
 			add(_player.getSprite());
 			if (_blackfade != null) add(_blackfade);

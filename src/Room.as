@@ -1,8 +1,10 @@
 package  
 {
+	import entities.MovingBlock;
 	import net.flashpunk.Entity;
 	import tiles.SwitchTile;
 	import tiles.MemoryTile;
+	import entities.MovingBlock;
 	
 	/**
 	 * Holds the data for a room in the game (10 by 12 tiles, including outer edges).
@@ -15,6 +17,7 @@ package
 		public var level:Array;
 		public var tiles:Array;
 		public var sound:String;
+		public var actors:Array;
 		
 		public function Room() 
 		{
@@ -29,6 +32,7 @@ package
 					level[i][j] = 0;
 				}
 			}
+			actors = new Array();
 		}
 		
 		public function clone():Room
@@ -55,6 +59,13 @@ package
 						if (SwitchTile(r.tiles[i][j]).isActivated()) SwitchTile.numActivated++;
 					}
 				}
+			}
+			
+			for (i = 0; i < actors.length; i++)
+			{
+				if (actors[i] is MovingBlock)
+					r.actors.push(MovingBlock(actors[i]).clone());
+				// other types of actors will go here (e.g. orb)
 			}
 			
 			return r;

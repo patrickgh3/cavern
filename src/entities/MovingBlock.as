@@ -32,7 +32,7 @@ package entities
 			this.xspeed = xspeed;
 			this.yspeed = yspeed;
 			width = height = 16;
-			graphic = Image.createRect(width, height, 0x77ff00);
+			graphic = Image.createRect(width, height, 0x7bf700);
 			
 			moveSpeed = movespeed;
 			moveTime = int(16 / moveSpeed) + 1
@@ -104,7 +104,7 @@ package entities
 				y = int(y / 16) * 16;
 			}
 			
-			if (movePlayerDown)
+			if (movePlayerDown && !player.noclip)
 			{
 				player.y = y - player.height;
 				//player.yspeed = 0;

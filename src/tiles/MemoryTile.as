@@ -11,9 +11,12 @@ package tiles
 		private const src:Class;
 		
 		private static const numstates:int = 16;
-		private static const switchspeed:int = 15;
+		private static const switchspeed:int = 17;
 		public static var count:int = 0;
 		public static var innercount:int = 0;
+		
+		private var animcount:int = 0;
+		private static const animspeed:int = 4;
 		
 		private var source:String;
 		private var states:Array; // 0 is empty, 1 is solid
@@ -35,11 +38,24 @@ package tiles
 		override public function update():void
 		{
 			// if states[count] is not the same as states[previous count] then switch states.
-			if (states[count] != states[count == 0 ? numstates - 1 : count - 1])
+			if (innercount == 0 && states[count] != states[count == 0 ? numstates - 1 : count - 1])
 			{
 				tileType = states[count];
 				setLevel(tileType);
 				sprite.setFrame(states[count], 0);
+				if (states[count] == Tile.SOLID) animcount = 0;
+			}
+			if (animcount <= animspeed * 4)
+			{
+				if (animcount == animspeed * 4)
+				{
+					sprite.setFrame(1, 0);
+				}
+				else if (animcount % animspeed == 0)
+				{
+					sprite.setFrame(animcount / animspeed, 1);
+				}
+				animcount++;
 			}
 		}
 		

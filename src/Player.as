@@ -54,7 +54,7 @@ package
 			
 			dead = false;
 			
-			if (suicide || collideLevel(Tile.SOLID)) {
+			if (suicide || ((collideLevel(Tile.SOLID) || collideActors(MovingBlock)) && !noclip)) {
 				GameWorld(FP.world).killPlayer();
 				return;
 			}

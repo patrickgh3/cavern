@@ -92,7 +92,8 @@ package
 			add(_player);
 			add(_player.getSprite());
 			if (_blackfade != null) add(_blackfade);
-			Ambiance.switchTo(_room.sound);
+			//Ambiance.switchTo(_room.sound);
+			Ambiance.switchTo("cave1");
 		}
 		
 		private function setSpawn():void

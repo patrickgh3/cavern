@@ -20,8 +20,8 @@ package
 		public var _player:Player;
 		private var _blackfade:BlackFade;
 		public var _room:Room;
-		private var roomX:int = 8;
-		private var roomY:int = 4;
+		public var roomX:int = 8;
+		public var roomY:int = 4;
 		private var spawnX:int = 48;
 		private var spawnY:int = 32;
 		private var spawnRoomX:int = roomX;
@@ -45,7 +45,7 @@ package
 		public function init():void
 		{
 			overlayEsc = new OverlayEscape();
-			overlayMap = new OverlayMap();
+			overlayMap = new OverlayMap(roomX, roomY);
 			switchRoom(roomX, roomY);
 			overlayMap.discover(roomX, roomY);
 		}

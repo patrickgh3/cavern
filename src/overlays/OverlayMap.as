@@ -29,8 +29,9 @@ package overlays
 		private var xoffset:int;
 		private var yoffset:int;
 		private var isVisible:Boolean = false;
+		private var highlight:MapHighlight;
 		
-		public function OverlayMap() 
+		public function OverlayMap(spawnX:int, spawnY:int) 
 		{
 			background = new Entity(0, 0);
 			background.graphic = Image.createRect(160, 128, 0x000000);
@@ -42,6 +43,9 @@ package overlays
 			
 			xoffset = (160 - (RoomContainer.width * (cellwidth + cellgap) - cellgap)) / 2;
 			yoffset = (128 - (RoomContainer.height * (cellheight + cellgap) - cellgap)) / 2;
+			
+			highlight = new MapHighlight(xoffset + spawnX * (cellwidth + cellgap) - 1,
+										 yoffset + spawnY * (cellheight + cellgap) - 1);
 			
 			links = new Array();
 			cells = new Array();
@@ -133,6 +137,8 @@ package overlays
 			isVisible = true;
 			var w:World = FP.world;
 			w.add(background);
+			w.add(highlight);
+			for (i = 0; i < links.length; i++) w.add(links[i]);
 			for (i = 0; i < cells.length; i++)
 			{
 				for (j = 0; j < cells[0].length; j++)
@@ -140,7 +146,6 @@ package overlays
 					w.add(cells[i][j]);
 				}
 			}
-			for (i = 0; i < links.length; i++) w.add(links[i]);
 		}
 		
 		public function removeSelf():void
@@ -148,6 +153,8 @@ package overlays
 			isVisible = false;
 			var w:World = FP.world;
 			w.remove(background);
+			w.remove(highlight);
+			for (i = 0; i < links.length; i++) w.remove(links[i]);
 			for (i = 0; i < cells.length; i++)
 			{
 				for (j = 0; j < cells[0].length; j++)
@@ -155,7 +162,6 @@ package overlays
 					w.remove(cells[i][j]);
 				}
 			}
-			for (i = 0; i < links.length; i++) w.remove(links[i]);
 		}
 		
 		public function traceData():void

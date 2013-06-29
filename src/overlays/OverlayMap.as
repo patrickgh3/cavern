@@ -24,8 +24,6 @@ package overlays
 		public static const cellheight:int = 5;
 		public static const cellgap:int = 2;
 		
-		private static var colorvalues:Object;
-		
 		private var xoffset:int;
 		private var yoffset:int;
 		private var isVisible:Boolean = false;
@@ -36,10 +34,6 @@ package overlays
 			background = new Entity(0, 0);
 			background.graphic = Image.createRect(160, 128, 0x000000);
 			(Image)(background.graphic).alpha = 0.4;
-			
-			colorvalues = new Object();
-			colorvalues.white = 0xffffff;
-			colorvalues.darkred = 0x801D1D;
 			
 			xoffset = (160 - (RoomContainer.width * (cellwidth + cellgap) - cellgap)) / 2;
 			yoffset = (128 - (RoomContainer.height * (cellheight + cellgap) - cellgap)) / 2;
@@ -59,7 +53,7 @@ package overlays
 					data[i][j] = 0;
 					cells[i][j] = new MapCell(xoffset + i * (cellwidth + cellgap),
 											  yoffset + j * (cellheight + cellgap),
-											  colorvalues[RoomContainer.getMapColor(i, j)]);
+											  RoomContainer.mapcolors[i][j]);
 				}
 			}
 		}
@@ -120,13 +114,13 @@ package overlays
 			{
 				link.x += cellwidth;
 				link.y += cellheight / 2;
-				link.graphic = Image.createRect(cellgap, 1, cells[roomx][roomy].getColor());
+				link.graphic = Image.createRect(cellgap, 1, RoomContainer.mapcolors[roomx][roomy]);
 			}
 			else
 			{
 				link.x += cellwidth / 2;
 				link.y += cellheight;
-				link.graphic = Image.createRect(1, cellgap, cells[roomx][roomy].getColor());
+				link.graphic = Image.createRect(1, cellgap, RoomContainer.mapcolors[roomx][roomy]);
 			}
 			links.push(link);
 			if (isVisible) FP.world.add(link);

@@ -12,9 +12,6 @@ package
 	 */
 	public class Player extends Entity
 	{
-		[Embed(source = "/../assets/player.png")]
-		private const IMAGE:Class;
-		
 		private const noclipSpeed:Number = 3;
 		private const runSpeed:Number = 1.5;
 		private const grav:Number = 0.13;

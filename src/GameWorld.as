@@ -120,7 +120,7 @@ package
 		
 		private function switchRoom(x:int, y:int):void
 		{
-			_room = RoomContainer.getRoom(roomX, roomY);
+			_room = RoomContainer.cloneRoom(roomX, roomY);
 			
 			this.removeAll();
 			for (var i:int = 0; i < 12; i++)
@@ -137,7 +137,7 @@ package
 			if (overlay_esc) overlayEsc.addSelf();
 			if (overlay_map) overlayMap.addSelf();
 			
-			//Ambiance.switchTo(_room.sound);
+			//Ambiance.switchTo(RoomContainer.sounds[roomX][roomY]);
 			Ambiance.switchTo("cave1");
 		}
 		

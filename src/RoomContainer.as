@@ -18,6 +18,9 @@ package
 		public static var width:int;
 		public static var height:int;
 		public static var rooms:Array;
+		public static var sounds:Array;
+		public static var mapcolors:Array;
+		public static var mapcolorvalues:Object;
 		
 		public static function init():void
 		{
@@ -37,15 +40,20 @@ package
 				}
 			}
 			
-			var sounds:Array = new Array();
-			var mapcolors:Array = new Array();
-			for (i = 0; i < width; i++) sounds[i] = new Array();
+			mapcolorvalues = new Object();
+			mapcolorvalues.white = 0xffffff;
+			mapcolorvalues.darkred = 0x801D1D;
+			
+			sounds = new Array();
+			mapcolors = new Array();
 			for (i = 0; i < width; i++)
 			{
+				sounds[i] = new Array();
 				mapcolors[i] = new Array();
 				for (j = 0; j < height; j++)
 				{
-					mapcolors[i][j] = "white";
+					mapcolors[i][j] = 0xffffff;
+					sounds[i][j] = "silence";
 				}
 			}
 			for each (node in xml.RoomData.RoomProperties)
@@ -53,7 +61,7 @@ package
 				x = node.@x / 160;
 				y = node.@y / 128;
 				sounds[x][y] = node.@sound;
-				mapcolors[x][y] = node.@mapcolor;
+				mapcolors[x][y] = mapcolorvalues[node.@mapcolor];
 			}
 			
 			for each (node in xml.Tiles.tile)
@@ -72,8 +80,6 @@ package
 				for (y = 0; y < height; y++)
 				{
 					rooms[x][y] = new Room();
-					rooms[x][y].sound = sounds[x][y];
-					rooms[x][y].mapcolor = mapcolors[x][y];
 					// inner section (10 x 8)
 					for (i = 1; i < 11; i++)
 					{
@@ -158,14 +164,9 @@ package
 			}
 		}
 		
-		public static function getRoom(x:int, y:int):Room
+		public static function cloneRoom(x:int, y:int):Room
 		{
 			return rooms[x][y].clone();
-		}
-		
-		public static function getMapColor(x:int, y:int):String
-		{
-			return rooms[x][y].mapcolor;
 		}
 		
 	}

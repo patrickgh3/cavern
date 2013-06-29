@@ -42,7 +42,8 @@ package
 		public static function switchTo(s:String):void
 		{
 			var n:Sfx = sfxSilence;
-			if (s == "cave1") n = sfxCave1;
+			if (s == "silence") n = sfxSilence;
+			else if (s == "cave1") n = sfxCave1;
 			else if (s == "cave2") n = sfxCave2;
 			else trace("invalid ambiance: " + s + ". Setting to silence.");
 			

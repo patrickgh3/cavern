@@ -31,11 +31,6 @@ package overlays
 		{
 			trace("removing orb: not implemented yet");
 		}
-		
-		public function getColor():Number
-		{
-			return color;
-		}
 	}
 
 }

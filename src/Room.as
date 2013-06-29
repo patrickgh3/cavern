@@ -16,8 +16,6 @@ package
 		
 		public var level:Array;
 		public var tiles:Array;
-		public var sound:String;
-		public var mapcolor:String;
 		public var actors:Array;
 		
 		public function Room() 
@@ -44,8 +42,6 @@ package
 			MemoryTile.innercount = 0;
 			
 			var r:Room = new Room();
-			r.sound = sound;
-			r.mapcolor = mapcolor;
 			
 			for (var i:int = 0; i < width; i++)
 			{
@@ -73,7 +69,7 @@ package
 			return r;
 		}
 		
-		public static function printRoom(r:Room):void
+		public static function traceRoom(r:Room):void
 		{
 			for (var y:int = 0; y < height; y++)
 			{

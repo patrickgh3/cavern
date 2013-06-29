@@ -33,7 +33,7 @@ package overlays
 		{
 			background = new Entity(0, 0);
 			background.graphic = Image.createRect(160, 128, 0x000000);
-			(Image)(background.graphic).alpha = 0.4;
+			(Image)(background.graphic).alpha = 0.6;
 			
 			xoffset = (160 - (RoomContainer.width * (cellwidth + cellgap) - cellgap)) / 2;
 			yoffset = (128 - (RoomContainer.height * (cellheight + cellgap) - cellgap)) / 2;

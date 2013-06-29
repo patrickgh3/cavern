@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <OgmoVersion>2.1.0.5</OgmoVersion>
+  <OgmoVersion>2.1.0.6</OgmoVersion>
   <Name>cavern</Name>
   <BackgroundColor A="255" R="110" G="110" B="110" />
   <GridColor A="0" R="176" G="176" B="176" />

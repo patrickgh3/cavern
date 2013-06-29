@@ -1,9 +1,15 @@
 package  
 {
+	import net.flashpunk.Engine;
 	import net.flashpunk.Entity;
+	import net.flashpunk.FP;
 	import net.flashpunk.Graphic;
+	import net.flashpunk.utils.Input;
+	import net.flashpunk.utils.Key;
 	import net.flashpunk.World;
 	import net.flashpunk.graphics.Image;
+	import overlays.OverlayEscape;
+	import overlays.OverlayMap;
 	import tiles.MemoryTile;
 	
 	/**
@@ -23,6 +29,11 @@ package
 		private var lookingforspawn:Boolean = false;
 		private var killplayernext:Boolean = false;
 		
+		public var overlay_esc:Boolean = false;
+		private var overlayEsc:OverlayEscape;
+		public var overlay_map:Boolean = false;
+		private var overlayMap:OverlayMap;
+		
 		public function GameWorld() 
 		{
 			_player = new Player();
@@ -33,6 +44,8 @@ package
 		
 		public function init():void
 		{
+			overlayEsc = new OverlayEscape();
+			overlayMap = new OverlayMap();
 			switchRoom(roomX, roomY);
 		}
 		
@@ -44,6 +57,29 @@ package
 				playerKilled();
 			}
 			
+			if (Input.check(Key.ESCAPE) && !overlay_esc)
+			{
+				overlay_esc = true;
+				overlayEsc.addSelf();
+			}
+			else if (!Input.check(Key.ESCAPE))
+			{
+				overlay_esc = false;
+				overlayEsc.removeSelf();
+			}
+			
+			if (Input.check(Key.X) && !overlay_map)
+			{
+				overlay_map = true;
+				overlayMap.addSelf();
+			}
+			else if (!Input.check(Key.X))
+			{
+				overlay_map = false;
+				overlayMap.removeSelf();
+			}
+			
+			Ambiance.update();
 			MemoryTile.update();
 			super.update();
 			
@@ -68,8 +104,6 @@ package
 				if (!_player.noclip) lookingforspawn = true;
 			}
 			
-			Ambiance.update();
-			
 			if (lookingforspawn && _player.onGround())
 			{
 				lookingforspawn = false;
@@ -92,6 +126,10 @@ package
 			add(_player);
 			add(_player.getSprite());
 			if (_blackfade != null) add(_blackfade);
+			
+			if (overlay_esc) overlayEsc.addSelf();
+			if (overlay_map) overlayMap.addSelf();
+			
 			//Ambiance.switchTo(_room.sound);
 			Ambiance.switchTo("cave1");
 		}

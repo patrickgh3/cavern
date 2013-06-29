@@ -8,7 +8,7 @@ package overlays
 	/**
 	 * Overlay activated with Esc key that shows game info and controls.
 	 */
-	public class OverlayEscape extends Entity
+	public class OverlayEscape
 	{
 		private var background:Entity;
 		
@@ -17,11 +17,6 @@ package overlays
 			background = new Entity(0, 0);
 			background.graphic = Image.createRect(160, 128, 0x000000);
 			(Image)(background.graphic).alpha = 0.4;
-		}
-		
-		override public function update():void
-		{
-			
 		}
 		
 		public function addSelf():void

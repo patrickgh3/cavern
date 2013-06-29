@@ -38,19 +38,29 @@ package
 			}
 			
 			var sounds:Array = new Array();
+			var mapcolors:Array = new Array();
 			for (i = 0; i < width; i++) sounds[i] = new Array();
+			for (i = 0; i < width; i++)
+			{
+				mapcolors[i] = new Array();
+				for (j = 0; j < height; j++)
+				{
+					mapcolors[i][j] = "white";
+				}
+			}
 			for each (node in xml.RoomData.RoomProperties)
 			{
 				x = node.@x / 160;
 				y = node.@y / 128;
 				sounds[x][y] = node.@sound;
+				mapcolors[x][y] = node.@mapcolor;
 			}
 			
 			for each (node in xml.Tiles.tile)
 			{
 				x = node.@x;
 				y = node.@y;
-				var tx:int = node.@tx;
+				var tx:int = node.@tx;4
 				var ty:int = node.@ty;
 				whole[x][y] = new Point(tx, ty);
 			}
@@ -63,6 +73,7 @@ package
 				{
 					rooms[x][y] = new Room();
 					rooms[x][y].sound = sounds[x][y];
+					rooms[x][y].mapcolor = mapcolors[x][y];
 					// inner section (10 x 8)
 					for (i = 1; i < 11; i++)
 					{
@@ -150,6 +161,11 @@ package
 		public static function getRoom(x:int, y:int):Room
 		{
 			return rooms[x][y].clone();
+		}
+		
+		public static function getMapColor(x:int, y:int):String
+		{
+			return rooms[x][y].mapcolor;
 		}
 		
 	}

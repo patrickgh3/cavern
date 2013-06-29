@@ -17,6 +17,7 @@ package
 		public var level:Array;
 		public var tiles:Array;
 		public var sound:String;
+		public var mapcolor:String;
 		public var actors:Array;
 		
 		public function Room() 
@@ -44,6 +45,7 @@ package
 			
 			var r:Room = new Room();
 			r.sound = sound;
+			r.mapcolor = mapcolor;
 			
 			for (var i:int = 0; i < width; i++)
 			{

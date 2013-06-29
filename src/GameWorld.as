@@ -30,9 +30,9 @@ package
 		private var killplayernext:Boolean = false;
 		
 		public var overlay_esc:Boolean = false;
-		private var overlayEsc:OverlayEscape;
+		public var overlayEsc:OverlayEscape;
 		public var overlay_map:Boolean = false;
-		private var overlayMap:OverlayMap;
+		public var overlayMap:OverlayMap;
 		
 		public function GameWorld() 
 		{
@@ -47,10 +47,12 @@ package
 			overlayEsc = new OverlayEscape();
 			overlayMap = new OverlayMap();
 			switchRoom(roomX, roomY);
+			overlayMap.discover(roomX, roomY);
 		}
 		
 		override public function update():void
 		{
+			if (Input.check(Key.F)) overlayMap.traceData();
 			if (killplayernext)
 			{
 				killplayernext = false;
@@ -86,21 +88,26 @@ package
 			if (_player.x < -_player.width / 2) {
 				_player.x += 160;
 				switchRoom(--roomX, roomY);
+				overlayMap.linkRight(roomX, roomY);
+				overlayMap
 				if (!_player.noclip) setSpawn();
 			}
 			if (_player.x >= 160 - _player.width / 2) {
 				_player.x -= 160;
 				switchRoom(++roomX, roomY);
+				overlayMap.linkLeft(roomX, roomY);
 				if (!_player.noclip) setSpawn();
 			}
 			if (_player.y < -_player.height / 2) {
 				_player.y += 128;
 				switchRoom(roomX, --roomY);
+				overlayMap.linkBottom(roomX, roomY);
 				if (!_player.noclip) lookingforspawn = true;
 			}
 			if (_player.y >= 128 - _player.height / 2) {
 				_player.y -= 128;
 				switchRoom(roomX, ++roomY);
+				overlayMap.linkTop(roomX, roomY);
 				if (!_player.noclip) lookingforspawn = true;
 			}
 			

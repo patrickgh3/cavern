@@ -4607,6 +4607,7 @@
     <tile x="5" y="1" id="0" />
     <tile x="5" y="2" id="0" />
     <tile x="5" y="3" id="0" />
+    <tile x="5" y="4" id="0" />
     <tile x="5" y="5" id="0" />
     <tile x="5" y="6" id="0" />
     <tile x="5" y="7" id="0" />
@@ -4730,5 +4731,12 @@
     <MemoryTile id="2" x="1200" y="576" states="1100010110010100" />
     <MovingBlock id="3" x="1072" y="848" path="ud" speed="2" />
     <MovingBlock id="4" x="1024" y="848" path="uullddrr" speed="0.75" />
+    <RoomProperties id="5" x="800" y="384" sound="silent" mapcolor="darkred" />
+    <RoomProperties id="7" x="640" y="512" sound="silent" mapcolor="darkred" />
+    <RoomProperties id="6" x="800" y="512" sound="silent" mapcolor="darkred" />
+    <RoomProperties id="8" x="640" y="384" sound="silent" mapcolor="darkred" />
+    <RoomProperties id="9" x="800" y="256" sound="silent" mapcolor="darkred" />
+    <RoomProperties id="10" x="640" y="256" sound="silent" mapcolor="darkred" />
+    <RoomProperties id="11" x="800" y="128" sound="silent" mapcolor="darkred" />
   </RoomData>
 </level>

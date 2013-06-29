@@ -8,22 +8,23 @@ package overlays
 	 */
 	public class MapCell extends Entity
 	{
-		public static const color_white:Number = 0xffffff;
-		
 		public static const orb_present:int = 0;
 		public static const orb_obtained:int = 0;
 		public static const orb_none:int = 0;
 		
-		public function MapCell(x:int, y:int, color:Number = color_white, discovered:Boolean = false, orbstatus:int = 0) 
+		private var color:Number;
+		
+		public function MapCell(x:int, y:int, color:Number = 0xffffff, orbstatus:int = 0, discovered:Boolean = false) 
 		{
 			super(x, y);
 			graphic = Image.createRect(OverlayMap.cellwidth, OverlayMap.cellheight, color);
-			//if (!discovered) setAlpha(0);
+			if (!discovered) (Image)(graphic).alpha = 0;
+			this.color = color;
 		}
 		
 		public function makeVisible():void
 		{
-			setAlpha(1);
+			(Image)(graphic).alpha = 1;
 		}
 		
 		public function removeOrb():void
@@ -31,9 +32,9 @@ package overlays
 			trace("removing orb: not implemented yet");
 		}
 		
-		private function setAlpha(a:Number):void
+		public function getColor():Number
 		{
-			(Image)(graphic).alpha = a;
+			return color;
 		}
 	}
 

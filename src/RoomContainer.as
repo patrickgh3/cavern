@@ -24,6 +24,7 @@ package
 		public static var sounds:Array;
 		public static var mapcolors:Array;
 		public static var mapcolorvalues:Object;
+		public static var hasorb:Array;
 		
 		public static function init():void
 		{
@@ -49,14 +50,17 @@ package
 			
 			sounds = new Array();
 			mapcolors = new Array();
+			hasorb = new Array();
 			for (i = 0; i < width; i++)
 			{
 				sounds[i] = new Array();
 				mapcolors[i] = new Array();
+				hasorb[i] = new Array();
 				for (j = 0; j < height; j++)
 				{
 					mapcolors[i][j] = 0xffffff;
 					sounds[i][j] = "silence";
+					hasorb[i][j] = false;
 				}
 			}
 			for each (node in xml.RoomData.RoomProperties)
@@ -171,7 +175,8 @@ package
 				// even more devil magic!!
 				x = node.@x / 16;
 				y = node.@y / 16;
-				rooms[int(x / 10)][int(y / 8)].actors.push(new Orb((x % 10) * 16 + 5, (y % 8) * 16 + 4, int(x / 10), int(y / 10)));
+				rooms[int(x / 10)][int(y / 8)].actors.push(new Orb((x % 10) * 16 + 5, (y % 8) * 16 + 4, int(x / 10), int(y / 8)));
+				hasorb[int(x / 10)][int(y / 8)] = true;
 			}
 		}
 		

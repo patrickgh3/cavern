@@ -6,6 +6,7 @@ package
 	import tiles.SwitchTile;
 	import tiles.MemoryTile;
 	import entities.MovingBlock;
+	import net.flashpunk.FP;
 	
 	/**
 	 * Holds the data for a room in the game (10 by 12 tiles, including outer edges).

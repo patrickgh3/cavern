@@ -19,8 +19,8 @@ package entities
 		private static const movetime:int = 10;
 		
 		private var player:Player;
-		private var roomx:int;
-		private var roomy:int;
+		public var roomx:int;
+		public var roomy:int;
 		
 		public function Orb(x:int, y:int, roomx:int, roomy:int) 
 		{
@@ -57,7 +57,11 @@ package entities
 				sprite.setFrame(0);
 			}
 			
-			if (player == null) player = (GameWorld)(FP.world)._player;
+			if (player == null)
+			{
+				player = (GameWorld)(FP.world)._player;
+				if ((GameWorld)(FP.world).overlayMap.isOrbCollected(roomx, roomy)) FP.world.remove(this);
+			}
 			if (collidePlayer())
 			{
 				FP.world.remove(this);

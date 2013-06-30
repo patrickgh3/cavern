@@ -1,5 +1,6 @@
 package overlays 
 {
+	import flash.display.BitmapData;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
 	
@@ -8,18 +9,28 @@ package overlays
 	 */
 	public class MapCell extends Entity
 	{
-		public static const orb_present:int = 0;
-		public static const orb_obtained:int = 0;
-		public static const orb_none:int = 0;
+		private static const color_orbgone:int = 0x333333;
 		
 		private var color:Number;
+		private var buffer:BitmapData;
 		
-		public function MapCell(x:int, y:int, color:Number = 0xffffff, orbstatus:int = 0, discovered:Boolean = false) 
+		public function MapCell(x:int, y:int, color:Number = 0xffffff, hasorb:Boolean = false, discovered:Boolean = false) 
 		{
 			super(x, y);
-			graphic = Image.createRect(OverlayMap.cellwidth, OverlayMap.cellheight, color);
-			if (!discovered) (Image)(graphic).alpha = 0;
 			this.color = color;
+			
+			buffer = new BitmapData(OverlayMap.cellwidth, OverlayMap.cellheight, false, color);
+			graphic = new Image(buffer);
+			if (!discovered) (Image)(graphic).alpha = 0;
+			
+			if (hasorb)
+			{
+				buffer.setPixel(3, 1, 0xffffff);
+				buffer.setPixel(2, 2, 0xffffff);
+				buffer.setPixel(3, 2, 0xffffff);
+				buffer.setPixel(4, 2, 0xffffff);
+				buffer.setPixel(3, 3, 0xffffff);
+			}
 		}
 		
 		public function makeVisible():void
@@ -29,7 +40,12 @@ package overlays
 		
 		public function removeOrb():void
 		{
-			trace("removing orb: not implemented yet");
+			buffer.setPixel(3, 1, color_orbgone);
+			buffer.setPixel(2, 2, color_orbgone);
+			buffer.setPixel(3, 2, color_orbgone);
+			buffer.setPixel(4, 2, color_orbgone);
+			buffer.setPixel(3, 3, color_orbgone);
+			graphic = new Image(buffer);
 		}
 	}
 

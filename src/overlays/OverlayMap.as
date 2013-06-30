@@ -54,7 +54,8 @@ package overlays
 					data[i][j] = 0;
 					cells[i][j] = new MapCell(xoffset + i * (cellwidth + cellgap),
 											  yoffset + j * (cellheight + cellgap),
-											  RoomContainer.mapcolors[i][j]);
+											  RoomContainer.mapcolors[i][j],
+											  RoomContainer.hasorb[i][j]);
 				}
 			}
 		}
@@ -163,6 +164,11 @@ package overlays
 					w.remove(cells[i][j]);
 				}
 			}
+		}
+		
+		public function isOrbCollected(roomx:int, roomy:int):Boolean
+		{
+			return data[roomx][roomy] % 5 == 0 && data[roomx][roomy] != 0;
 		}
 		
 		public function traceData():void

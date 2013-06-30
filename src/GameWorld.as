@@ -138,6 +138,7 @@ package
 			
 			if (overlay_esc) overlayEsc.addSelf();
 			if (overlay_map) overlayMap.addSelf();
+			overlayMap.setHighlight(roomX, roomY);
 			
 			//Ambiance.switchTo(RoomContainer.sounds[roomX][roomY]);
 			Ambiance.switchTo("cave1");

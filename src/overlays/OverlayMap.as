@@ -35,12 +35,10 @@ package overlays
 			background = new Entity(0, 0);
 			background.graphic = Image.createRect(160, 128, 0x000000);
 			(Image)(background.graphic).alpha = 0.6;
+			highlight = new MapHighlight();
 			
 			xoffset = (160 - (RoomContainer.width * (cellwidth + cellgap) - cellgap)) / 2;
 			yoffset = (128 - (RoomContainer.height * (cellheight + cellgap) - cellgap)) / 2;
-			
-			highlight = new MapHighlight(xoffset + spawnX * (cellwidth + cellgap) - 1,
-										 yoffset + spawnY * (cellheight + cellgap) - 1);
 			
 			links = new Array();
 			cells = new Array();
@@ -132,6 +130,11 @@ package overlays
 			}
 			links.push(link);
 			if (isVisible) FP.world.add(link);
+		}
+		
+		public function setHighlight(roomx:int, roomy:int):void
+		{
+			highlight.setPosition(roomx, roomy, xoffset, yoffset);
 		}
 		
 		public function addSelf():void

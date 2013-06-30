@@ -34,6 +34,11 @@ package entities
 			
 			this.roomx = roomx;
 			this.roomy = roomy;
+			
+			if (FP.world is GameWorld && (GameWorld)(FP.world).overlayMap.isOrbCollected(roomx, roomy))
+			{
+				(Image)(graphic).alpha = 0;
+			}
 		}
 		
 		override public function update():void

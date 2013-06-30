@@ -12,22 +12,26 @@ package overlays
 		[Embed(source = "/../assets/maphighlight.png")]
 		private const src:Class;
 		
-		private var gw:GameWorld;
-		
-		private var lastRoomX:int;
-		private var lastRoomY:int;
+		private var lastRoomX:int = -1;
+		private var lastRoomY:int = -1;
 		
 		private var count:int = 0;
 		private const flashtime:int = 10;
 		
-		public function MapHighlight(x:int, y:int) 
+		public function MapHighlight() 
 		{
-			super(x, y);
 			graphic = new Image(src);
+		}
+		
+		public function setPosition(roomx:int, roomy:int, xoffset:int, yoffset:int):void
+		{
+			x = xoffset + roomx * (OverlayMap.cellwidth + OverlayMap.cellgap) - 1;
+			y = yoffset + roomy * (OverlayMap.cellheight + OverlayMap.cellgap) - 1;
 		}
 		
 		override public function update():void
 		{
+			
 			count++;
 			if (count == flashtime)
 			{
@@ -37,20 +41,6 @@ package overlays
 			{
 				count = 0;
 				(Image)(graphic).alpha = 1;
-			}
-			
-			if (gw == null)
-			{
-				gw = (GameWorld)(FP.world);
-				lastRoomX = gw.roomX;
-				lastRoomY = gw.roomY;
-			}
-			if (lastRoomX != gw.roomX || lastRoomY != gw.roomY)
-			{
-				x += (gw.roomX - lastRoomX) * (OverlayMap.cellwidth + OverlayMap.cellgap);
-				y += (gw.roomY - lastRoomY) * (OverlayMap.cellheight + OverlayMap.cellgap);
-				lastRoomX = gw.roomX;
-				lastRoomY = gw.roomY;
 			}
 		}
 		

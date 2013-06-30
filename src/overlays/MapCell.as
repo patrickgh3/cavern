@@ -25,11 +25,15 @@ package overlays
 			
 			if (hasorb)
 			{
+				//buffer.setPixel(2, 1, 0xffffff);
 				buffer.setPixel(3, 1, 0xffffff);
+				//buffer.setPixel(4, 1, 0xffffff);
 				buffer.setPixel(2, 2, 0xffffff);
 				buffer.setPixel(3, 2, 0xffffff);
 				buffer.setPixel(4, 2, 0xffffff);
+				//buffer.setPixel(2, 3, 0xffffff);
 				buffer.setPixel(3, 3, 0xffffff);
+				//buffer.setPixel(4, 3, 0xffffff);
 			}
 		}
 		
@@ -40,11 +44,15 @@ package overlays
 		
 		public function removeOrb():void
 		{
+			//buffer.setPixel(2, 1, color_orbgone);
 			buffer.setPixel(3, 1, color_orbgone);
+			//buffer.setPixel(4, 1, color_orbgone);
 			buffer.setPixel(2, 2, color_orbgone);
 			buffer.setPixel(3, 2, color_orbgone);
 			buffer.setPixel(4, 2, color_orbgone);
+			//buffer.setPixel(2, 3, color_orbgone);
 			buffer.setPixel(3, 3, color_orbgone);
+			//buffer.setPixel(4, 3, color_orbgone);
 			graphic = new Image(buffer);
 		}
 	}

@@ -25,10 +25,12 @@ package overlays
 			Text.size = 8;
 			var x:int = 20;
 			texts.push(new Entity(x, 10, new Text("Cavern")));
-			texts.push(new Entity(x, 30, new Text("Right, Left")));
-			texts.push(new Entity(x, 40, new Text("Z, Up")));
-			texts.push(new Entity(x, 50, new Text("X")));
-			texts.push(new Entity(x, 60, new Text("Hold C")));
+			texts.push(new Entity(x, 35, new Text("Right, Left")));
+			texts.push(new Entity(x, 45, new Text("Z, Up")));
+			texts.push(new Entity(x, 55, new Text("X")));
+			texts.push(new Entity(x, 65, new Text("Hold C")));
+			texts.push(new Entity(x, 90, new Text("Game by Patrick Traynor")));
+			texts.push(new Entity(x, 100, new Text("Powered by FlashPunk")));
 
 		}
 		

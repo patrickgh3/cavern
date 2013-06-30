@@ -17,6 +17,7 @@ package overlays
 		/* Element is zero = undiscovered (else discovered)
 		 * Element divisible by 2 = link to the right.
 		 * Element divisible by 3 = link to the bottom.
+		 * Element divisible by 5 = orb has been collected.
 		 */
 		private var i:int, j:int;
 		
@@ -105,6 +106,12 @@ package overlays
 				data[roomx][roomy] = 1;
 				cells[roomx][roomy].makeVisible();
 			}
+		}
+		
+		public function collectOrb(roomx:int, roomy:int):void
+		{
+			data[roomx][roomy] *= 5;
+			cells[roomx][roomy].removeOrb();
 		}
 		
 		private function addLink(roomx:int, roomy:int, horizontal:Boolean):void

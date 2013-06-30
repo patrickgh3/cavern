@@ -1,5 +1,6 @@
 package  
 {
+	import entities.Orb;
 	import net.flashpunk.Engine;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -11,6 +12,7 @@ package
 	import overlays.OverlayEscape;
 	import overlays.OverlayMap;
 	import tiles.MemoryTile;
+	import entities.BlackFade;
 	
 	/**
 	 * Main game world.

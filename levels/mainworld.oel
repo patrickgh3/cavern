@@ -4738,5 +4738,8 @@
     <RoomProperties id="9" x="800" y="256" sound="silent" mapcolor="darkred" />
     <RoomProperties id="10" x="640" y="256" sound="silent" mapcolor="darkred" />
     <RoomProperties id="11" x="800" y="128" sound="silent" mapcolor="darkred" />
+    <Orb id="12" x="1344" y="576" />
+    <Orb id="13" x="1152" y="560" />
+    <Orb id="15" x="1008" y="592" />
   </RoomData>
 </level>

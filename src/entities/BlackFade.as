@@ -1,4 +1,4 @@
-package  
+package entities 
 {
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;

@@ -1,6 +1,7 @@
 package  
 {
 	import entities.MovingBlock;
+	import entities.Orb;
 	import net.flashpunk.Entity;
 	import tiles.SwitchTile;
 	import tiles.MemoryTile;
@@ -63,7 +64,8 @@ package
 			{
 				if (actors[i] is MovingBlock)
 					r.actors.push(MovingBlock(actors[i]).clone());
-				// other types of actors will go here (e.g. orb)
+				else if (actors[i] is Orb)
+					r.actors.push(Orb(actors[i]).clone());
 			}
 			
 			return r;

@@ -166,7 +166,7 @@ package
 			for (var i:int = 0; i < _actors.length; i++)
 			{
 				var other:Entity = Entity(_actors[i]);
-				if (!other is target) continue;
+				if (!(other is target)) continue;
 				
 				if (x < other.x + other.width
 				   && x + width - 0.5 > other.x   // 0.5 ??? not sure why this has to be this way

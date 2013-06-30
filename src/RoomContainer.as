@@ -1,8 +1,11 @@
 package  
 {
+	import entities.Orb;
+	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import flash.utils.ByteArray;
 	import flash.geom.Point;
+	import net.flashpunk.graphics.Image;
 	import tiles.FactoryTile;
 	import tiles.MemoryTile;
 	import entities.MovingBlock;
@@ -68,7 +71,7 @@ package
 			{
 				x = node.@x;
 				y = node.@y;
-				var tx:int = node.@tx;4
+				var tx:int = node.@tx;
 				var ty:int = node.@ty;
 				whole[x][y] = new Point(tx, ty);
 			}
@@ -161,6 +164,14 @@ package
 				y = node.@y / 16;
 				rooms[int(x / 10)][int(y / 8)].actors.push(
 					new MovingBlock((x % 10) * 16, (y % 8) * 16, node.@speed, node.@path));
+			}
+			
+			for each (node in xml.RoomData.Orb)
+			{
+				// even more devil magic!!
+				x = node.@x / 16;
+				y = node.@y / 16;
+				rooms[int(x / 10)][int(y / 8)].actors.push(new Orb((x % 10) * 16 + 5, (y % 8) * 16 + 4, int(x / 10), int(y / 10)));
 			}
 		}
 		

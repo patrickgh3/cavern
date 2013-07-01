@@ -1,5 +1,6 @@
 package  
 {
+	import entities.GreenBlock;
 	import entities.Orb;
 	import net.flashpunk.Engine;
 	import net.flashpunk.Entity;
@@ -142,6 +143,13 @@ package
 			
 			//Ambiance.switchTo(RoomContainer.sounds[roomX][roomY]);
 			Ambiance.switchTo("cave1");
+			
+			add(new GreenBlock(GreenBlock.horizontal));
+			add(new GreenBlock(GreenBlock.vertical));
+			add(new GreenBlock(GreenBlock.horizontal));
+			add(new GreenBlock(GreenBlock.vertical));
+			add(new GreenBlock(GreenBlock.horizontal));
+			add(new GreenBlock(GreenBlock.vertical));
 		}
 		
 		private function setSpawn():void

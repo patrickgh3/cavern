@@ -174,6 +174,17 @@ package overlays
 			return data[roomx][roomy] % 5 == 0 && data[roomx][roomy] != 0;
 		}
 		
+		public function discoverAll():void
+		{
+			for (i = 0; i < cells.length; i++)
+			{
+				for (j = 0; j < cells[0].length; j++)
+				{
+					discover(i, j);
+				}
+			}
+		}
+		
 		public function traceData():void
 		{
 			for (j = 0; j < RoomContainer.height; j++)

@@ -19,7 +19,7 @@ package overlays
 			super(x, y);
 			this.color = color;
 			
-			buffer = new BitmapData(OverlayMap.cellwidth, OverlayMap.cellheight, false, color);
+			buffer = new BitmapData(OverlayMap.cellwidth, OverlayMap.cellheight, true, color);
 			graphic = new Image(buffer);
 			if (!discovered) (Image)(graphic).alpha = 0;
 			

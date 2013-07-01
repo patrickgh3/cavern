@@ -46,9 +46,12 @@ package
 			}
 			
 			mapcolorvalues = new Object();
-			mapcolorvalues.white = 0xffffff;
-			mapcolorvalues.darkred = 0x801D1D;
-			mapcolorvalues.green = 0x7BD620;
+			mapcolorvalues.white = 0xffffffff;
+			mapcolorvalues.clear = 0x00000000;
+			mapcolorvalues.darkred = 0xff801D1D;
+			mapcolorvalues.green = 0xff7BD620;
+			mapcolorvalues.blue = 0xff3CB5B5;
+			mapcolorvalues.brown = 0xffBFA952;
 			
 			sounds = new Array();
 			mapcolors = new Array();
@@ -62,7 +65,7 @@ package
 				specialtypes[i] = new Array();
 				for (j = 0; j < height; j++)
 				{
-					mapcolors[i][j] = 0xffffff;
+					mapcolors[i][j] = mapcolorvalues.brown;
 					sounds[i][j] = "silence";
 					hasorb[i][j] = false;
 					specialtypes[i][j] = "none";
@@ -121,6 +124,7 @@ package
 							rooms[x][y].level[i][j] = rooms[x][y].tiles[i][j].tileType;
 						}
 					}
+					if (rooms[x][y].level[1][1] == Tile.EMPTY) mapcolors[x][y] = mapcolorvalues.clear;
 				}
 			}
 			

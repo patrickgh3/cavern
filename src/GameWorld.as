@@ -23,10 +23,10 @@ package
 		public var _player:Player;
 		private var _blackfade:BlackFade;
 		public var _room:Room;
-		public var roomX:int = 8;
+		public var roomX:int = 7;
 		public var roomY:int = 4;
-		private var spawnX:int = 48;
-		private var spawnY:int = 32;
+		private var spawnX:int = 75;
+		private var spawnY:int = 84;
 		private var spawnRoomX:int = roomX;
 		private var spawnRoomY:int = roomY;
 		private var lookingforspawn:Boolean = false;
@@ -55,7 +55,7 @@ package
 		
 		override public function update():void
 		{
-			if (Input.check(Key.F)) overlayMap.traceData();
+			if (Input.check(Key.F)) overlayMap.discoverAll();
 			if (killplayernext)
 			{
 				killplayernext = false;

@@ -32,7 +32,7 @@ package entities
 			this.xspeed = xspeed;
 			this.yspeed = yspeed;
 			width = height = 16;
-			graphic = Image.createRect(width, height, 0x7bf700);
+			graphic = Image.createRect(width, height, GreenBlock.greencolor);
 			
 			moveSpeed = movespeed;
 			moveTime = int(16 / moveSpeed) + 1

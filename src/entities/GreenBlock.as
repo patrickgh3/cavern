@@ -14,6 +14,8 @@ package entities
 		[Embed(source = "/../assets/greenblock2.png")]
 		private const greenblock2:Class;
 		
+		public static const greencolor:uint = 0x7BD620;
+		
 		public static const horizontal:int = 1;
 		public static const vertical:int = 2;
 		private static const speed_slow:Number = 2;
@@ -22,20 +24,24 @@ package entities
 		private var orientation:int;
 		private var speed:Number;
 		
-		public function GreenBlock(type:int) 
+		public function GreenBlock(orientation:int) 
 		{
-			super(Math.random() * 160, Math.random() * 128); // todo: better start randomization
-			this.orientation = type;
-			if (type == horizontal)
+			super();
+			this.orientation = orientation;
+			if (orientation == horizontal)
 			{
 				graphic = new Image(greenblock1);
 			}
-			else if (type == vertical)
+			else if (orientation == vertical)
 			{
 				graphic = new Image(greenblock2);
 			}
+			(Image)(graphic).color = greencolor;
+			(Image)(graphic).alpha = 0.5;
 			width = (Image)(graphic).width;
 			height = (Image)(graphic).height;
+			randomizeX();
+			randomizeY();
 			
 			chooseSpeed();
 		}

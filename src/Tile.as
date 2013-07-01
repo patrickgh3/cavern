@@ -1,5 +1,6 @@
 package  
 {
+	import entities.GreenBlock;
 	import flash.geom.Rectangle;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
@@ -30,7 +31,9 @@ package
 			_y = y;
 			_room = r;
 			tileType = type;
-			graphic = new Image(TILES, new Rectangle(x * 16, y * 16, 16, 16));
+			
+			if (x == 0 && y == 3) graphic = Image.createRect(16, 16, GreenBlock.greencolor);
+			else graphic = new Image(TILES, new Rectangle(x * 16, y * 16, 16, 16));
 		}
 		
 		public function roomStart():void { }

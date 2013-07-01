@@ -4743,5 +4743,6 @@
     <Orb id="15" x="1008" y="592" />
     <Orb id="14" x="880" y="560" />
     <Orb id="16" x="768" y="576" />
+    <RoomProperties id="17" x="960" y="768" sound="silence" mapcolor="green" />
   </RoomData>
 </level>

@@ -132,6 +132,13 @@ package
 			for (i = 0; i < _room.actors.length; i++)
 				add(_room.actors[i]);
 			
+			if (RoomContainer.mapcolors[roomX][roomY] == RoomContainer.mapcolorvalues.green)
+				for (i = 0; i < 3; i++)
+				{
+					add(new GreenBlock(GreenBlock.horizontal));
+					add(new GreenBlock(GreenBlock.vertical));
+				}
+			
 			_player.setRoom(_room.level, _room.actors);
 			add(_player);
 			add(_player.getSprite());
@@ -143,13 +150,6 @@ package
 			
 			//Ambiance.switchTo(RoomContainer.sounds[roomX][roomY]);
 			Ambiance.switchTo("cave1");
-			
-			add(new GreenBlock(GreenBlock.horizontal));
-			add(new GreenBlock(GreenBlock.vertical));
-			add(new GreenBlock(GreenBlock.horizontal));
-			add(new GreenBlock(GreenBlock.vertical));
-			add(new GreenBlock(GreenBlock.horizontal));
-			add(new GreenBlock(GreenBlock.vertical));
 		}
 		
 		private function setSpawn():void

@@ -47,6 +47,7 @@ package
 			mapcolorvalues = new Object();
 			mapcolorvalues.white = 0xffffff;
 			mapcolorvalues.darkred = 0x801D1D;
+			mapcolorvalues.green = 0x7BD620;
 			
 			sounds = new Array();
 			mapcolors = new Array();

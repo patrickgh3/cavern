@@ -15,7 +15,7 @@ package tiles
 		public static var count:int = 0;
 		public static var innercount:int = 0;
 		
-		private var animcount:int = 0;
+		private var animcount:int = animspeed * 4 + 1;
 		private static const animspeed:int = 4;
 		
 		private var source:String;
@@ -33,6 +33,8 @@ package tiles
 			for (var i:int = 0; i < numstates; i++)
 				states[i] = source.charAt(i);
 			sprite.setFrame(states[count], 0);
+			tileType = states[count];
+			setLevel(tileType);
 		}
 		
 		override public function update():void

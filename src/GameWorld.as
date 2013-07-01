@@ -91,6 +91,7 @@ package
 			if (_player.x < -_player.width / 2) {
 				_player.x += 160;
 				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods") switchToLostWoods();
+				else if (RoomContainer.specialtypes[roomX][roomY] == "longjump") switchRoom(roomX, roomY);
 				else
 				{
 					switchRoom(--roomX, roomY);
@@ -101,6 +102,7 @@ package
 			if (_player.x >= 160 - _player.width / 2) {
 				_player.x -= 160;
 				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods") switchToLostWoods();
+				else if (RoomContainer.specialtypes[roomX][roomY] == "longjump") switchRoom(roomX, roomY);
 				else
 				{
 					switchRoom(++roomX, roomY);

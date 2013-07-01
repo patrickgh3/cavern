@@ -90,28 +90,43 @@ package
 			
 			if (_player.x < -_player.width / 2) {
 				_player.x += 160;
-				switchRoom(--roomX, roomY);
-				overlayMap.linkRight(roomX, roomY);
-				overlayMap
-				if (!_player.noclip) setSpawn();
+				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods") switchToLostWoods();
+				else
+				{
+					switchRoom(--roomX, roomY);
+					overlayMap.linkRight(roomX, roomY);
+					if (!_player.noclip) setSpawn();
+				}
 			}
 			if (_player.x >= 160 - _player.width / 2) {
 				_player.x -= 160;
-				switchRoom(++roomX, roomY);
-				overlayMap.linkLeft(roomX, roomY);
-				if (!_player.noclip) setSpawn();
+				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods") switchToLostWoods();
+				else
+				{
+					switchRoom(++roomX, roomY);
+					overlayMap.linkLeft(roomX, roomY);
+					if (!_player.noclip) setSpawn();
+				}
 			}
 			if (_player.y < -_player.height / 2) {
 				_player.y += 128;
-				switchRoom(roomX, --roomY);
-				overlayMap.linkBottom(roomX, roomY);
-				if (!_player.noclip) lookingforspawn = true;
+				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods") switchToLostWoods();
+				else
+				{
+					switchRoom(roomX, --roomY);
+					overlayMap.linkBottom(roomX, roomY);
+					if (!_player.noclip) lookingforspawn = true;
+				}
 			}
 			if (_player.y >= 128 - _player.height / 2) {
 				_player.y -= 128;
-				switchRoom(roomX, ++roomY);
-				overlayMap.linkTop(roomX, roomY);
-				if (!_player.noclip) lookingforspawn = true;
+				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods") switchToLostWoods();
+				else
+				{
+					switchRoom(roomX, ++roomY);
+					overlayMap.linkTop(roomX, roomY);
+					if (!_player.noclip) lookingforspawn = true;
+				}
 			}
 			
 			if (lookingforspawn && _player.onGround())
@@ -184,6 +199,16 @@ package
 			roomX = spawnRoomX;
 			roomY = spawnRoomY;
 			switchRoom(roomX, roomY);
+		}
+		
+		private function switchToLostWoods():void
+		{
+			switchRoom(roomX, roomY);
+			Room.lostwoodscount++;
+			if (Room.lostwoodscount >= Room.lostwoodsneeded && !overlayMap.isOrbCollected(roomX, roomY))
+			{
+				add(new Orb(80, 32, roomX, roomY));
+			} // TODO: reset lostwoodscount when leaving.
 		}
 		
 	}

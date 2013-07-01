@@ -25,6 +25,7 @@ package
 		public static var mapcolors:Array;
 		public static var mapcolorvalues:Object;
 		public static var hasorb:Array;
+		public static var specialtypes:Array;
 		
 		public static function init():void
 		{
@@ -52,16 +53,19 @@ package
 			sounds = new Array();
 			mapcolors = new Array();
 			hasorb = new Array();
+			specialtypes = new Array();
 			for (i = 0; i < width; i++)
 			{
 				sounds[i] = new Array();
 				mapcolors[i] = new Array();
 				hasorb[i] = new Array();
+				specialtypes[i] = new Array();
 				for (j = 0; j < height; j++)
 				{
 					mapcolors[i][j] = 0xffffff;
 					sounds[i][j] = "silence";
 					hasorb[i][j] = false;
+					specialtypes[i][j] = "none";
 				}
 			}
 			for each (node in xml.RoomData.RoomProperties)
@@ -70,6 +74,8 @@ package
 				y = node.@y / 128;
 				sounds[x][y] = node.@sound;
 				mapcolors[x][y] = mapcolorvalues[node.@mapcolor];
+				specialtypes[x][y] = node.@specialtype;
+				if (specialtypes[x][y] == "lostwoods") hasorb[x][y] = true;
 			}
 			
 			for each (node in xml.Tiles.tile)

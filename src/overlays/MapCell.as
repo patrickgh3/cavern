@@ -14,7 +14,7 @@ package overlays
 		private var color:Number;
 		private var buffer:BitmapData;
 		
-		public function MapCell(x:int, y:int, color:Number = 0xffffff, hasorb:Boolean = false, discovered:Boolean = false) 
+		public function MapCell(x:int, y:int, color:Number, hasorb:Boolean = false, discovered:Boolean = false) 
 		{
 			super(x, y);
 			this.color = color;

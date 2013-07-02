@@ -31,10 +31,11 @@ package tiles
 			
 			states = new Array(numstates);
 			for (var i:int = 0; i < numstates; i++)
-				states[i] = source.charAt(i);
+				states[i] = source.charAt((i + 12) % 16);
 			sprite.setFrame(states[count], 0);
 			tileType = states[count];
 			setLevel(tileType);
+			if (states[count] == Tile.SOLID) animcount = 0;
 		}
 		
 		override public function update():void

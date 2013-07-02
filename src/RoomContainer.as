@@ -65,7 +65,7 @@ package
 				specialtypes[i] = new Array();
 				for (j = 0; j < height; j++)
 				{
-					mapcolors[i][j] = mapcolorvalues.brown;
+					mapcolors[i][j] = mapcolorvalues.clear;
 					sounds[i][j] = "silence";
 					hasorb[i][j] = false;
 					specialtypes[i][j] = "none";
@@ -124,7 +124,6 @@ package
 							rooms[x][y].level[i][j] = rooms[x][y].tiles[i][j].tileType;
 						}
 					}
-					if (rooms[x][y].level[1][1] == Tile.EMPTY) mapcolors[x][y] = mapcolorvalues.clear;
 				}
 			}
 			

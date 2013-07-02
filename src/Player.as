@@ -49,6 +49,17 @@ package
 			var jump:Boolean = Input.check(Key.Z) || Input.check(Key.UP);
 			var suicide:Boolean = Input.check(Key.R) || Input.check(Key.Q);
 			
+			var collidebefore:Boolean = collideLevel();
+			y -= 5;
+			if (collidebefore && !collideLevel() && !noclip)
+			{
+				y += 5;
+				while (collideLevel()) y--;
+				y -= 5;
+				_yspeed = 0;
+			}
+			y += 5;
+			
 			dead = false;
 			
 			if (suicide || ((collideLevel(Tile.SOLID) || collideActors(MovingBlock)) && !noclip)) {

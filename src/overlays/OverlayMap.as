@@ -1,5 +1,6 @@
 package overlays 
 {
+	import entities.Shrine;
 	import net.flashpunk.FP;
 	import net.flashpunk.World;
 	import net.flashpunk.Entity;
@@ -25,10 +26,13 @@ package overlays
 		public static const cellheight:int = 5;
 		public static const cellgap:int = 2;
 		
+		public static var orbscollected:int = 0;
+		
 		private var xoffset:int;
 		private var yoffset:int;
 		private var isVisible:Boolean = false;
 		private var highlight:MapHighlight;
+		public static var shrine:Shrine;
 		
 		public function OverlayMap(spawnX:int, spawnY:int) 
 		{
@@ -111,6 +115,7 @@ package overlays
 		{
 			data[roomx][roomy] *= 5;
 			cells[roomx][roomy].removeOrb();
+			shrine.activateOrb(orbscollected++);
 		}
 		
 		private function addLink(roomx:int, roomy:int, horizontal:Boolean):void

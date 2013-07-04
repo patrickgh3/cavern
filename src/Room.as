@@ -2,6 +2,7 @@ package
 {
 	import entities.MovingBlock;
 	import entities.Orb;
+	import entities.Shrine;
 	import net.flashpunk.Entity;
 	import tiles.SwitchTile;
 	import tiles.MemoryTile;
@@ -66,10 +67,10 @@ package
 			
 			for (i = 0; i < actors.length; i++)
 			{
-				if (actors[i] is MovingBlock)
-					r.actors.push(MovingBlock(actors[i]).clone());
-				else if (actors[i] is Orb)
-					r.actors.push(Orb(actors[i]).clone());
+				if (actors[i] is MovingBlock || actors[i] is Orb)
+					r.actors.push(actors[i].clone());
+				else if (actors[i] is Shrine)
+					r.actors.push(actors[i]);
 			}
 			
 			return r;

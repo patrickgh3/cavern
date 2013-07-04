@@ -2,6 +2,8 @@ package
 {
 	import entities.GreenBlock;
 	import entities.Orb;
+	import entities.Shrine;
+	import entities.ShrineOrb;
 	import net.flashpunk.Engine;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -23,14 +25,17 @@ package
 		public var _player:Player;
 		private var _blackfade:BlackFade;
 		public var _room:Room;
-		public var roomX:int = 7;
-		public var roomY:int = 4;
+		public var roomX:int;
+		public var roomY:int;
 		private var spawnX:int = 75;
 		private var spawnY:int = 84;
 		private var spawnRoomX:int = roomX;
 		private var spawnRoomY:int = roomY;
 		private var lookingforspawn:Boolean = false;
 		private var killplayernext:Boolean = false;
+		
+		private static var shrineRoomX:int = 7;
+		private static var shrineRoomY:int = 4;
 		
 		public var overlay_esc:Boolean = false;
 		public var overlayEsc:OverlayEscape;
@@ -43,6 +48,8 @@ package
 			_player.x = spawnX;
 			_player.y = spawnY;
 			var ps:PlayerSprite = new PlayerSprite(_player);
+			roomX = shrineRoomX;
+			roomY = shrineRoomY;
 		}
 		
 		public function init():void
@@ -155,6 +162,11 @@ package
 					add(new GreenBlock(GreenBlock.horizontal));
 					add(new GreenBlock(GreenBlock.vertical));
 				}
+			
+			if (roomX == shrineRoomX && roomY == shrineRoomY)
+			{
+				(Shrine)(_room.actors[0]).addOrbs(this);
+			}
 			
 			_player.setRoom(_room.level, _room.actors);
 			add(_player);

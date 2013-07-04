@@ -5141,7 +5141,7 @@
     <tile x="69" y="34" tx="2" ty="1" />
     <tile x="69" y="35" tx="2" ty="1" />
     <tile x="69" y="36" tx="2" ty="1" />
-    <tile x="69" y="37" tx="2" ty="1" />
+    <tile x="69" y="37" tx="2" ty="2" />
     <tile x="69" y="38" tx="2" ty="1" />
     <tile x="69" y="39" tx="2" ty="1" />
     <tile x="69" y="40" tx="2" ty="1" />
@@ -6197,7 +6197,7 @@
     <tile x="80" y="34" tx="2" ty="1" />
     <tile x="80" y="35" tx="2" ty="1" />
     <tile x="80" y="36" tx="2" ty="1" />
-    <tile x="80" y="37" tx="2" ty="1" />
+    <tile x="80" y="37" tx="2" ty="2" />
     <tile x="80" y="38" tx="2" ty="1" />
     <tile x="80" y="39" tx="2" ty="1" />
     <tile x="80" y="40" tx="2" ty="1" />
@@ -12514,7 +12514,7 @@
     <RoomProperties id="172" x="1120" y="128" sound="silence" mapcolor="brown" specialtype="" />
     <RoomProperties id="173" x="1280" y="128" sound="silence" mapcolor="brown" specialtype="" />
     <RoomProperties id="174" x="960" y="512" sound="silence" mapcolor="brown" specialtype="" />
-    <RoomProperties id="175" x="1120" y="512" sound="silence" mapcolor="brown" specialtype="" />
+    <RoomProperties id="175" x="1120" y="512" sound="silence" mapcolor="white" specialtype="" />
     <RoomProperties id="176" x="1280" y="512" sound="silence" mapcolor="brown" specialtype="" />
     <RoomProperties id="177" x="960" y="640" sound="silence" mapcolor="brown" specialtype="" />
     <RoomProperties id="178" x="1120" y="640" sound="silence" mapcolor="brown" specialtype="" />
@@ -12594,5 +12594,6 @@
     <MemoryTile id="141" x="2176" y="336" states="1111110011111100" />
     <MemoryTile id="146" x="2160" y="336" states="1111110011111100" />
     <MemoryTile id="147" x="2144" y="336" states="1111110011111100" />
+    <Shrine id="248" x="1152" y="560" />
   </RoomData>
 </level>

@@ -1,11 +1,13 @@
 package  
 {
 	import entities.Orb;
+	import entities.Shrine;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import flash.utils.ByteArray;
 	import flash.geom.Point;
 	import net.flashpunk.graphics.Image;
+	import overlays.OverlayMap;
 	import tiles.FactoryTile;
 	import tiles.MemoryTile;
 	import entities.MovingBlock;
@@ -187,6 +189,15 @@ package
 				y = node.@y / 16;
 				rooms[int(x / 10)][int(y / 8)].actors.push(new Orb((x % 10) * 16 + 5, (y % 8) * 16 + 4, int(x / 10), int(y / 8)));
 				hasorb[int(x / 10)][int(y / 8)] = true;
+			}
+			
+			for each (node in xml.RoomData.Shrine)
+			{
+				x = node.@x / 16;
+				y = node.@y / 16;
+				var s:Shrine = new Shrine((x % 10) * 16, (y % 8) * 16);
+				rooms[int(x / 10)][int(y / 8)].actors.push(s);
+				OverlayMap.shrine = s;
 			}
 		}
 		

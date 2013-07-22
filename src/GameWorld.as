@@ -62,7 +62,7 @@ package
 			teleportBar = new TeleportBar(_player);
 			
 			playerParticles = new Array();
-			for (var i:int = 0; i < 10; i++)
+			for (var i:int = 0; i < 6; i++)
 			{
 				playerParticles[i] = new PlayerParticle();
 			}
@@ -203,7 +203,7 @@ package
 			overlayMap.setHighlight(roomX, roomY);
 			
 			//Ambiance.switchTo(RoomContainer.sounds[roomX][roomY]);
-			Ambiance.switchTo("cave1");
+			//Ambiance.switchTo("cave1");
 		}
 		
 		private function setSpawn():void
@@ -237,12 +237,15 @@ package
 			add(_blackfade);
 			lookingforspawn = false;
 			
-			for (var i:int = 0; i < playerParticles.length; i++)
-			{
-				playerParticles[i].x = oldplayerx + (i % 3) * 3;
-				playerParticles[i].y = oldplayery + (int)(i / 3) * 3;
-				add(playerParticles[i]);
-			}
+			var dx:int = spawnX - oldplayerx;
+			var dy:int = spawnY - oldplayery;
+			playerParticles[0].activate(oldplayerx + 1, oldplayery, dx, dy);
+			playerParticles[1].activate(oldplayerx + 5, oldplayery, dx, dy);
+			playerParticles[2].activate(oldplayerx + 1, oldplayery + 4, dx, dy);
+			playerParticles[3].activate(oldplayerx + 5, oldplayery + 4, dx, dy);
+			playerParticles[4].activate(oldplayerx + 1, oldplayery + 8, dx, dy);
+			playerParticles[5].activate(oldplayerx + 5, oldplayery + 8, dx, dy);
+			for (var i:int = 0; i < playerParticles.length; i++) add(playerParticles[i]);
 		}
 		
 		public function fadeIn():void
@@ -262,6 +265,7 @@ package
 			add(_player.getSprite());
 			add(teleportBar);
 			for (var i:int = 0; i < playerParticles.length; i++) remove(playerParticles[i]);
+			_blackfade = null;
 		}
 		
 		public function teleportBarFull():void

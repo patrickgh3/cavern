@@ -10,8 +10,8 @@ package entities
 	public class BlackFade extends Entity
 	{
 		private var count:int;
-		private const fadeTime:int = 20; // frames taken to fade out / in
-		private const waitTime:int = 30; // frames held while alpha = 1;
+		public static const fadeTime:int = 20; // frames taken to fade out / in
+		public static const waitTime:int = 30; // frames held while alpha = 1;
 		private var image:Image;
 		
 		public function BlackFade() 

@@ -18,7 +18,7 @@ package
 		private static const height:int = 10;
 		
 		public static var lostwoodscount:int = 0;
-		public static const lostwoodsneeded:int = 20;
+		public static const lostwoodsneeded:int = 10;
 		
 		public var level:Array;
 		public var tiles:Array;

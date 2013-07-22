@@ -97,8 +97,8 @@ package
 			
 			if (_player.x < -_player.width / 2) {
 				_player.x += 160;
-				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods") switchToLostWoods();
-				else if (RoomContainer.specialtypes[roomX][roomY] == "longjump") switchRoom(roomX, roomY);
+				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !_player.noclip) switchToLostWoods();
+				else if (RoomContainer.specialtypes[roomX][roomY] == "longjump" && !_player.noclip) switchRoom(roomX, roomY);
 				else
 				{
 					switchRoom(--roomX, roomY);
@@ -108,8 +108,8 @@ package
 			}
 			if (_player.x >= 160 - _player.width / 2) {
 				_player.x -= 160;
-				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods") switchToLostWoods();
-				else if (RoomContainer.specialtypes[roomX][roomY] == "longjump") switchRoom(roomX, roomY);
+				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !_player.noclip) switchToLostWoods();
+				else if (RoomContainer.specialtypes[roomX][roomY] == "longjump" && !_player.noclip) switchRoom(roomX, roomY);
 				else
 				{
 					switchRoom(++roomX, roomY);
@@ -119,7 +119,7 @@ package
 			}
 			if (_player.y < -_player.height / 2) {
 				_player.y += 128;
-				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods") switchToLostWoods();
+				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !_player.noclip) switchToLostWoods();
 				else
 				{
 					switchRoom(roomX, --roomY);
@@ -129,7 +129,7 @@ package
 			}
 			if (_player.y >= 128 - _player.height / 2) {
 				_player.y -= 128;
-				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods") switchToLostWoods();
+				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !_player.noclip) switchToLostWoods();
 				else
 				{
 					switchRoom(roomX, ++roomY);

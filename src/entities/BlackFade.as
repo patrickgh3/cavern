@@ -38,6 +38,7 @@ package entities
 			else if (count == waitTime + 2 * fadeTime)
 			{
 				Image(graphic).alpha = 0;
+				GameWorld(FP.world).fadeComplete();
 			}
 				
 		}

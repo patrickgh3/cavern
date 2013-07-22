@@ -2,6 +2,7 @@ package
 {
 	import entities.GreenBlock;
 	import entities.Orb;
+	import entities.PlayerParticle;
 	import entities.Shrine;
 	import entities.ShrineOrb;
 	import entities.TeleportBar;
@@ -26,6 +27,7 @@ package
 		public var _player:Player;
 		public var teleportBar:TeleportBar;
 		private var _blackfade:BlackFade;
+		private var playerParticles:Array;
 		public var _room:Room;
 		public var roomX:int;
 		public var roomY:int;
@@ -35,6 +37,7 @@ package
 		private var spawnRoomY:int = shrineRoomY;
 		private var lookingforspawn:Boolean = false;
 		private var killplayernext:Boolean = false;
+		private var killedplayerlast:Boolean = false;
 		
 		private static var shrineRoomX:int = 7;
 		private static var shrineRoomY:int = 4;
@@ -57,6 +60,12 @@ package
 			roomY = shrineRoomY;
 			
 			teleportBar = new TeleportBar(_player);
+			
+			playerParticles = new Array();
+			for (var i:int = 0; i < 10; i++)
+			{
+				playerParticles[i] = new PlayerParticle();
+			}
 		}
 		
 		public function init():void
@@ -70,9 +79,12 @@ package
 		override public function update():void
 		{
 			if (Input.check(Key.F)) overlayMap.discoverAll();
+			
+			if (killedplayerlast) killedplayerlast = false;
 			if (killplayernext)
 			{
 				killplayernext = false;
+				killedplayerlast = true;
 				playerKilled();
 			}
 			
@@ -180,7 +192,11 @@ package
 			add(_player.getSprite());
 			add(teleportBar);
 			teleportBar.resetCount();
-			if (_blackfade != null) add(_blackfade);
+			if (_blackfade != null)
+			{
+				add(_blackfade);
+				for (i = 0; i < playerParticles.length; i++) add(playerParticles[i]);
+			}
 			
 			if (overlay_esc) overlayEsc.addSelf();
 			if (overlay_map) overlayMap.addSelf();
@@ -201,11 +217,16 @@ package
 		
 		public function killPlayer():void
 		{
-			killplayernext = true;
+			if (!killedplayerlast) killplayernext = true;
 		}
 		
 		public function playerKilled():void
 		{
+			var oldplayerx:int = _player.x;
+			var oldplayery:int = _player.y;
+			
+			_player.x = spawnX; // player is moved here to avoid being in old place for 1 frame when he is visible again.
+			_player.y = spawnY;
 			remove(_player);
 			remove(_player.getSprite());
 			remove(teleportBar);
@@ -215,16 +236,32 @@ package
 			_blackfade = new BlackFade();
 			add(_blackfade);
 			lookingforspawn = false;
+			
+			for (var i:int = 0; i < playerParticles.length; i++)
+			{
+				playerParticles[i].x = oldplayerx + (i % 3) * 3;
+				playerParticles[i].y = oldplayery + (int)(i / 3) * 3;
+				add(playerParticles[i]);
+			}
 		}
 		
 		public function fadeIn():void
 		{
-			_player.x = spawnX;
-			_player.y = spawnY;
 			_player.dead = false;
 			roomX = spawnRoomX;
 			roomY = spawnRoomY;
 			switchRoom(roomX, roomY);
+			remove(_player);
+			remove(_player.getSprite());
+			remove(teleportBar);
+		}
+		
+		public function fadeComplete():void
+		{
+			add(_player);
+			add(_player.getSprite());
+			add(teleportBar);
+			for (var i:int = 0; i < playerParticles.length; i++) remove(playerParticles[i]);
 		}
 		
 		public function teleportBarFull():void

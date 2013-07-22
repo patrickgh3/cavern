@@ -48,6 +48,7 @@ package
 			var left:Boolean = Input.check(Key.LEFT);
 			var jump:Boolean = Input.check(Key.Z) || Input.check(Key.UP);
 			var suicide:Boolean = Input.check(Key.R) || Input.check(Key.Q);
+			//if (Input.check(Key.C)) right = left = jump = false;
 			
 			var collidebefore:Boolean = collideLevel();
 			y -= 5;

@@ -4,6 +4,7 @@ package
 	import entities.Orb;
 	import entities.Shrine;
 	import entities.ShrineOrb;
+	import entities.TeleportBar;
 	import net.flashpunk.Engine;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -23,19 +24,22 @@ package
 	public class GameWorld extends World
 	{
 		public var _player:Player;
+		public var teleportBar:TeleportBar;
 		private var _blackfade:BlackFade;
 		public var _room:Room;
 		public var roomX:int;
 		public var roomY:int;
-		private var spawnX:int = 75;
-		private var spawnY:int = 84;
-		private var spawnRoomX:int = roomX;
-		private var spawnRoomY:int = roomY;
+		private var spawnX:int = shrineRoomPlayerX;
+		private var spawnY:int = shrineRoomPlayerY;
+		private var spawnRoomX:int =shrineRoomX;
+		private var spawnRoomY:int = shrineRoomY;
 		private var lookingforspawn:Boolean = false;
 		private var killplayernext:Boolean = false;
 		
 		private static var shrineRoomX:int = 7;
 		private static var shrineRoomY:int = 4;
+		private static var shrineRoomPlayerX:int = 75;
+		private static var shrineRoomPlayerY:int = 84;
 		
 		public var overlay_esc:Boolean = false;
 		public var overlayEsc:OverlayEscape;
@@ -47,9 +51,12 @@ package
 			_player = new Player();
 			_player.x = spawnX;
 			_player.y = spawnY;
+			
 			var ps:PlayerSprite = new PlayerSprite(_player);
 			roomX = shrineRoomX;
 			roomY = shrineRoomY;
+			
+			teleportBar = new TeleportBar(_player);
 		}
 		
 		public function init():void
@@ -171,6 +178,8 @@ package
 			_player.setRoom(_room.level, _room.actors);
 			add(_player);
 			add(_player.getSprite());
+			add(teleportBar);
+			teleportBar.resetCount();
 			if (_blackfade != null) add(_blackfade);
 			
 			if (overlay_esc) overlayEsc.addSelf();
@@ -199,6 +208,9 @@ package
 		{
 			remove(_player);
 			remove(_player.getSprite());
+			remove(teleportBar);
+			teleportBar.resetCount();
+			
 			_player.kill();
 			_blackfade = new BlackFade();
 			add(_blackfade);
@@ -213,6 +225,15 @@ package
 			roomX = spawnRoomX;
 			roomY = spawnRoomY;
 			switchRoom(roomX, roomY);
+		}
+		
+		public function teleportBarFull():void
+		{
+			spawnRoomX = shrineRoomX;
+			spawnRoomY = shrineRoomY;
+			spawnX = shrineRoomPlayerX;
+			spawnY = shrineRoomPlayerY;
+			playerKilled();
 		}
 		
 		private function switchToLostWoods():void

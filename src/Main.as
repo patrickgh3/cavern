@@ -24,6 +24,7 @@ package
 			_gameWorld = new GameWorld();
 			FP.world = _gameWorld;
 			RoomContainer.init();
+			RoomContainerExtra.init();
 			Ambiance.init();
 			_gameWorld.init();
 		}

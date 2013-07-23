@@ -39,6 +39,11 @@ package
 		private var killplayernext:Boolean = false;
 		private var killedplayerlast:Boolean = false;
 		
+		public var world:int = world_normal;
+		public static const world_normal:int = 1;
+		public static const world_intro:int = 2;
+		public static const world_end:int = 3;
+		
 		private static var shrineRoomX:int = 7;
 		private static var shrineRoomY:int = 4;
 		private static var shrineRoomPlayerX:int = 75;
@@ -79,6 +84,37 @@ package
 		override public function update():void
 		{
 			if (Input.check(Key.F)) overlayMap.discoverAll();
+			if (Input.check(Key.DIGIT_1))
+			{
+				roomX = shrineRoomX;
+				roomY = shrineRoomY;
+				spawnX = shrineRoomPlayerX;
+				spawnY = shrineRoomPlayerY;
+				world = world_normal;
+				switchRoom(roomX, roomY);
+			}
+			if (Input.check(Key.DIGIT_2))
+			{
+				roomX = 0;
+				roomY = 0;
+				world = world_intro;
+				spawnRoomX = 0;
+				spawnRoomY = 0;
+				spawnX = 32;
+				spawnY = 32;
+				switchRoom(0, 0);
+			}
+			if (Input.check(Key.DIGIT_3))
+			{
+				roomX = 0;
+				roomY = 0;
+				world = world_end;
+				spawnRoomX = 0;
+				spawnRoomY = 0;
+				spawnX = 32;
+				spawnY = 32;
+				switchRoom(0, 0);
+			}
 			
 			if (killedplayerlast) killedplayerlast = false;
 			if (killplayernext)
@@ -99,7 +135,7 @@ package
 				overlayEsc.removeSelf();
 			}
 			
-			if (Input.check(Key.X) && !overlay_map)
+			if (Input.check(Key.X) && world == world_normal && !overlay_map)
 			{
 				overlay_map = true;
 				overlayMap.addSelf();
@@ -166,7 +202,18 @@ package
 		
 		private function switchRoom(x:int, y:int):void
 		{
-			room = RoomContainer.cloneRoom(roomX, roomY);
+			if (world == world_normal)
+			{
+				room = RoomContainer.cloneRoom(roomX, roomY);
+			}
+			else if (world == world_intro)
+			{
+				room = RoomContainerExtra.getIntroRoom(roomX, roomY);
+			}
+			else if (world == world_end)
+			{
+				room = RoomContainerExtra.getEndRoom(roomX, roomY);
+			}
 			
 			this.removeAll();
 			for (var i:int = 0; i < 12; i++)

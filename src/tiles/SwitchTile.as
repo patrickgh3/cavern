@@ -43,7 +43,7 @@ package tiles
 		
 		override public function update():void
 		{
-			if (player == null) player = GameWorld(FP.world)._player;
+			if (player == null) player = GameWorld(FP.world).player;
 			// if touched last and player is not near us
 			if (touchedLast && !(
 				x - 1 < player.x + player.width

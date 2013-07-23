@@ -64,7 +64,7 @@ package entities
 			
 			if (player == null)
 			{
-				player = (GameWorld)(FP.world)._player;
+				player = (GameWorld)(FP.world).player;
 				if ((GameWorld)(FP.world).overlayMap.isOrbCollected(roomx, roomy)) FP.world.remove(this);
 			}
 			if (collidePlayer())

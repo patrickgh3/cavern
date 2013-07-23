@@ -64,7 +64,7 @@ package entities
 		
 		override public function update():void
 		{
-			if (player == null) player = GameWorld(FP.world)._player;
+			if (player == null) player = GameWorld(FP.world).player;
 			
 			var movePlayerDown:Boolean = false;
 			if (collidePlayer(-1))

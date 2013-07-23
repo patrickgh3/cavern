@@ -60,13 +60,13 @@ package entities
 			}
 			
 			var justsplashed:Boolean = false;
-			if (GameWorld(FP.world)._room.level[int(x / 16 + 1)][int((y + 7) / 16 + 1)] == Tile.INSTAKILL)
+			if (GameWorld(FP.world).room.level[int(x / 16 + 1)][int((y + 7) / 16 + 1)] == Tile.INSTAKILL)
 			{
 				FP.world.remove(this);
 				justsplashed = true;
 			}
 			
-			while (GameWorld(FP.world)._room.level[int(x / 16 + 1)][int((y + 7) / 16 + 1)] == Tile.SOLID)
+			while (GameWorld(FP.world).room.level[int(x / 16 + 1)][int((y + 7) / 16 + 1)] == Tile.SOLID)
 			{
 				splashed = true;
 				y--;

@@ -213,8 +213,8 @@ package
 		
 		private function touchTile(x:int, y:int):void
 		{
-			if (GameWorld(FP.world)._room.tiles[x][y] != null)
-				GameWorld(FP.world)._room.tiles[x][y].touch();
+			if (GameWorld(FP.world).room.tiles[x][y] != null)
+				GameWorld(FP.world).room.tiles[x][y].touch();
 		}
 		
 		private function getLevel(x:int, y:int):int

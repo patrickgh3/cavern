@@ -41,7 +41,7 @@ package entities
 		
 		override public function update():void
 		{
-			if (player == null) player = (GameWorld)(FP.world)._player;
+			if (player == null) player = (GameWorld)(FP.world).player;
 			target.x = player.x + player.width / 2;
 			target.y = player.y + player.height / 2;
 			

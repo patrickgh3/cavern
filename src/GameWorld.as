@@ -24,11 +24,11 @@ package
 	 */
 	public class GameWorld extends World
 	{
-		public var _player:Player;
+		public var player:Player;
 		public var teleportBar:TeleportBar;
-		private var _blackfade:BlackFade;
+		private var blackFade:BlackFade;
 		private var playerParticles:Array;
-		public var _room:Room;
+		public var room:Room;
 		public var roomX:int;
 		public var roomY:int;
 		private var spawnX:int = shrineRoomPlayerX;
@@ -51,15 +51,15 @@ package
 		
 		public function GameWorld() 
 		{
-			_player = new Player();
-			_player.x = spawnX;
-			_player.y = spawnY;
+			player = new Player();
+			player.x = spawnX;
+			player.y = spawnY;
 			
-			var ps:PlayerSprite = new PlayerSprite(_player);
+			var ps:PlayerSprite = new PlayerSprite(player);
 			roomX = shrineRoomX;
 			roomY = shrineRoomY;
 			
-			teleportBar = new TeleportBar(_player);
+			teleportBar = new TeleportBar(player);
 			
 			playerParticles = new Array();
 			for (var i:int = 0; i < 6; i++)
@@ -114,50 +114,50 @@ package
 			MemoryTile.update();
 			super.update();
 			
-			if (_player.x < -_player.width / 2) {
-				_player.x += 160;
-				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !_player.noclip) switchToLostWoods();
-				else if (RoomContainer.specialtypes[roomX][roomY] == "longjump" && !_player.noclip) switchRoom(roomX, roomY);
+			if (player.x < -player.width / 2) {
+				player.x += 160;
+				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !player.noclip) switchToLostWoods();
+				else if (RoomContainer.specialtypes[roomX][roomY] == "longjump" && !player.noclip) switchRoom(roomX, roomY);
 				else
 				{
 					switchRoom(--roomX, roomY);
 					overlayMap.linkRight(roomX, roomY);
-					if (!_player.noclip) setSpawn();
+					if (!player.noclip) setSpawn();
 				}
 			}
-			if (_player.x >= 160 - _player.width / 2) {
-				_player.x -= 160;
-				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !_player.noclip) switchToLostWoods();
-				else if (RoomContainer.specialtypes[roomX][roomY] == "longjump" && !_player.noclip) switchRoom(roomX, roomY);
+			if (player.x >= 160 - player.width / 2) {
+				player.x -= 160;
+				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !player.noclip) switchToLostWoods();
+				else if (RoomContainer.specialtypes[roomX][roomY] == "longjump" && !player.noclip) switchRoom(roomX, roomY);
 				else
 				{
 					switchRoom(++roomX, roomY);
 					overlayMap.linkLeft(roomX, roomY);
-					if (!_player.noclip) setSpawn();
+					if (!player.noclip) setSpawn();
 				}
 			}
-			if (_player.y < -_player.height / 2) {
-				_player.y += 128;
-				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !_player.noclip) switchToLostWoods();
+			if (player.y < -player.height / 2) {
+				player.y += 128;
+				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !player.noclip) switchToLostWoods();
 				else
 				{
 					switchRoom(roomX, --roomY);
 					overlayMap.linkBottom(roomX, roomY);
-					if (!_player.noclip) lookingforspawn = true;
+					if (!player.noclip) lookingforspawn = true;
 				}
 			}
-			if (_player.y >= 128 - _player.height / 2) {
-				_player.y -= 128;
-				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !_player.noclip) switchToLostWoods();
+			if (player.y >= 128 - player.height / 2) {
+				player.y -= 128;
+				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !player.noclip) switchToLostWoods();
 				else
 				{
 					switchRoom(roomX, ++roomY);
 					overlayMap.linkTop(roomX, roomY);
-					if (!_player.noclip) lookingforspawn = true;
+					if (!player.noclip) lookingforspawn = true;
 				}
 			}
 			
-			if (lookingforspawn && _player.onGround())
+			if (lookingforspawn && player.onGround())
 			{
 				lookingforspawn = false;
 				setSpawn();
@@ -166,14 +166,14 @@ package
 		
 		private function switchRoom(x:int, y:int):void
 		{
-			_room = RoomContainer.cloneRoom(roomX, roomY);
+			room = RoomContainer.cloneRoom(roomX, roomY);
 			
 			this.removeAll();
 			for (var i:int = 0; i < 12; i++)
 				for (var j:int = 0; j < 10; j++)
-					if (_room.tiles[i][j] != null) add(_room.tiles[i][j]);
-			for (i = 0; i < _room.actors.length; i++)
-				add(_room.actors[i]);
+					if (room.tiles[i][j] != null) add(room.tiles[i][j]);
+			for (i = 0; i < room.actors.length; i++)
+				add(room.actors[i]);
 			
 			if (RoomContainer.mapcolors[roomX][roomY] == RoomContainer.mapcolorvalues.green)
 				for (i = 0; i < 3; i++)
@@ -184,17 +184,17 @@ package
 			
 			if (roomX == shrineRoomX && roomY == shrineRoomY)
 			{
-				(Shrine)(_room.actors[0]).addOrbs(this);
+				(Shrine)(room.actors[0]).addOrbs(this);
 			}
 			
-			_player.setRoom(_room.level, _room.actors);
-			add(_player);
-			add(_player.getSprite());
+			player.setRoom(room.level, room.actors);
+			add(player);
+			add(player.getSprite());
 			add(teleportBar);
 			teleportBar.resetCount();
-			if (_blackfade != null)
+			if (blackFade != null)
 			{
-				add(_blackfade);
+				add(blackFade);
 				for (i = 0; i < playerParticles.length; i++) add(playerParticles[i]);
 			}
 			
@@ -208,9 +208,9 @@ package
 		
 		private function setSpawn():void
 		{
-			spawnX = 16 * int((_player.x + _player.width / 2) / 16) + 1
-					 + (8 - _player.width / 2);
-			spawnY = _player.y;
+			spawnX = 16 * int((player.x + player.width / 2) / 16) + 1
+					 + (8 - player.width / 2);
+			spawnY = player.y;
 			spawnRoomX = roomX;
 			spawnRoomY = roomY;
 		}
@@ -222,19 +222,19 @@ package
 		
 		public function playerKilled():void
 		{
-			var oldplayerx:int = _player.x;
-			var oldplayery:int = _player.y;
+			var oldplayerx:int = player.x;
+			var oldplayery:int = player.y;
 			
-			_player.x = spawnX; // player is moved here to avoid being in old place for 1 frame when he is visible again.
-			_player.y = spawnY;
-			remove(_player);
-			remove(_player.getSprite());
+			player.x = spawnX; // player is moved here to avoid being in old place for 1 frame when he is visible again.
+			player.y = spawnY;
+			remove(player);
+			remove(player.getSprite());
 			remove(teleportBar);
 			teleportBar.resetCount();
 			
-			_player.kill();
-			_blackfade = new BlackFade();
-			add(_blackfade);
+			player.kill();
+			blackFade = new BlackFade();
+			add(blackFade);
 			lookingforspawn = false;
 			
 			var dx:int = spawnX - oldplayerx;
@@ -250,22 +250,22 @@ package
 		
 		public function fadeIn():void
 		{
-			_player.dead = false;
+			player.dead = false;
 			roomX = spawnRoomX;
 			roomY = spawnRoomY;
 			switchRoom(roomX, roomY);
-			remove(_player);
-			remove(_player.getSprite());
+			remove(player);
+			remove(player.getSprite());
 			remove(teleportBar);
 		}
 		
 		public function fadeComplete():void
 		{
-			add(_player);
-			add(_player.getSprite());
+			add(player);
+			add(player.getSprite());
 			add(teleportBar);
 			for (var i:int = 0; i < playerParticles.length; i++) remove(playerParticles[i]);
-			_blackfade = null;
+			blackFade = null;
 		}
 		
 		public function teleportBarFull():void

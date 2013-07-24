@@ -10,8 +10,8 @@ package entities
 	 */
 	public class PlayerParticle extends Entity
 	{
-		private var init_velocity:Number = 2.4;
-		private var init_acceleration:Number = 0.0678;
+		private var init_velocity:Number = 1.5;
+		private var init_acceleration:Number = 0.0425;
 		
 		private var count:Number = 0;
 		private const totaltime:Number = BlackFade.fadeTime * 2 + BlackFade.waitTime;

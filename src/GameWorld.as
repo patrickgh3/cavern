@@ -90,6 +90,8 @@ package
 				roomY = shrineRoomY;
 				spawnX = shrineRoomPlayerX;
 				spawnY = shrineRoomPlayerY;
+				spawnRoomX = roomX;
+				spawnRoomY = roomY;
 				world = world_normal;
 				switchRoom(roomX, roomY);
 			}
@@ -321,6 +323,7 @@ package
 			spawnRoomY = shrineRoomY;
 			spawnX = shrineRoomPlayerX;
 			spawnY = shrineRoomPlayerY;
+			killedplayerlast = true;
 			playerKilled();
 		}
 		

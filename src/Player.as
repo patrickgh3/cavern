@@ -47,7 +47,8 @@ package
 			var right:Boolean = Input.check(Key.RIGHT);
 			var left:Boolean = Input.check(Key.LEFT);
 			var jump:Boolean = Input.check(Key.Z) || Input.check(Key.UP);
-			var suicide:Boolean = Input.check(Key.R) || Input.check(Key.Q);
+			var suicide:Boolean = (Input.check(Key.R) || Input.check(Key.Q))
+								  && (GameWorld)(FP.world).world == GameWorld.world_normal;
 			//if (Input.check(Key.C)) right = left = jump = false;
 			
 			var collidebefore:Boolean = collideLevel();

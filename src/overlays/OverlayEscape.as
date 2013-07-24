@@ -31,6 +31,7 @@ package overlays
 			texts.push(new Entity(x, 65, new Text("C")));
 			texts.push(new Entity(x, 90, new Text("Game by Patrick Traynor")));
 			texts.push(new Entity(x, 100, new Text("Powered by FlashPunk")));
+			texts.push(new Entity(x + 53, 110, new Text("and Ogmo")));
 
 		}
 		

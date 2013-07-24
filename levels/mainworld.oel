@@ -12483,7 +12483,7 @@
     <MemoryTile id="144" x="2352" y="336" states="1111111100000000" />
     <MemoryTile id="139" x="2288" y="336" states="1111111100000000" />
     <MemoryTile id="140" x="2304" y="336" states="1111111100000000" />
-    <MemoryTile id="145" x="2192" y="336" states="1111110011111100" />
+    <MemoryTile id="145" x="2176" y="336" states="1100111111001111" />
     <Orb id="148" x="2096" y="288" />
     <Orb id="149" x="1936" y="544" />
     <MemoryTile id="150" x="2016" y="208" states="1111111100000000" />
@@ -12591,9 +12591,9 @@
     <MovingBlock id="245" x="1408" y="1360" path="llllllllrrrrrrrr" speed="1" />
     <MovingBlock id="246" x="1312" y="1344" path="llrrrrrrrrllllll" speed="1" />
     <MovingBlock id="247" x="1376" y="1328" path="rrllllllllrrrrrr" speed="1" />
-    <MemoryTile id="141" x="2176" y="336" states="1111110011111100" />
-    <MemoryTile id="146" x="2160" y="336" states="1111110011111100" />
-    <MemoryTile id="147" x="2144" y="336" states="1111110011111100" />
     <Shrine id="248" x="1152" y="560" />
+    <MemoryTile id="141" x="2192" y="336" states="1100111111001111" />
+    <MemoryTile id="146" x="2160" y="336" states="1100111111001111" />
+    <MemoryTile id="147" x="2144" y="336" states="1100111111001111" />
   </RoomData>
 </level>

@@ -21,6 +21,7 @@ package
 		
 		private const walkRate:int = 4;
 		private const landTime:int = 6;
+		private const walkfromlandTime:int = 2;
 		
 		private var parent:Player;
 		private var sprite:Spritemap;
@@ -28,6 +29,7 @@ package
 		private var count:int;
 		private var lastYSpeed:int;
 		private var lastOnGround:Boolean;
+		private var walkfromlandcount:int;
 		
 		public function PlayerSprite(p:Player)
 		{
@@ -62,6 +64,7 @@ package
 			else if (onGround && parent.getXSpeed() != 0 && anim != "walk" && anim != "land")
 			{
 				if (anim != "endland") sfxStep.play(0.15);
+				if (anim == "endland") walkfromlandcount = 0;
 				anim = "walk";
 			}
 			else if (onGround && parent.getXSpeed() == 0 && anim != "stand" && anim != "land")
@@ -90,11 +93,16 @@ package
 					else if (count == walkRate * 2) sprite.setFrame(2, 1);
 					else if (count == walkRate * 3) sprite.setFrame(3, 1);
 					if (count == walkRate * 4 - 1) sfxStep.play(0.15);
+					if (walkfromlandcount == walkfromlandTime)
+					{
+						sfxStep.play(0.15);
+						walkfromlandcount++;
+					}
 					break;
 					
 				case "land":
 					if (count < landTime) sprite.setFrame(2, 0);
-					else if (count == landTime) anim = "endland"
+					else if (count == landTime) anim = "endland";
 					break;
 					
 				case "stand":
@@ -105,7 +113,10 @@ package
 					if (count == 0) sprite.setFrame(1, 0);
 					break;
 			}
+			
 			count++;
+			if (walkfromlandcount < walkfromlandTime) walkfromlandcount++;
+			if (anim != "walk") walkfromlandcount = walkfromlandcount++;
 			
 			lastYSpeed = parent.getYSpeed();
 			lastOnGround = onGround;

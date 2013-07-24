@@ -1,14 +1,17 @@
 package tiles 
 {
 	import net.flashpunk.graphics.Spritemap;
+	import net.flashpunk.Sfx;
 	
 	/**
-	 * Tile which oscillates between solid and empty based on its timing.
+	 * Tile which changes between solid and empty based on its timing.
 	 */
 	public class MemoryTile extends Tile
 	{
 		[Embed(source = "/../assets/memory.png")]
 		private const src:Class;
+		[Embed(source = "/../assets/sound/memorytile.mp3")]
+		private static const click:Class;
 		
 		private static const numstates:int = 16;
 		private static const switchspeed:int = 17;
@@ -22,7 +25,9 @@ package tiles
 		private var states:Array; // 0 is empty, 1 is solid
 		private var sprite:Spritemap;
 		
-		public function MemoryTile(xpos:int, ypos:int, r:Room, source:String) 
+		private static var sfxClick:Sfx = new Sfx(click);
+		
+		public function MemoryTile(xpos:int, ypos:int, r:Room, source:String, playsound:Boolean = false) 
 		{
 			super(xpos, ypos, 0, 0, r, 1);
 			sprite = new Spritemap(src, 16, 16);
@@ -35,7 +40,11 @@ package tiles
 			sprite.setFrame(states[count], 0);
 			tileType = states[count];
 			setLevel(tileType);
-			if (states[count] == Tile.SOLID) animcount = 0;
+			if (states[count] == Tile.SOLID)
+			{
+				animcount = 0;
+				if (playsound) sfxClick.play();
+			}
 		}
 		
 		override public function update():void
@@ -46,7 +55,11 @@ package tiles
 				tileType = states[count];
 				setLevel(tileType);
 				sprite.setFrame(states[count], 0);
-				if (states[count] == Tile.SOLID) animcount = 0;
+				if (states[count] == Tile.SOLID)
+				{
+					animcount = 0;
+					sfxClick.play();
+				}
 			}
 			if (animcount <= animspeed * 4)
 			{
@@ -64,7 +77,7 @@ package tiles
 		
 		override public function clone(r:Room):Tile
 		{
-			return new MemoryTile(x, y, r, source);
+			return new MemoryTile(x, y, r, source, true);
 		}
 		
 		// called once per update in GameWorld before updating entities.

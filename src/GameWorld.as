@@ -18,6 +18,7 @@ package
 	import overlays.OverlayMap;
 	import tiles.MemoryTile;
 	import entities.BlackFade;
+	import extraentities.FallFade;
 	
 	/**
 	 * Main game world.
@@ -28,6 +29,8 @@ package
 		public var teleportBar:TeleportBar;
 		private var blackFade:BlackFade;
 		private var playerParticles:Array;
+		private var fallFade:FallFade;
+		
 		public var room:Room;
 		public var roomX:int;
 		public var roomY:int;
@@ -48,6 +51,9 @@ package
 		private static var shrineRoomY:int = 4;
 		private static var shrineRoomPlayerX:int = 75;
 		private static var shrineRoomPlayerY:int = 84;
+		
+		private var fallroomscount:int = 0;
+		private static const fallrooms:int = 70;
 		
 		public var overlay_esc:Boolean = false;
 		public var overlayEsc:OverlayEscape;
@@ -102,9 +108,11 @@ package
 				world = world_intro;
 				spawnRoomX = 0;
 				spawnRoomY = 0;
-				spawnX = 32;
-				spawnY = 32;
-				switchRoom(0, 0);
+				spawnX = 36;
+				spawnY = 84;
+				player.x = spawnX;
+				player.y = spawnY;
+				switchRoom(roomX, roomY);
 			}
 			if (Input.check(Key.DIGIT_3))
 			{
@@ -159,7 +167,7 @@ package
 				else
 				{
 					switchRoom(--roomX, roomY);
-					overlayMap.linkRight(roomX, roomY);
+					if (world == world_normal) overlayMap.linkRight(roomX, roomY);
 					if (!player.noclip) setSpawn();
 				}
 			}
@@ -170,7 +178,7 @@ package
 				else
 				{
 					switchRoom(++roomX, roomY);
-					overlayMap.linkLeft(roomX, roomY);
+					if (world == world_normal) overlayMap.linkLeft(roomX, roomY);
 					if (!player.noclip) setSpawn();
 				}
 			}
@@ -187,7 +195,36 @@ package
 			if (player.y >= 128 - player.height / 2) {
 				player.y -= 128;
 				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !player.noclip) switchToLostWoods();
-				// TODO: falling down intro shaft
+				else if (world == world_intro && roomY == 0)
+				{
+					room = RoomContainerExtra.getIntroRoom(roomX, ++roomY).clone();
+					switchRoom( -1, -1, true);
+					fallFade = new FallFade();
+					add(fallFade);
+				}
+				else if (world == world_intro && fallroomscount < fallrooms)
+				{
+					room = RoomContainerExtra.getIntroRoom(roomX, roomY).clone();
+					switchRoom(-1, -1, true);
+					add(fallFade);
+					fallroomscount++;
+				}
+				else if (world == world_intro && fallroomscount == fallrooms)
+				{
+					roomX = shrineRoomX;
+					roomY = shrineRoomY;
+					spawnX = shrineRoomPlayerX;
+					spawnY = shrineRoomPlayerY;
+					spawnRoomX = roomX;
+					spawnRoomY = roomY;
+					world = world_normal;
+					player.stopXMovement(false);
+					player.x = spawnX;
+					player.y = spawnY;
+					switchRoom(roomX, roomY);
+					fallFade.fadeIn();
+					add(fallFade);
+				}
 				else
 				{
 					switchRoom(roomX, ++roomY);
@@ -203,9 +240,10 @@ package
 			}
 		}
 		
-		private function switchRoom(x:int, y:int):void
+		private function switchRoom(x:int, y:int, ignoreCoords:Boolean = false):void
 		{
-			if (world == world_normal)
+			if (ignoreCoords) { }
+			else if (world == world_normal)
 			{
 				room = RoomContainer.cloneRoom(roomX, roomY);
 			}

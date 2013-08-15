@@ -34,7 +34,7 @@ package extraentities
 		private const grav:Number = 0.13;
 		private const jumpSpeed:Number = 2.89;
 		
-		private const startwaittime:int = 90;
+		private const startwaittime:int = 120;
 		private const movetime:int = 22;
 		
 		public function IntroPlayer(x:int, y:int, b:IntroButton) 
@@ -98,7 +98,7 @@ package extraentities
 				gw.room.level[2][4] = Tile.SOLID;
 				gw.room.level[2][5] = Tile.SOLID;
 				gw.room.level[2][6] = Tile.SOLID;
-				gw.player.stopXMovement();
+				gw.player.stopXMovement(true);
 			}
 			
 		}

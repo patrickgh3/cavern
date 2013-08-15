@@ -96,6 +96,13 @@ package
 				}
 			}
 			
+			rooms_intro[4][1].level[3][9] = Tile.EMPTY;
+			rooms_intro[4][1].level[4][9] = Tile.EMPTY;
+			rooms_intro[4][1].level[5][9] = Tile.EMPTY;
+			rooms_intro[4][1].level[6][9] = Tile.EMPTY;
+			rooms_intro[4][1].level[7][9] = Tile.EMPTY;
+			rooms_intro[4][1].level[8][9] = Tile.EMPTY;
+			
 			var button:IntroButton;
 			for each (node in xml.RoomData.IntroButton)
 			{

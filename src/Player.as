@@ -267,9 +267,9 @@ package
 				   && _yspeed >= 0;
 		}
 		
-		public function stopXMovement():void
+		public function stopXMovement(b:Boolean):void
 		{
-			stopxmovement = true;
+			stopxmovement = b;
 		}
 		
 	}

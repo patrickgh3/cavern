@@ -187,6 +187,7 @@ package
 			if (player.y >= 128 - player.height / 2) {
 				player.y -= 128;
 				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !player.noclip) switchToLostWoods();
+				// TODO: falling down intro shaft
 				else
 				{
 					switchRoom(roomX, ++roomY);

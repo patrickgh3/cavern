@@ -65,6 +65,7 @@ package
 			else if (x == 1 && y == 3) return new ProbabilityTile(xpos, ypos, 2, 1, r, 0.6);
 			else if (x == 2 && y == 3) return new ProbabilityTile(xpos, ypos, 3, 1, r, 0.4);
 			else if (x == 0 && y == 5) return new StaticTile(xpos, ypos, r, StaticTile.BLOCK);
+			else if (x == 7 && y == 3) return new IntroBridgeTile(xpos, ypos, r);
 			
 			var t:int = 0;
 			if (y == 0) t = 2;

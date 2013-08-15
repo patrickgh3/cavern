@@ -33,6 +33,7 @@ package
 		
 		public var noclip:Boolean = false;
 		public var dead:Boolean = false;
+		private var stopxmovement:Boolean = false;
 		
 		public function Player() 
 		{
@@ -50,6 +51,7 @@ package
 			var suicide:Boolean = (Input.check(Key.R) || Input.check(Key.Q))
 								  && (GameWorld)(FP.world).world == GameWorld.world_normal;
 			//if (Input.check(Key.C)) right = left = jump = false;
+			if (stopxmovement) left = right = false;
 			
 			var collidebefore:Boolean = collideLevel();
 			y -= 5;
@@ -263,6 +265,11 @@ package
 				   || collideActors(MovingBlock, 0, 2)
 				   )
 				   && _yspeed >= 0;
+		}
+		
+		public function stopXMovement():void
+		{
+			stopxmovement = true;
 		}
 		
 	}

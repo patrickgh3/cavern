@@ -1,10 +1,12 @@
 package  
 {
+	import extraentities.*;
 	import net.flashpunk.FP;
 	import flash.geom.Point;
 	
 	/**
 	 * Holds two arrays of rooms for the game's introduction and ending.
+	 * Most of this was copy-pasted from RoomContainer.
 	 */
 	public class RoomContainerExtra 
 	{
@@ -92,6 +94,22 @@ package
 						}
 					}
 				}
+			}
+			
+			var button:IntroButton;
+			for each (node in xml.RoomData.IntroButton)
+			{
+				x = node.@x / 16;
+				y = node.@y / 16;
+				button = new IntroButton((x % 10) * 16, (y % 8) * 16);
+				rooms_intro[int(x / 10)][int(y / 8)].actors.push(button);
+			}
+			
+			for each (node in xml.RoomData.IntroPlayer)
+			{
+				x = node.@x / 16;
+				y = node.@y / 16;
+				rooms_intro[int(x / 10)][int(y / 8)].actors.push(new IntroPlayer((x % 10) * 16, (y % 8) * 16, button));
 			}
 			
 			xml = FP.getXML(endworld);

@@ -46,6 +46,16 @@
 		}
 		
 		/**
+		 * Custom play function (not from FlashPunk!) which pans the sound based on a given Entity's center.
+		 * @param	vol
+		 * @param	pan
+		 */
+		public function playCustom(vol:Number, self:Entity, pan:Boolean = true):void
+		{
+			play(vol, -(80 - self.x + self.width / 2) / 160);
+		}
+		
+		/**
 		 * Plays the sound looping. Will loop continuously until you call stop(), play(), or loop() again.
 		 * @param	vol		Volume factor, a value from 0 to 1.
 		 * @param	pan		Panning factor, a value from -1 to 1.

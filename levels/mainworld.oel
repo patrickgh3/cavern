@@ -11823,31 +11823,7 @@
     <RoomProperties id="63" x="2240" y="128" sound="silent" mapcolor="blue" specialtype="" />
     <RoomProperties id="65" x="2240" y="512" sound="silent" mapcolor="blue" specialtype="" />
     <RoomProperties id="66" x="2240" y="640" sound="silent" mapcolor="blue" specialtype="" />
-    <RoomProperties id="72" x="800" y="896" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="73" x="960" y="896" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="74" x="1120" y="896" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="75" x="1280" y="896" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="76" x="1440" y="896" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="77" x="800" y="1024" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="78" x="960" y="1024" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="79" x="1120" y="1024" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="80" x="1280" y="1024" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="81" x="1440" y="1024" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="82" x="800" y="1152" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="83" x="960" y="1152" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="84" x="1120" y="1152" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="85" x="1280" y="1152" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="86" x="1440" y="1152" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="87" x="800" y="1280" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="88" x="960" y="1280" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="89" x="1120" y="1280" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="90" x="1280" y="1280" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="91" x="1440" y="1280" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="92" x="800" y="1408" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="93" x="960" y="1408" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="94" x="1120" y="1408" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="95" x="1280" y="1408" sound="silent" mapcolor="green" specialtype="" />
-    <RoomProperties id="96" x="1440" y="1408" sound="silent" mapcolor="green" specialtype="" />
+    <RoomProperties id="74" x="1120" y="896" sound="greenblock" mapcolor="green" specialtype="" />
     <RoomProperties id="97" x="1760" y="1152" sound="silence" mapcolor="brown" specialtype="longjump" />
     <Orb id="98" x="1888" y="1216" />
     <MemoryTile id="99" x="1712" y="336" states="1111000000000000" />
@@ -11991,34 +11967,18 @@
     <MemoryTile id="141" x="2192" y="336" states="1100111111001111" />
     <MemoryTile id="146" x="2160" y="336" states="1100111111001111" />
     <MemoryTile id="147" x="2144" y="336" states="1100111111001111" />
-    <MovingBlock id="228" x="1312" y="992" path="du" speed="1" />
-    <MovingBlock id="240" x="1296" y="1008" path="ud" speed="1" />
     <MovingBlock id="249" x="1120" y="944" path="rrrrrrruuuullllllldddd" speed="1" />
     <MovingBlock id="250" x="1184" y="944" path="rrruulllllllddrrrr" speed="1" />
     <MovingBlock id="251" x="1152" y="960" path="rrrrrddllllllluurr" speed="1" />
     <MovingBlock id="252" x="1216" y="928" path="ruulllllllddrrrrrr" speed="1" />
     <MovingBlock id="253" x="1232" y="976" path="ddllllllluurrrrrrr" speed="1" />
-    <MovingBlock id="254" x="1216" y="992" path="lllllluurrrrrrrddl" speed="1" />
     <MovingBlock id="255" x="1168" y="912" path="lllddrrrrrrruullll" speed="1" />
-    <MovingBlock id="256" x="1152" y="1008" path="lluurrrrrrrddlllll" speed="1" />
-    <MovingBlock id="229" x="1344" y="992" path="du" speed="1" />
-    <MovingBlock id="230" x="1328" y="1008" path="ud" speed="1" />
-    <MovingBlock id="231" x="1376" y="992" path="du" speed="1" />
-    <MovingBlock id="238" x="1360" y="1008" path="ud" speed="1" />
-    <MovingBlock id="239" x="1408" y="992" path="du" speed="1" />
-    <MovingBlock id="243" x="1392" y="1008" path="ud" speed="1" />
-    <MovingBlock id="257" x="1184" y="1008" path="lllluurrrrrrrddlll" speed="1" />
     <MovingBlock id="258" x="1120" y="976" path="urrrrrrrddddllllllluuu" speed="1" />
     <MovingBlock id="259" x="1136" y="896" path="lddddrrrrrrruuuullllll" speed="1" />
     <MovingBlock id="260" x="1168" y="976" path="rrrrddllllllluurrr" speed="1" />
     <MovingBlock id="264" x="1472" y="976" path="rrrruuuulllldddd" speed="1" />
-    <MovingBlock id="265" x="1360" y="1072" path="rruuullddd" speed="1" />
-    <MovingBlock id="266" x="1392" y="1024" path="lldddrruuu" speed="1" />
     <MovingBlock id="267" x="1328" y="1104" path="ddllluurrr" speed="1" />
-    <MovingBlock id="268" x="1280" y="1136" path="uurrrddlll" speed="1" />
     <MovingBlock id="269" x="1200" y="1088" path="rdlu" speed="1" />
-    <MovingBlock id="270" x="1200" y="1072" path="urdl" speed="1" />
-    <MovingBlock id="271" x="1184" y="1072" path="lurd" speed="1" />
     <MovingBlock id="272" x="1184" y="1088" path="dlur" speed="1" />
     <MovingBlock id="273" x="1472" y="1120" path="uurrrrruulllllllddddrr" speed="1.5" />
     <MovingBlock id="261" x="1536" y="976" path="uuuullllddddrrrr" speed="1" />
@@ -12032,5 +11992,44 @@
     <RoomProperties id="162" x="960" y="256" sound="silent" mapcolor="darkred" specialtype="" />
     <RoomProperties id="169" x="960" y="384" sound="silent" mapcolor="darkred" specialtype="" />
     <Orb id="170" x="1024" y="448" />
+    <MovingBlock id="228" x="1312" y="992" path="du" speed="1" />
+    <MovingBlock id="240" x="1296" y="1008" path="ud" speed="1" />
+    <MovingBlock id="254" x="1216" y="992" path="lllllluurrrrrrrddl" speed="1" />
+    <MovingBlock id="256" x="1152" y="1008" path="lluurrrrrrrddlllll" speed="1" />
+    <MovingBlock id="229" x="1344" y="992" path="du" speed="1" />
+    <MovingBlock id="230" x="1328" y="1008" path="ud" speed="1" />
+    <MovingBlock id="231" x="1376" y="992" path="du" speed="1" />
+    <MovingBlock id="238" x="1360" y="1008" path="ud" speed="1" />
+    <MovingBlock id="239" x="1408" y="992" path="du" speed="1" />
+    <MovingBlock id="243" x="1392" y="1008" path="ud" speed="1" />
+    <MovingBlock id="257" x="1184" y="1008" path="lllluurrrrrrrddlll" speed="1" />
+    <MovingBlock id="265" x="1360" y="1072" path="rruuullddd" speed="1" />
+    <MovingBlock id="266" x="1392" y="1024" path="lldddrruuu" speed="1" />
+    <MovingBlock id="270" x="1200" y="1072" path="urdl" speed="1" />
+    <MovingBlock id="271" x="1184" y="1072" path="lurd" speed="1" />
+    <RoomProperties id="72" x="960" y="896" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="73" x="800" y="896" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="75" x="1280" y="896" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="76" x="1440" y="896" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="77" x="1120" y="1024" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="78" x="960" y="1024" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="79" x="800" y="1024" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="80" x="1280" y="1024" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="81" x="1440" y="1024" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="82" x="1120" y="1152" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="83" x="960" y="1152" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="84" x="800" y="1152" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="85" x="1280" y="1152" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="86" x="1440" y="1152" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="87" x="1120" y="1280" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="88" x="960" y="1280" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="89" x="800" y="1280" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="90" x="1280" y="1280" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="91" x="1440" y="1280" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="92" x="1120" y="1408" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="93" x="960" y="1408" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="94" x="800" y="1408" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="95" x="1280" y="1408" sound="greenblock" mapcolor="green" specialtype="" />
+    <RoomProperties id="96" x="1440" y="1408" sound="greenblock" mapcolor="green" specialtype="" />
   </RoomData>
 </level>

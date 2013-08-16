@@ -18,6 +18,7 @@ package
 		
 		public var sfxStep:Sfx = new Sfx(step);
 		public var sfxJump:Sfx = new Sfx(jump);
+		public var sfxLand:Sfx = new Sfx(step);
 		
 		private const walkRate:int = 4;
 		private const landTime:int = 6;
@@ -59,11 +60,11 @@ package
 			if (onGround && anim == "jump" && lastYSpeed > 1.5)
 			{
 				anim = "land"
-				sfxStep.play(0.5);
+				sfxLand.playCustom(0.5, this);
 			}
 			else if (onGround && parent.getXSpeed() != 0 && anim != "walk" && anim != "land")
 			{
-				if (anim != "endland") sfxStep.play(0.15);
+				if (anim != "endland") sfxStep.playCustom(0.15, this);
 				if (anim == "endland") walkfromlandcount = 0;
 				anim = "walk";
 			}
@@ -74,7 +75,7 @@ package
 			else if (!onGround && parent.getYSpeed() != 0 && anim != "jump")
 			{
 				anim = "jump";
-				if (parent.getYSpeed() < -1) sfxJump.play(0.4);
+				if (parent.getYSpeed() < -1) sfxJump.playCustom(0.4, this);
 			}
 			if (anim != prev)
 			{
@@ -82,7 +83,7 @@ package
 				count = 0;
 			}
 			
-			if (onGround && !lastOnGround && lastYSpeed <= 1.5) sfxStep.play(0.25);
+			if (onGround && !lastOnGround && lastYSpeed <= 1.5) sfxStep.playCustom(0.25, this);
 			
 			switch (anim)
 			{
@@ -92,10 +93,10 @@ package
 					else if (count == walkRate * 1) sprite.setFrame(1, 1);
 					else if (count == walkRate * 2) sprite.setFrame(2, 1);
 					else if (count == walkRate * 3) sprite.setFrame(3, 1);
-					if (count == walkRate * 4 - 1) sfxStep.play(0.15);
+					if (count == walkRate * 4 - 1) sfxStep.playCustom(0.15, this);
 					if (walkfromlandcount == walkfromlandTime)
 					{
-						sfxStep.play(0.15);
+						sfxStep.playCustom(0.15, this);
 						walkfromlandcount++;
 					}
 					break;

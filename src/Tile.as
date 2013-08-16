@@ -31,6 +31,7 @@ package
 			_y = y;
 			_room = r;
 			tileType = type;
+			width = height = 16;
 			
 			if (x == 0 && y == 3) graphic = Image.createRect(16, 16, GreenBlock.greencolor);
 			else graphic = new Image(TILES, new Rectangle(x * 16, y * 16, 16, 16));

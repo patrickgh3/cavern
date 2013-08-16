@@ -47,7 +47,7 @@ package tiles
 				crumbling = true;
 				FP.world.add(new CrumbleAnim(x, y));
 				sprite.setFrame(0, 1);
-				sfxCrumble.play();
+				sfxCrumble.playCustom(1, this);
 			}
 		}
 		

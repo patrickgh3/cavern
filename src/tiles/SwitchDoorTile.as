@@ -32,14 +32,22 @@ package tiles
 			// opening
 			if (SwitchTile.numActivated >= SwitchTile.numTiles && count < numframes * animspeed)
 			{
-				if (count == 0) sfxDoor.play();
+				if (count == 0)
+				{
+					sfxDoor.stop();
+					sfxDoor.playCustom(1, this);
+				}
 				sprite.setFrame(count / animspeed, 0);
 				count++;
 			}
 			// closing
 			else if (SwitchTile.numActivated < SwitchTile.numTiles && count > 0)
 			{
-				if (count == numframes * animspeed) sfxDoor.play();
+				if (count == numframes * animspeed)
+				{
+					sfxDoor.stop();
+					sfxDoor.playCustom(1, this);
+				}
 				count--;
 				sprite.setFrame(count / animspeed, 0);
 			}

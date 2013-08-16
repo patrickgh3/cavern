@@ -58,7 +58,7 @@ package tiles
 				if (states[count] == Tile.SOLID)
 				{
 					animcount = 0;
-					sfxClick.play();
+					sfxClick.playCustom(1, this);
 				}
 			}
 			if (animcount <= animspeed * 4)

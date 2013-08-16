@@ -79,7 +79,7 @@ package entities
 				if (r < 0.33) sfxDrip = new Sfx(drip1);
 				else if (r < 0.66) sfxDrip = new Sfx(drip2);
 				else sfxDrip = new Sfx(drip3);
-				sfxDrip.play();
+				sfxDrip.playCustom(1, this);
 			}
 			
 			

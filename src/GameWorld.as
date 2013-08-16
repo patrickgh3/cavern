@@ -290,8 +290,15 @@ package
 			if (overlay_map) overlayMap.addSelf();
 			overlayMap.setHighlight(roomX, roomY);
 			
-			//Ambiance.switchTo(RoomContainer.sounds[roomX][roomY]);
-			//Ambiance.switchTo("cave1");
+			if (world == world_normal)
+			{
+				Ambiance.switchTo(RoomContainer.sounds[roomX][roomY]);
+			}
+			else if (world == world_intro)
+			{
+				if (roomY == 0) Ambiance.switchTo("wind");
+				else Ambiance.switchTo("silent");
+			}
 		}
 		
 		private function setSpawn():void

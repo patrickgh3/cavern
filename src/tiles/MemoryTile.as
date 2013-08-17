@@ -43,7 +43,7 @@ package tiles
 			if (states[count] == Tile.SOLID)
 			{
 				animcount = 0;
-				if (playsound) sfxClick.play();
+				if (playsound) sfxClick.playCustom(0.6, this);
 			}
 		}
 		
@@ -58,7 +58,7 @@ package tiles
 				if (states[count] == Tile.SOLID)
 				{
 					animcount = 0;
-					sfxClick.playCustom(1, this);
+					sfxClick.playCustom(0.6, this);
 				}
 			}
 			if (animcount <= animspeed * 4)

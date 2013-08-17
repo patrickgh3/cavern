@@ -18,6 +18,7 @@ package tiles
 		private var count:int;
 		private var sprite:Spritemap;
 		private var sfxDoor:Sfx;
+		private var openinglast:Boolean = false;
 		
 		public function SwitchDoorTile(xpos:int, ypos:int, r:Room) 
 		{
@@ -32,24 +33,26 @@ package tiles
 			// opening
 			if (SwitchTile.numActivated >= SwitchTile.numTiles && count < numframes * animspeed)
 			{
-				if (count == 0)
+				if (count == 0 || !openinglast)
 				{
 					sfxDoor.stop();
-					sfxDoor.playCustom(1, this);
+					sfxDoor.playCustom(0.8, this);
 				}
 				sprite.setFrame(count / animspeed, 0);
 				count++;
+				openinglast = true;
 			}
 			// closing
 			else if (SwitchTile.numActivated < SwitchTile.numTiles && count > 0)
 			{
-				if (count == numframes * animspeed)
+				if (count == numframes * animspeed || openinglast)
 				{
 					sfxDoor.stop();
-					sfxDoor.playCustom(1, this);
+					sfxDoor.playCustom(0.8, this);
 				}
 				count--;
 				sprite.setFrame(count / animspeed, 0);
+				openinglast = false;
 			}
 			
 			// fully open

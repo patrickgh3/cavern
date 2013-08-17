@@ -379,8 +379,8 @@ package
 			Room.lostwoodscount++;
 			if (Room.lostwoodscount >= Room.lostwoodsneeded && !overlayMap.isOrbCollected(roomX, roomY))
 			{
-				add(new Orb(80, 32, roomX, roomY));
-			} // TODO: reset lostwoodscount when leaving.
+				add(new Orb(85, 36, roomX, roomY));
+			}
 		}
 		
 	}

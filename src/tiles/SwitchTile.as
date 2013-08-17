@@ -64,13 +64,13 @@ package tiles
 				{
 					sprite.setFrame(1, 0);
 					numActivated++;
-					sfxOn.playCustom(1, this);
+					sfxOn.playCustom(0.8, this);
 				}
 				else
 				{
 					sprite.setFrame(0, 0);
 					numActivated--;
-					sfxOff.playCustom(1, this);
+					sfxOff.playCustom(0.8, this);
 				}
 				touchedLast = true;
 			}

@@ -66,7 +66,6 @@ package
 			else if (x == 6 && y == 2) return new LightningTile(xpos, ypos, r, LightningTile.HORIZONTAL);
 			else if (x == 1 && y == 3) return new ProbabilityTile(xpos, ypos, 2, 1, 2, 2, r, 0.6);
 			else if (x == 2 && y == 3) return new ProbabilityTile(xpos, ypos, 3, 1, 2, 2, r, 0.4);
-			else if (x == 0 && y == 5) return new StaticTile(xpos, ypos, r, StaticTile.BLOCK);
 			else if (x == 7 && y == 3) return new IntroBridgeTile(xpos, ypos, r);
 			else if (x == 5 && y == 3) return new ProbabilityTile(xpos, ypos, 4, 3, 3, 4, r, 0.9);
 			else if (x == 6 && y == 3) return new ProbabilityTile(xpos, ypos, 4, 3, 3, 4, r, 0.2);

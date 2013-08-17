@@ -12229,7 +12229,7 @@
     <RoomProperties id="41" x="1440" y="640" sound="factory2" mapcolor="blue" specialtype="" />
     <RoomProperties id="74" x="1120" y="896" sound="greenblock" mapcolor="green" specialtype="" />
     <RoomProperties id="97" x="2080" y="1280" sound="cave" mapcolor="brown" specialtype="longjump" />
-    <Orb id="98" x="2048" y="1344" />
+    <Orb id="98" x="2208" y="1344" />
     <MemoryTile id="99" x="1712" y="336" states="1111000000000000" />
     <MemoryTile id="100" x="1680" y="320" states="0000000011110000" />
     <MemoryTile id="101" x="1648" y="336" states="0000111100000000" />

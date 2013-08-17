@@ -13,6 +13,7 @@ package overlays
 	{
 		private var background:Entity;
 		private var texts:Array;
+		
 		private var i:int, j:int;
 		
 		public function OverlayEscape() 

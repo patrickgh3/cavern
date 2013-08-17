@@ -12,17 +12,18 @@ package
 	public class Tile extends Entity
 	{
 		[Embed(source = "/../levels/tileset1.png")]
-		private const TILES:Class;
+		private static const TILES:Class;
 		
 		public static const EMPTY:int = 0;
 		public static const SOLID:int = 1;
 		public static const INSTAKILL:int = 2;
 		public static const FACTORY_TEMP:int = 3;
 		
+		protected var _room:Room;
+		
 		public var tileType:int;
 		protected var _x:int;
 		protected var _y:int
-		protected var _room:Room;
 		
 		public function Tile(xpos:int, ypos:int, x:int, y:int, r:Room, type:int) 
 		{

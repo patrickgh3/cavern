@@ -10,9 +10,9 @@ package entities
 	public class GreenBlock extends Entity
 	{
 		[Embed(source = "/../assets/greenblock1.png")]
-		private const greenblock1:Class;
+		private static const greenblock1:Class;
 		[Embed(source = "/../assets/greenblock2.png")]
-		private const greenblock2:Class;
+		private static const greenblock2:Class;
 		
 		public static const greencolor:uint = 0x7BD620;
 		

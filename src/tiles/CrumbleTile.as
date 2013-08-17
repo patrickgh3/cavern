@@ -12,16 +12,17 @@ package tiles
 	public class CrumbleTile extends Tile
 	{
 		[Embed(source = "/../assets/crumble.png")]
-		private const src:Class;
+		private static const src:Class;
 		[Embed(source = "/../assets/sound/crumble.mp3")]
-		private const src2:Class;
+		private static const src2:Class;
 		
-		private const crumbleTime:int = 30;
+		private static const crumbleTime:int = 30;
+		
+		private var sfxCrumble:Sfx;
+		private var sprite:Spritemap;
 		
 		private var count:int = 0;
 		private var crumbling:Boolean;
-		private var sfxCrumble:Sfx;
-		private var sprite:Spritemap;
 		
 		public function CrumbleTile(xpos:int, ypos:int, r:Room) 
 		{

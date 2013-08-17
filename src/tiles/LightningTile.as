@@ -13,11 +13,12 @@ package tiles
 		public static const HORIZONTAL:int = 0;
 		public static const VERTICAL:int = 1;
 		
-		private const animSpeed:int = 5;
+		private static const animSpeed:int = 5;
+		
+		private var sprite:Spritemap;
 		
 		private var count:int = 0;
-		private var orientation:int;;
-		private var sprite:Spritemap;
+		private var orientation:int;
 		
 		public function LightningTile(xpos:int, ypos:int, r:Room, orientation:int) 
 		{

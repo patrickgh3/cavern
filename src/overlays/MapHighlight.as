@@ -10,13 +10,13 @@ package overlays
 	public class MapHighlight extends Entity
 	{
 		[Embed(source = "/../assets/maphighlight.png")]
-		private const src:Class;
+		private static const src:Class;
+		
+		private static const flashtime:int = 10;
 		
 		private var lastRoomX:int = -1;
 		private var lastRoomY:int = -1;
-		
 		private var count:int = 0;
-		private const flashtime:int = 10;
 		
 		public function MapHighlight() 
 		{

@@ -20,19 +20,19 @@ package overlays
 		 * Element divisible by 3 = link to the bottom.
 		 * Element divisible by 5 = orb has been collected.
 		 */
-		private var i:int, j:int;
 		
 		public static const cellwidth:int = 7;
 		public static const cellheight:int = 5;
 		public static const cellgap:int = 2;
 		
+		public static var shrine:Shrine;
 		public static var orbscollected:int = 0;
 		
+		private var highlight:MapHighlight;
 		private var xoffset:int;
 		private var yoffset:int;
 		private var isVisible:Boolean = false;
-		private var highlight:MapHighlight;
-		public static var shrine:Shrine;
+		private var i:int, j:int;
 		
 		public function OverlayMap(spawnX:int, spawnY:int) 
 		{

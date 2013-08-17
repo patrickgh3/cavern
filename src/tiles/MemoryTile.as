@@ -9,23 +9,23 @@ package tiles
 	public class MemoryTile extends Tile
 	{
 		[Embed(source = "/../assets/memory.png")]
-		private const src:Class;
+		private static const src:Class;
 		[Embed(source = "/../assets/sound/memorytile.mp3")]
 		private static const click:Class;
 		
+		private static const sfxClick:Sfx = new Sfx(click);
+		
 		private static const numstates:int = 16;
 		private static const switchspeed:int = 17;
+		private static const animspeed:int = 4;
+		
 		public static var count:int = 0;
 		public static var innercount:int = 0;
 		
-		private var animcount:int = animspeed * 4 + 1;
-		private static const animspeed:int = 4;
-		
 		private var source:String;
-		private var states:Array; // 0 is empty, 1 is solid
+		private var states:Array;
 		private var sprite:Spritemap;
-		
-		private static var sfxClick:Sfx = new Sfx(click);
+		private var animcount:int = animspeed * 4 + 1;
 		
 		public function MemoryTile(xpos:int, ypos:int, r:Room, source:String, playsound:Boolean = false) 
 		{

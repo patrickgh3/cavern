@@ -11,14 +11,15 @@ package entities
 	public class Orb extends Entity
 	{
 		[Embed(source = "/../assets/orb.png")]
-		private const src:Class;
+		private static const src:Class;
 		
-		private var sprite:Spritemap;
-		private var count:int = 0;
 		private static const hovertime:int = 20;
 		private static const movetime:int = 10;
 		
+		private var sprite:Spritemap;
 		private var player:Player;
+		
+		private var count:int = 0;
 		public var roomx:int;
 		public var roomy:int;
 		

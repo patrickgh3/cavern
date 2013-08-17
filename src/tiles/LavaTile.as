@@ -10,15 +10,16 @@ package tiles
 	public class LavaTile extends Tile
 	{
 		[Embed(source = "/../assets/lava.png")]
-		private const src:Class;
+		private static const src:Class;
 		
 		public static const CENTER:int = 1;
 		public static const TOP:int = 2;
-		private const animRate:int = 40;
+		private static const animRate:int = 40;
+		
+		private var sprite:Spritemap;
 		
 		private var lavatype:int;
 		private var count:int;
-		private var sprite:Spritemap;
 		
 		public function LavaTile(xpos:int, ypos:int, r:Room, lavatype:int) 
 		{

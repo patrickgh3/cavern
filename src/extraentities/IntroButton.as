@@ -9,7 +9,7 @@ package extraentities
 	public class IntroButton extends Entity
 	{
 		[Embed(source = "/../assets/introbutton.png")]
-		private const src:Class;
+		private static const src:Class;
 		
 		private var sprite:Spritemap;
 		

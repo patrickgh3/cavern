@@ -9,8 +9,9 @@ package extraentities
 	 */
 	public class FallFade extends Entity
 	{
-		private var count:Number = 0;
 		private var image:Image;
+		
+		private var count:Number = 0;
 		private var state:int = 0;
 		
 		private static const fadeTime:Number = 240;

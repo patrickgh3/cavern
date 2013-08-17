@@ -11,7 +11,7 @@ package entities
 	public class Shrine extends Entity
 	{
 		[Embed(source = "/../assets/shrine.png")]
-		private const src:Class;
+		private static const src:Class;
 		
 		private static const xoffset:int = 17;
 		private static const yoffset:int = 12;

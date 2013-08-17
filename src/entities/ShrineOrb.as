@@ -9,7 +9,7 @@ package entities
 	public class ShrineOrb extends Entity
 	{
 		[Embed(source = "/../assets/shrineorb.png")]
-		private const src:Class;
+		private static const src:Class;
 		
 		public function ShrineOrb(x:int, y:int) 
 		{

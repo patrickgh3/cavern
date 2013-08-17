@@ -11,13 +11,14 @@ package entities
 	 */
 	public class TeleportBar extends Entity
 	{
+		public static const teleportTime:int = 60;
+		private static const maxwidth:int = 24;
+		private static const normalheight:int = 4;
+		
 		private var player:Player;
 		private var image:Image;
 		
 		private var count:int = 0;
-		public static const teleportTime:int = 60;
-		private static const maxwidth:int = 24;
-		private static const normalheight:int = 4;
 		
 		public function TeleportBar(p:Player) 
 		{

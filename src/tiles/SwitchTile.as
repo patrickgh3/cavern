@@ -11,21 +11,22 @@ package tiles
 	public class SwitchTile extends Tile
 	{
 		[Embed(source = "/../assets/switch.png")]
-		private const src:Class;
+		private static const src:Class;
 		[Embed(source = "/../assets/sound/switch_on.mp3")]
-		private const on:Class;
+		private static const on:Class;
 		[Embed(source = "/../assets/sound/switch_off.mp3")]
-		private const off:Class;
+		private static const off:Class;
 		
 		public static var numTiles:int = 0; // these values are set in Room's clone function. kinda messy.
 		public static var numActivated:int = 0;
 		
-		private var activated:Boolean;
-		private var touchedLast:Boolean = false;
+		private var sfxOn:Sfx = new Sfx(on);
+		private var sfxOff:Sfx = new Sfx(off);
 		private var sprite:Spritemap;
 		private var player:Player;
-		private var sfxOn:Sfx;
-		private var sfxOff:Sfx;
+		
+		private var activated:Boolean;
+		private var touchedLast:Boolean = false;
 		
 		public function SwitchTile(xpos:int, ypos:int, r:Room, switchstatus:Boolean)
 		{
@@ -33,9 +34,6 @@ package tiles
 			sprite = new Spritemap(src, 16, 16);
 			graphic = sprite;
 			activated = switchstatus;
-			
-			sfxOn = new Sfx(on);
-			sfxOff = new Sfx(off);
 			
 			if (activated) sprite.setFrame(1, 0);
 			else sprite.setFrame(0, 0);

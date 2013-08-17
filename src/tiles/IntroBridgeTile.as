@@ -8,7 +8,7 @@ package tiles
 	public class IntroBridgeTile extends Tile
 	{
 		[Embed(source = "/../assets/introbridge.png")]
-		private const src:Class;
+		private static const src:Class;
 		
 		public static var bridgetiles:Array = new Array();
 		

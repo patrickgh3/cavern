@@ -12,11 +12,18 @@ package extraentities
 	public class IntroPlayer extends Entity
 	{
 		[Embed(source = "/../assets/player.png")]
-		private const src:Class;
+		private static const src:Class;
 		[Embed(source = "/../assets/sound/player_step.mp3")]
-		private const step:Class;
+		private static const step:Class;
 		[Embed(source = "/../assets/sound/player_jump.mp3")]
-		private const jump:Class;
+		private static const jump:Class;
+		
+		private static const runSpeed:Number = 1.5;
+		private static const grav:Number = 0.13;
+		private static const jumpSpeed:Number = 2.89;
+		
+		private static const startwaittime:int = 120;
+		private static const movetime:int = 22;
 		
 		private var gw:GameWorld;
 		private var realPlayer:Entity;
@@ -29,13 +36,6 @@ package extraentities
 		private var xspeed:Number = 0;
 		private var yspeed:Number = 0;
 		private var endy:int;
-		
-		private const runSpeed:Number = 1.5;
-		private const grav:Number = 0.13;
-		private const jumpSpeed:Number = 2.89;
-		
-		private const startwaittime:int = 120;
-		private const movetime:int = 22;
 		
 		public function IntroPlayer(x:int, y:int, b:IntroButton) 
 		{

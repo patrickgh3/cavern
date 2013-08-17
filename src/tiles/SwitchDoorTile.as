@@ -9,15 +9,17 @@ package tiles
 	public class SwitchDoorTile extends Tile
 	{
 		[Embed(source = "/../assets/switchdoor.png")]
-		private const src:Class;
+		private static const src:Class;
 		[Embed(source = "/../assets/sound/switchdoor.mp3")]
-		private const doorsound:Class;
+		private static const doorsound:Class;
 		
 		private static const numframes:int = 8;
 		private static const animspeed:int = 5;
-		private var count:int;
+		
 		private var sprite:Spritemap;
 		private var sfxDoor:Sfx;
+		
+		private var count:int;
 		private var openinglast:Boolean = false;
 		
 		public function SwitchDoorTile(xpos:int, ypos:int, r:Room) 

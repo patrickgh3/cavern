@@ -10,10 +10,10 @@ package entities
 	public class CrumbleAnim extends Entity
 	{
 		[Embed(source = "/../assets/crumble.png")]
-		private const src:Class;
+		private static const src:Class;
 		
-		private const numframes:int = 4;
-		private const animrate:int = 10;
+		private static const numframes:int = 4;
+		private static const animrate:int = 10;
 		
 		private var count:int = 0;
 		private var sprite:Spritemap;

@@ -9,14 +9,16 @@ package entities
 	 */
 	public class BlackFade extends Entity
 	{
-		private var count:int;
 		public static const fadeTime:int = 20; // frames taken to fade out / in
 		public static const waitTime:int = 30; // frames held while alpha = 1;
+		
 		private var image:Image;
+		
+		private var count:int;
 		
 		public function BlackFade() 
 		{
-			graphic = Image.createRect(160, 128, 0x000000);
+			graphic = image = Image.createRect(160, 128, 0x000000);
 			Image(graphic).alpha = 0;
 		}
 		
@@ -25,7 +27,7 @@ package entities
 			count++;
 			if (count <= fadeTime)
 			{
-				Image(graphic).alpha = count / fadeTime;
+				image.alpha = count / fadeTime;
 			}
 			else if (count == fadeTime + waitTime)
 			{
@@ -33,11 +35,11 @@ package entities
 			}
 			else if ((count > fadeTime + waitTime) && (count < waitTime + 2 * fadeTime))
 			{
-				Image(graphic).alpha = 1 - (count - waitTime - fadeTime) / fadeTime;
+				image.alpha = 1 - (count - waitTime - fadeTime) / fadeTime;
 			}
 			else if (count == waitTime + 2 * fadeTime)
 			{
-				Image(graphic).alpha = 0;
+				image.alpha = 0;
 				GameWorld(FP.world).fadeComplete();
 			}
 				

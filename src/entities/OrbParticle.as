@@ -10,11 +10,13 @@ package entities
 	 */
 	public class OrbParticle extends Entity
 	{	
+		private static const totaltime:Number = 60;
+		
 		private var init_velocity:Number = 2;
 		private var init_acceleration:Number = 0.0678;
+		// TODO: tweak this effect, different particles should have different velocities?
 		
 		private var count:Number = 0;
-		private const totaltime:Number = 60;
 		
 		private var origin:Point = new Point();
 		private var target:Point = new Point();

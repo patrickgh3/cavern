@@ -10,17 +10,17 @@ package entities
 	public class LavaDrop extends Instakiller
 	{
 		[Embed(source = "/../assets/lavadrop.png")]
-		private const src:Class;
+		private static const src:Class;
 		
 		[Embed(source = "/../assets/sound/drip1.mp3")]
-		private const drip1:Class;
+		private static const drip1:Class;
 		[Embed(source = "/../assets/sound/drip2.mp3")]
-		private const drip2:Class;
+		private static const drip2:Class;
 		[Embed(source = "/../assets/sound/drip3.mp3")]
-		private const drip3:Class;
+		private static const drip3:Class;
 		
-		private const yaccel:Number = 0.1;
-		private const animSpeed:int = 4;
+		private static const yaccel:Number = 0.1;
+		private static const animSpeed:int = 4;
 		
 		private var yspeed:Number = 0.5;
 		private var splashed:Boolean = false;

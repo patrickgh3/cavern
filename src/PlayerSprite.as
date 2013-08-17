@@ -10,22 +10,23 @@ package
 	public class PlayerSprite extends Entity
 	{
 		[Embed(source = "/../assets/player.png")]
-		private const src:Class;
+		private static const src:Class;
 		[Embed(source = "/../assets/sound/player_step.mp3")]
-		private const step:Class;
+		private static const step:Class;
 		[Embed(source = "/../assets/sound/player_jump.mp3")]
-		private const jump:Class;
+		private static const jump:Class;
 		
-		public var sfxStep:Sfx = new Sfx(step);
-		public var sfxJump:Sfx = new Sfx(jump);
-		public var sfxLand:Sfx = new Sfx(step);
+		private static const walkRate:int = 4;
+		private static const landTime:int = 6;
+		private static const walkfromlandTime:int = 2;
 		
-		private const walkRate:int = 4;
-		private const landTime:int = 6;
-		private const walkfromlandTime:int = 2;
+		public const sfxStep:Sfx = new Sfx(step);
+		public const sfxJump:Sfx = new Sfx(jump);
+		public const sfxLand:Sfx = new Sfx(step);
 		
 		private var parent:Player;
 		private var sprite:Spritemap;
+		
 		private var anim:String;
 		private var count:int;
 		private var lastYSpeed:int;

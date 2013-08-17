@@ -5,7 +5,6 @@ package
 	 */
 	public class Util 
 	{
-		
 		public static function sign(n:Number):int
 		{
 			if (n == 0) return 0;

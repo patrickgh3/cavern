@@ -9,18 +9,18 @@ package entities
 	 */
 	public class MovingBlock extends Entity
 	{
-		private const UP:int = 1;
-		private const DOWN:int = 2;
-		private const LEFT:int = 3;
-		private const RIGHT:int = 4;
-		private const INVALID:int = 5;
+		private static const UP:int = 1;
+		private static const DOWN:int = 2;
+		private static const LEFT:int = 3;
+		private static const RIGHT:int = 4;
+		private static const INVALID:int = 5;
 		private var direction:int;
 		
-		public var xspeed:Number = 0;
-		public var yspeed:Number = 0;
 		private var path:Array;
 		private var player:Player;
 		
+		public var xspeed:Number = 0;
+		public var yspeed:Number = 0;
 		private var count:int;
 		private var pathindex:int;
 		private var moveSpeed:Number;

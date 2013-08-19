@@ -1,5 +1,6 @@
 package  
 {
+	import entities.FadeText;
 	import entities.GreenBlock;
 	import entities.Orb;
 	import entities.PlayerParticle;
@@ -30,6 +31,7 @@ package
 		private var blackFade:BlackFade;
 		private var playerParticles:Array;
 		private var fallFade:FallFade;
+		public var fadeText:FadeText;
 		
 		public var room:Room;
 		public var roomX:int;
@@ -47,6 +49,10 @@ package
 		public static const world_intro:int = 2;
 		public static const world_end:int = 3;
 		
+		public static const text_jump:String = "Z, up";
+		private static const text_map:String = "Hold X";
+		public static const text_warp:String = "Hold C";
+		
 		private static var shrineRoomX:int = 7;
 		private static var shrineRoomY:int = 4;
 		private static var shrineRoomPlayerX:int = 75;
@@ -54,6 +60,12 @@ package
 		
 		private var fallroomscount:int = 0;
 		private static const fallrooms:int = 70;
+		
+		private var roomsexplored:int = 0;
+		private var donefadetextintro:Boolean = false;
+		public var donefadetextjump:Boolean = false;
+		private var donefadetextmap:Boolean = false;
+		public var donefadetextwarp:Boolean = false;
 		
 		public var overlay_esc:Boolean = false;
 		public var overlayEsc:OverlayEscape;
@@ -149,11 +161,19 @@ package
 			{
 				overlay_map = true;
 				overlayMap.addSelf();
+				if (fadeText != null && fadeText.getText() == text_map) fadeText.fadeOut();
 			}
 			else if (!Input.check(Key.X))
 			{
 				overlay_map = false;
 				overlayMap.removeSelf();
+			}
+			
+			if (roomsexplored == 5 && donefadetextmap == false)
+			{
+				fadeText = new FadeText(text_map, -1);
+				add(fadeText);
+				donefadetextmap = true;
 			}
 			
 			Ambiance.update();
@@ -163,7 +183,12 @@ package
 			if (player.x < -player.width / 2) {
 				player.x += 160;
 				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !player.noclip) switchToLostWoods();
-				else if (RoomContainer.specialtypes[roomX][roomY] == "longjump" && !player.noclip) switchRoom(roomX, roomY);
+				else if (RoomContainer.specialtypes[roomX][roomY] == "longjump" && !player.noclip)
+				{
+					if (overlayMap.isOrbCollected(roomX, roomY)) fadeText = new FadeText(text_warp, 120);
+					donefadetextwarp = true;
+					switchRoom(roomX, roomY);
+				}
 				else
 				{
 					switchRoom(--roomX, roomY);
@@ -174,7 +199,12 @@ package
 			if (player.x >= 160 - player.width / 2) {
 				player.x -= 160;
 				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !player.noclip) switchToLostWoods();
-				else if (RoomContainer.specialtypes[roomX][roomY] == "longjump" && !player.noclip) switchRoom(roomX, roomY);
+				else if (RoomContainer.specialtypes[roomX][roomY] == "longjump" && !player.noclip)
+				{
+					if (overlayMap.isOrbCollected(roomX, roomY)) fadeText = new FadeText(text_warp, 120);
+					donefadetextwarp = true;
+					switchRoom(roomX, roomY);
+				}
 				else
 				{
 					switchRoom(++roomX, roomY);
@@ -256,6 +286,24 @@ package
 				room = RoomContainerExtra.getEndRoom(roomX, roomY);
 			}
 			
+			if (world == world_normal) roomsexplored++;
+			
+			if (roomX == 0 && roomY == 0 && world == world_intro && !donefadetextintro)
+			{
+				fadeText = new FadeText("asdf", -1, true);
+				donefadetextintro = true;
+			}
+			else if (roomX == 1 && roomY == 0 && world == world_intro && !donefadetextjump)
+			{
+				fadeText = new FadeText(text_jump, -1);
+				donefadetextjump = true;
+			}
+			else if (roomX == 1 && roomY == 1 && world == world_normal)
+			{
+				fadeText = new FadeText(text_warp, 120);
+				donefadetextwarp = true;
+			}
+			
 			this.removeAll();
 			for (var i:int = 0; i < 12; i++)
 				for (var j:int = 0; j < 10; j++)
@@ -285,6 +333,7 @@ package
 				add(blackFade);
 				for (i = 0; i < playerParticles.length; i++) add(playerParticles[i]);
 			}
+			if (fadeText != null) add(fadeText);
 			
 			if (overlay_esc) overlayEsc.addSelf();
 			if (overlay_map) overlayMap.addSelf();
@@ -380,6 +429,12 @@ package
 			if (Room.lostwoodscount >= Room.lostwoodsneeded && !overlayMap.isOrbCollected(roomX, roomY))
 			{
 				add(new Orb(85, 36, roomX, roomY));
+			}
+			else if (Room.lostwoodscount >= Room.lostwoodsneeded && overlayMap.isOrbCollected(roomX, roomY))
+			{
+				fadeText = new FadeText(text_warp, 120);
+				add(fadeText);
+				donefadetextwarp = true;
 			}
 		}
 		

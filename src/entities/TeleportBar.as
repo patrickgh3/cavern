@@ -47,6 +47,11 @@ package entities
 			{
 				count = 0;
 				updateImage();
+				if ((GameWorld)(FP.world).fadeText != null
+					&& (GameWorld)(FP.world).fadeText.getText() == GameWorld.text_warp)
+				{
+					(GameWorld)(FP.world).fadeText.fadeOut();
+				}
 				(GameWorld)(FP.world).teleportBarFull();
 			}
 		}

@@ -52,6 +52,12 @@ package
 								  && (GameWorld)(FP.world).world == GameWorld.world_normal;
 			//if (Input.check(Key.C)) right = left = jump = false;
 			if (stopxmovement) left = right = false;
+			if (jump && world != null
+					 && (GameWorld)(world).fadeText != null
+					 && (GameWorld)(world).fadeText.getText() == GameWorld.text_jump)
+			{
+				(GameWorld)(world).fadeText.fadeOut();
+			}
 			
 			var collidebefore:Boolean = collideLevel();
 			y -= 5;

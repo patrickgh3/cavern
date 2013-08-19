@@ -76,6 +76,12 @@ package entities
 				{
 					FP.world.add(new OrbParticle(x + 2, y + 2, Math.random() * Math.PI * 2));					
 				}
+				if ((GameWorld)(FP.world).donefadetextwarp == false)
+				{
+					(GameWorld)(FP.world).fadeText = new FadeText(GameWorld.text_warp, -1);
+					FP.world.add((GameWorld)(FP.world).fadeText);
+					(GameWorld)(FP.world).donefadetextwarp = true;
+				}
 			}
 		}
 		

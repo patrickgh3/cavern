@@ -3,6 +3,7 @@ package
 	import entities.MovingBlock;
 	import entities.Orb;
 	import entities.Shrine;
+	import extraentities.IntroButton;
 	import net.flashpunk.Entity;
 	import tiles.SwitchTile;
 	import tiles.MemoryTile;
@@ -92,6 +93,23 @@ package
 			trace("\n\n");
 		}
 		
+		public function cleanup():void
+		{
+			for (var i:int = 0; i < actors.length; i++)
+			{
+				actors[i] = null;
+			}
+			actors = null;
+			for (var x:int = 0; x < width; x++)
+			{
+				for (var y:int = 0; y < height; y++)
+				{
+					tiles[x][y] = null;
+				}
+			}
+			tiles = null;
+		}
+
 	}
 
 }

@@ -1,12 +1,6 @@
 package  
 {
-	import entities.FadeText;
-	import entities.GreenBlock;
-	import entities.Orb;
-	import entities.PlayerParticle;
-	import entities.Shrine;
-	import entities.ShrineOrb;
-	import entities.TeleportBar;
+	import entities.*;
 	import net.flashpunk.Engine;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -18,7 +12,6 @@ package
 	import overlays.OverlayEscape;
 	import overlays.OverlayMap;
 	import tiles.MemoryTile;
-	import entities.BlackFade;
 	import extraentities.FallFade;
 	
 	/**
@@ -272,6 +265,7 @@ package
 		
 		private function switchRoom(x:int, y:int, ignoreCoords:Boolean = false):void
 		{
+			if (room != null) room.cleanup();
 			if (ignoreCoords) { }
 			else if (world == world_normal)
 			{

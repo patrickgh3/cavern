@@ -91,7 +91,7 @@ package entities
 			if (state != lastState)
 			{
 				lastState = state;
-				sfxMove.play(0.5);
+				sfxMove.play(0.8);
 				
 				// first, finish up current movement if we have to
 				while (movementcount >= 0)

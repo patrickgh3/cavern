@@ -173,6 +173,19 @@ package
 			MemoryTile.update();
 			super.update();
 			
+			// special case: if noclipping and switched rooms diagonally (used to cause a crash)
+			var offleft:Boolean = player.x < -player.width / 2;
+			var offright:Boolean = player.x >= 160 - player.width / 2;
+			var offtop:Boolean = player.y < -player.height / 2;
+			var offbottom:Boolean = player.y >= 128 - player.height / 2
+			if (player.noclip && (offleft || offright) && (offtop || offbottom))
+			{
+				if (offleft) player.x = 0;
+				if (offright) player.x = 160 - player.width;
+				if (offtop) player.y = 0;
+				if (offbottom) player.y = 128 - player.height;
+			}
+			
 			if (player.x < -player.width / 2) {
 				player.x += 160;
 				if (RoomContainer.specialtypes[roomX][roomY] == "lostwoods" && !player.noclip) switchToLostWoods();

@@ -12,7 +12,10 @@ package
 	 */
 	public class Player extends Entity
 	{
+		private const noclipSpeedSlow:Number = 1;
 		private const noclipSpeed:Number = 3;
+		private var noclipspeedcount:int = 0;
+		private var noclipspeedtime:int = 10;
 		private const runSpeed:Number = 1.5;
 		private const grav:Number = 0.13;
 		private const jumpSpeed:Number = 2.89;
@@ -81,14 +84,22 @@ package
 			{
 				var up:Boolean = Input.check(Key.UP);
 				var down:Boolean = Input.check(Key.DOWN);
+				if (up || down || left || right) noclipspeedcount++;
+				else noclipspeedcount = 0;
+				var speed:Number = noclipSpeed;
+				if (noclipspeedcount < noclipspeedtime) speed = noclipSpeedSlow;
 				if (right && !left)
-					x += noclipSpeed;
+					x += speed;
 				else if (left && !right)
-					x -= noclipSpeed;
+					x -= speed;
 				if (down && !up)
-					y += noclipSpeed;
+					y += speed;
 				else if (up && !down)
-					y -= noclipSpeed;
+					y -= speed;
+				while ((GameWorld)(FP.world).roomX == 0 && x < 0) x++;
+				while ((GameWorld)(FP.world).roomX == RoomContainer.width - 1 && x > 160 - width) x--;
+				while ((GameWorld)(FP.world).roomY == 0 && y < 0) y++;
+				while ((GameWorld)(FP.world).roomY == RoomContainer.height - 1 && y > 128 - height) y--;
 				return;
 			}
 			

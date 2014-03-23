@@ -21,7 +21,7 @@ package entities
 		override public function update():void
 		{
 			if (player == null) player = GameWorld(FP.world).player;
-			if (collidePlayer() && !player.noclip && !player.dead)
+			if (collidePlayer() && !player.noclip && !player.isDead())
 				GameWorld(FP.world).killPlayer();
 		}
 		

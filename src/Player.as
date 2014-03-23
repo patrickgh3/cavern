@@ -32,7 +32,7 @@ package
 		private var _onBlockLast:MovingBlock;
 		
 		public var noclip:Boolean = false;
-		public var dead:Boolean = false;
+		private var dead:Boolean = false;
 		private var stopxmovement:Boolean = false;
 		
 		public function Player() 
@@ -69,8 +69,6 @@ package
 				_yspeed = 0;
 			}
 			y += 5;
-			
-			dead = false;
 			
 			if (suicide || ((collideLevel(Tile.SOLID) || collideActors(MovingBlock)) && !noclip)) {
 				GameWorld(FP.world).killPlayer();
@@ -276,6 +274,16 @@ package
 		public function stopXMovement(b:Boolean):void
 		{
 			stopxmovement = b;
+		}
+		
+		public function isDead():Boolean
+		{
+			return dead;
+		}
+		
+		public function setDead(d:Boolean):void
+		{
+			dead = d
 		}
 		
 	}

@@ -1,8 +1,10 @@
 package  
 {
+	import entities.CrystalSpike;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.Sfx;
+	import tiles.SpikeTile;
 	
 	/**
 	 * Actual graphic of the player.
@@ -76,7 +78,11 @@ package
 			else if (!onGround && parent.getYSpeed() != 0 && anim != "jump")
 			{
 				anim = "jump";
-				if (parent.getYSpeed() < -1) sfxJump.playCustom(0.4, this);
+				if (parent.getYSpeed() < -1)
+				{
+					sfxJump.playCustom(0.4, this);
+					CrystalSpike.triggerNext();
+				}
 			}
 			if (anim != prev)
 			{

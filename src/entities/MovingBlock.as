@@ -76,7 +76,7 @@ package entities
 			x += xspeed;
 			y += yspeed;
 			
-			while (collidePlayer() && !(xspeed == 0 && yspeed == 0) && !player.noclip && !player.dead)
+			while (collidePlayer() && !(xspeed == 0 && yspeed == 0) && !player.noclip && !player.isDead())
 			{
 				player.x += 0.2 * Util.sign(xspeed);
 				player.y += 0.2 * Util.sign(yspeed);
@@ -104,7 +104,7 @@ package entities
 				y = int(y / 16) * 16;
 			}
 			
-			if (movePlayerDown && !player.noclip && !player.dead)
+			if (movePlayerDown && !player.noclip && !player.isDead())
 			{
 				player.y = y - player.height;
 				//player.yspeed = 0;

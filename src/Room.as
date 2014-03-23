@@ -1,5 +1,6 @@
 package  
 {
+	import entities.CrystalSpike;
 	import entities.MovingBlock;
 	import entities.Orb;
 	import entities.Shrine;
@@ -72,6 +73,8 @@ package
 					r.actors.push(actors[i].clone());
 				else if (actors[i] is Shrine)
 					r.actors.push(actors[i]);
+				else if (actors[i] is CrystalSpike)
+					r.actors.push(actors[i].clone());
 			}
 			
 			return r;

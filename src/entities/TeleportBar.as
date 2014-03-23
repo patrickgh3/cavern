@@ -33,7 +33,7 @@ package entities
 			x = (int)(player.x + player.width / 2 - maxwidth / 2);
 			y = (int)(player.y - 2 - normalheight);
 			
-			if (!Input.check(Key.C) || player.dead || (GameWorld)(FP.world).world != GameWorld.world_normal)
+			if (!Input.check(Key.C) || player.isDead() || (GameWorld)(FP.world).world != GameWorld.world_normal)
 			{
 				count = 0;
 			}

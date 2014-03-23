@@ -11,6 +11,7 @@ package
 	import tiles.FactoryTile;
 	import tiles.MemoryTile;
 	import entities.MovingBlock;
+	import entities.CrystalSpike;
 	
 	/**
 	 * Holds an array of rooms, initialized on startup.
@@ -180,6 +181,14 @@ package
 				y = node.@y / 16;
 				rooms[int(x / 10)][int(y / 8)].actors.push(
 					new MovingBlock((x % 10) * 16, (y % 8) * 16, node.@speed, node.@path));
+			}
+			
+			for each (node in xml.RoomData.CrystalSpike)
+			{
+				x = node.@x / 16;
+				y = node.@y / 16;
+				rooms[int(x / 10)][int(y / 8)].actors.push(
+					new CrystalSpike((x % 10) * 16, (y % 8) * 16, CrystalSpike.UP, node.@xpattern, node.@ypattern));
 			}
 			
 			for each (node in xml.RoomData.Orb)

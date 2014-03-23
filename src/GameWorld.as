@@ -355,7 +355,7 @@ package
 		
 		public function killPlayer():void
 		{
-			if (!killedplayerlast) killplayernext = true;
+			if (!killedplayerlast && !player.isDead()) killplayernext = true;
 		}
 		
 		public function playerKilled():void
@@ -388,7 +388,7 @@ package
 		
 		public function fadeIn():void
 		{
-			player.dead = false;
+			//player.setdead = false;
 			roomX = spawnRoomX;
 			roomY = spawnRoomY;
 			switchRoom(roomX, roomY);
@@ -399,6 +399,7 @@ package
 		
 		public function fadeComplete():void
 		{
+			player.setDead(false);
 			add(player);
 			add(player.getSprite());
 			add(teleportBar);
@@ -412,8 +413,7 @@ package
 			spawnRoomY = shrineRoomY;
 			spawnX = shrineRoomPlayerX;
 			spawnY = shrineRoomPlayerY;
-			killedplayerlast = true;
-			playerKilled();
+			killPlayer();
 		}
 		
 		private function switchToLostWoods():void

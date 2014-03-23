@@ -1,5 +1,6 @@
 package  
 {
+	import entities.CrystalSpike;
 	import entities.GreenBlock;
 	import flash.geom.Rectangle;
 	import net.flashpunk.Entity;
@@ -70,6 +71,10 @@ package
 			else if (x == 7 && y == 3) return new IntroBridgeTile(xpos, ypos, r);
 			else if (x == 5 && y == 3) return new ProbabilityTile(xpos, ypos, 4, 3, 3, 4, r, 0.9);
 			else if (x == 6 && y == 3) return new ProbabilityTile(xpos, ypos, 4, 3, 3, 4, r, 0.2);
+			else if (x == 0 && y == 5) return new SpikeTile(xpos, ypos, CrystalSpike.UP, r);
+			else if (x == 1 && y == 5) return new SpikeTile(xpos, ypos, CrystalSpike.DOWN, r);
+			else if (x == 2 && y == 5) return new SpikeTile(xpos, ypos, CrystalSpike.LEFT, r);
+			else if (x == 3 && y == 5) return new SpikeTile(xpos, ypos, CrystalSpike.RIGHT, r);
 			
 			var t:int = 0;
 			if (y == 0) t = 2;

@@ -19,6 +19,7 @@ package
 		public static const SOLID:int = 1;
 		public static const INSTAKILL:int = 2;
 		public static const FACTORY_TEMP:int = 3;
+		public static const crystalfrontlayer:int = -5;
 		
 		protected var _room:Room;
 		
@@ -34,6 +35,7 @@ package
 			_room = r;
 			tileType = type;
 			width = height = 16;
+			if ((x == 0 && y == 1) || (x == 1 && y == 1)) layer = crystalfrontlayer;
 			
 			if (x == 0 && y == 3) graphic = Image.createRect(16, 16, GreenBlock.greencolor);
 			else graphic = new Image(TILES, new Rectangle(x * 16, y * 16, 16, 16));

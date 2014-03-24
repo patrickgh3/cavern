@@ -315,17 +315,9 @@ package
 			this.removeAll();
 			for (var i:int = 0; i < 12; i++)
 				for (var j:int = 0; j < 10; j++)
-				{
-					if (room.tiles[i][j] != null &&
-						(room.tiles[i][j].tileType == Tile.EMPTY || i == 0 || i == 11 || j == 0 || j == 9)) add(room.tiles[i][j]);
-					if (room.tiles[i][j] != null && room.tiles[i][j] is SpikeTile) room.tiles[i][j].addSpike();
-				}
+					if (room.tiles[i][j] != null) add(room.tiles[i][j]);
 			for (i = 0; i < room.actors.length; i++)
 				add(room.actors[i]);
-			for (i = 0; i < 12; i++)
-				for (j = 0; j < 10; j++)
-					if (room.tiles[i][j] != null && room.tiles[i][j].tileType != Tile.EMPTY
-						&& i != 0 && i != 11 && j != 0 && j != 9) add(room.tiles[i][j]);
 			
 			if (RoomContainer.mapcolors[roomX][roomY] == RoomContainer.mapcolorvalues.green)
 				for (i = 0; i < 3; i++)
@@ -453,7 +445,6 @@ package
 				donefadetextwarp = true;
 			}
 		}
-		
 	}
 
 }

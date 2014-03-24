@@ -17,6 +17,7 @@ package entities
 		public static const DOWN:int = 1;
 		public static const LEFT:int = 2;
 		public static const RIGHT:int = 3;
+		public static const stdlayer:int = -4;
 		
 		private var hitboxes:Array;
 		private var lastState:int;
@@ -33,6 +34,7 @@ package entities
 		public function CrystalSpike(xpos:int, ypos:int, direction:int, xpat:String, ypat:String) 
 		{
 			super(xpos, ypos);
+			layer = stdlayer;
 			
 			xpatstring = xpat;
 			ypatstring = ypat;

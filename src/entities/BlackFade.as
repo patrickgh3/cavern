@@ -20,6 +20,7 @@ package entities
 		{
 			graphic = image = Image.createRect(160, 128, 0x000000);
 			Image(graphic).alpha = 0;
+			layer = -20;
 		}
 		
 		override public function update():void

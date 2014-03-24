@@ -11,6 +11,7 @@ package overlays
 	 */
 	public class OverlayEscape
 	{
+		private static const stdlayer:int = -120;
 		private var background:Entity;
 		private var texts:Array;
 		
@@ -21,6 +22,7 @@ package overlays
 			background = new Entity(0, 0);
 			background.graphic = Image.createRect(160, 128, 0x000000);
 			(Image)(background.graphic).alpha = 0.6;
+			background.layer = stdlayer;
 			
 			texts = new Array();
 			Text.size = 8;
@@ -33,7 +35,10 @@ package overlays
 			texts.push(new Entity(x, 90, new Text("Game by Patrick Traynor")));
 			texts.push(new Entity(x, 100, new Text("Powered by FlashPunk,")));
 			texts.push(new Entity(x + 10, 110, new Text("Ogmo, and freesound.org")));
-
+			for (var i:int = 0; i < texts.length; i++)
+			{
+				texts[i].layer = stdlayer;
+			}
 		}
 		
 		public function addSelf():void

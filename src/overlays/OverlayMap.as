@@ -24,6 +24,7 @@ package overlays
 		public static const cellwidth:int = 7;
 		public static const cellheight:int = 5;
 		public static const cellgap:int = 2;
+		public static const stdlayer:int = -110;
 		
 		public static var shrine:Shrine;
 		public static var orbscollected:int = 0;
@@ -39,7 +40,9 @@ package overlays
 			background = new Entity(0, 0);
 			background.graphic = Image.createRect(160, 128, 0x000000);
 			(Image)(background.graphic).alpha = 0.6;
+			background.layer = stdlayer;
 			highlight = new MapHighlight();
+			highlight.layer = stdlayer;
 			
 			xoffset = (160 - (RoomContainer.width * (cellwidth + cellgap) - cellgap)) / 2;
 			yoffset = (128 - (RoomContainer.height * (cellheight + cellgap) - cellgap)) / 2;
@@ -58,6 +61,7 @@ package overlays
 											  yoffset + j * (cellheight + cellgap),
 											  RoomContainer.mapcolors[i][j],
 											  RoomContainer.hasorb[i][j]);
+					cells[i][j].layer = stdlayer;
 				}
 			}
 		}
@@ -121,6 +125,7 @@ package overlays
 		private function addLink(roomx:int, roomy:int, horizontal:Boolean):void
 		{
 			var link:Entity = new Entity(xoffset + roomx * (cellwidth + cellgap), yoffset + roomy * (cellheight + cellgap));
+			link.layer = stdlayer;
 			if (horizontal)
 			{
 				link.x += cellwidth;

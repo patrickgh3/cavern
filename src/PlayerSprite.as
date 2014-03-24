@@ -42,6 +42,7 @@ package
 			
 			sprite = new Spritemap(src, 16, 16);
 			graphic = sprite;
+			layer = -10;
 		}
 		
 		override public function update():void

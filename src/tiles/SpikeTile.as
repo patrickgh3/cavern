@@ -15,15 +15,12 @@ package tiles
 		{
 			super(xpos, ypos, 0, 2, r, Tile.EMPTY);
 			this.direction = direction;
-		}
-		
-		public function addSpike():void
-		{
 			FP.world.add(new CrystalSpike(x, y, direction, "0", "0"));
 		}
 		
 		override public function clone(r:Room):Tile
 		{
+			FP.world.add(new CrystalSpike(x, y, direction, "0", "0"));
 			return new SpikeTile(x, y, direction, r);
 		}
 	}

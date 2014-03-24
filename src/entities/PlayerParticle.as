@@ -29,6 +29,7 @@ package entities
 		{
 			super(0, 0);
 			graphic = Image.createRect(4, 4, 0xffffff);
+			layer = -21;
 		}
 		
 		public function activate(x:int, y:int, dx:int, dy:int):void

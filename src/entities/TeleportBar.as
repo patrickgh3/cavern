@@ -26,6 +26,7 @@ package entities
 			player = p;
 			graphic = image = Image.createRect(maxwidth, normalheight, 0xffffff);
 			image.scaleX = 1 / maxwidth;
+			layer = -10;
 		}
 		
 		override public function update():void

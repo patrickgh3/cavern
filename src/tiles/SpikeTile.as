@@ -10,7 +10,6 @@ package tiles
 	public class SpikeTile extends Tile
 	{
 		private var direction:int;
-		private var firsttick:Boolean = true;
 		
 		public function SpikeTile(xpos:int, ypos:int, direction:int, r:Room) 
 		{
@@ -18,13 +17,9 @@ package tiles
 			this.direction = direction;
 		}
 		
-		override public function update():void
+		public function addSpike():void
 		{
-			if (firsttick)
-			{
-				firsttick = false;
-				FP.world.add(new CrystalSpike(x, y, direction, "0", "0"));
-			}
+			FP.world.add(new CrystalSpike(x, y, direction, "0", "0"));
 		}
 		
 		override public function clone(r:Room):Tile

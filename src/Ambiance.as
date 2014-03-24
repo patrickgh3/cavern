@@ -15,6 +15,7 @@ package
 		[Embed(source = "/../assets/sound/amb_wind.mp3")] private static const wind:Class;
 		[Embed(source = "/../assets/sound/amb_factory.mp3")] private static const factory:Class;
 		[Embed(source = "/../assets/sound/amb_factory2.mp3")] private static const factory2:Class;
+		[Embed(source = "/../assets/sound/amb_crystal.mp3")] private static const crystal:Class;
 		
 		private static const sfxSilence:Sfx = new Sfx(silence);
 		private static const sfxCave:Sfx = new Sfx(cave);
@@ -24,6 +25,7 @@ package
 		private static const sfxWind:Sfx = new Sfx(wind);
 		private static const sfxFactory:Sfx = new Sfx(factory);
 		private static const sfxFactory2:Sfx = new Sfx(factory2);
+		private static const sfxCrystal:Sfx = new Sfx(crystal);
 		
 		private static var fading:Boolean;
 		private static var count:int;
@@ -60,6 +62,7 @@ package
 			else if (s == "wind") n = sfxWind;
 			else if (s == "factory") n = sfxFactory;
 			else if (s == "factory2") n = sfxFactory2;
+			else if (s == "crystal") n = sfxCrystal;
 			//else trace("invalid ambiance: " + s + ". Setting to silence.");
 			
 			if (n == current) return;

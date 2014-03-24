@@ -60,6 +60,7 @@ package
 		public var donefadetextjump:Boolean = false;
 		private var donefadetextmap:Boolean = false;
 		public var donefadetextwarp:Boolean = false;
+		private static var fadetextlayer:int = -10;
 		
 		public var overlay_esc:Boolean = false;
 		public var overlayEsc:OverlayEscape;
@@ -140,33 +141,11 @@ package
 				playerKilled();
 			}
 			
-			if (Input.check(Key.ESCAPE) && !overlay_esc)
-			{
-				overlay_esc = true;
-				overlayEsc.addSelf();
-			}
-			else if (!Input.check(Key.ESCAPE))
-			{
-				overlay_esc = false;
-				overlayEsc.removeSelf();
-			}
-			
-			if (Input.check(Key.X) && world == world_normal && !overlay_map)
-			{
-				overlay_map = true;
-				overlayMap.addSelf();
-				if (fadeText != null && fadeText.getText() == text_map) fadeText.fadeOut();
-			}
-			else if (!Input.check(Key.X))
-			{
-				overlay_map = false;
-				overlayMap.removeSelf();
-			}
-			
 			if (roomsexplored == 5 && donefadetextmap == false)
 			{
 				fadeText = new FadeText(text_map, -1);
 				add(fadeText);
+				fadeText.layer = fadetextlayer;
 				donefadetextmap = true;
 			}
 			
@@ -275,6 +254,29 @@ package
 				lookingforspawn = false;
 				setSpawn();
 			}
+			
+			if (Input.check(Key.ESCAPE) && !overlay_esc)
+			{
+				overlay_esc = true;
+				overlayEsc.addSelf();
+			}
+			else if (!Input.check(Key.ESCAPE))
+			{
+				overlay_esc = false;
+				overlayEsc.removeSelf();
+			}
+			
+			if (Input.check(Key.X) && world == world_normal && !overlay_map)
+			{
+				overlay_map = true;
+				overlayMap.addSelf();
+				if (fadeText != null && fadeText.getText() == text_map) fadeText.fadeOut();
+			}
+			else if (!Input.check(Key.X))
+			{
+				overlay_map = false;
+				overlayMap.removeSelf();
+			}
 		}
 		
 		private function switchRoom(x:int, y:int, ignoreCoords:Boolean = false):void
@@ -341,7 +343,11 @@ package
 				add(blackFade);
 				for (i = 0; i < playerParticles.length; i++) add(playerParticles[i]);
 			}
-			if (fadeText != null) add(fadeText);
+			if (fadeText != null)
+			{
+				add(fadeText);
+				fadeText.layer = fadetextlayer;
+			}
 			
 			if (overlay_esc) overlayEsc.addSelf();
 			if (overlay_map) overlayMap.addSelf();

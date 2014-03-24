@@ -30,6 +30,7 @@ package entities
 		
 		private var xpatstring:String;
 		private var ypatstring:String;
+		private var direction:int;
 		
 		public function CrystalSpike(xpos:int, ypos:int, direction:int, xpat:String, ypat:String) 
 		{
@@ -54,6 +55,8 @@ package entities
 			hitboxes = new Array();
 			var sprite:Spritemap;
 			graphic = sprite = new Spritemap(src, 16, 16);
+			
+			this.direction = direction;
 			if (direction == UP)
 			{
 				sprite.setFrame(0);
@@ -93,7 +96,6 @@ package entities
 			if (state != lastState)
 			{
 				lastState = state;
-				sfxMove.play(0.8);
 				
 				// first, finish up current movement if we have to
 				while (movementcount >= 0)
@@ -103,6 +105,7 @@ package entities
 				
 				patternindex++;
 				if (patternindex >= xpattern.length) patternindex = 0;
+				if (xpattern[patternindex] != 0 || ypattern[patternindex] != 0) sfxMove.play(1);
 				movementcount = 0;
 			}
 			if (movementcount >= 0)
@@ -138,7 +141,7 @@ package entities
 		
 		public function clone():CrystalSpike
 		{
-			return new CrystalSpike(x, y, UP, xpatstring, ypatstring);
+			return new CrystalSpike(x, y, direction, xpatstring, ypatstring);
 		}
 		
 		[Embed(source = "/../assets/sound/crystal.mp3")]

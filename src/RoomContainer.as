@@ -188,8 +188,12 @@ package
 			{
 				x = node.@x / 16;
 				y = node.@y / 16;
+				var direction:int = CrystalSpike.UP;
+				if (node.@direction == "down") direction = CrystalSpike.DOWN;
+				else if (node.@direction == "left") direction = CrystalSpike.LEFT;
+				else if (node.@direction == "right") direction = CrystalSpike.RIGHT;
 				rooms[int(x / 10)][int(y / 8)].actors.push(
-					new CrystalSpike((x % 10) * 16, (y % 8) * 16, CrystalSpike.UP, node.@xpattern, node.@ypattern));
+					new CrystalSpike((x % 10) * 16, (y % 8) * 16, direction, node.@xpattern, node.@ypattern));
 			}
 			
 			for each (node in xml.RoomData.Orb)

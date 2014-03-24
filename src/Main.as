@@ -4,6 +4,8 @@ package
 	import net.flashpunk.FP;
 	
 	[SWF(width="960", height="768", frameRate = "-1", backgroundColor="#000000")]
+	//[SWF(width = "800", height = "640", frameRate = "-1", backgroundColor = "#000000")]
+	//[SWF(width = "640", height = "512", frameRate = "-1", backgroundColor = "#000000")]
 	
 	/**
 	 * Entry point into the program.

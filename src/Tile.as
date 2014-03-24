@@ -40,7 +40,8 @@ package
 			{
 				var gw:GameWorld = (GameWorld)(FP.world);
 				if (RoomContainer.sounds[gw.roomX][gw.roomY] == "crystal"
-					&& ((x == 0 && y == 1) || (x == 1 && y == 1))) layer = crystalfrontlayer;
+					&& ((x == 0 && y == 1) || (x == 1 && y == 1))
+					&& xpos > 0) layer = crystalfrontlayer;
 			}
 			
 			if (x == 0 && y == 3) graphic = Image.createRect(16, 16, GreenBlock.greencolor);

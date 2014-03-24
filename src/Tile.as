@@ -4,6 +4,7 @@ package
 	import entities.GreenBlock;
 	import flash.geom.Rectangle;
 	import net.flashpunk.Entity;
+	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
 	import tiles.*;
 	
@@ -35,7 +36,12 @@ package
 			_room = r;
 			tileType = type;
 			width = height = 16;
-			if ((x == 0 && y == 1) || (x == 1 && y == 1)) layer = crystalfrontlayer;
+			if (FP.world is GameWorld)
+			{
+				var gw:GameWorld = (GameWorld)(FP.world);
+				if (RoomContainer.sounds[gw.roomX][gw.roomY] == "crystal"
+					&& ((x == 0 && y == 1) || (x == 1 && y == 1))) layer = crystalfrontlayer;
+			}
 			
 			if (x == 0 && y == 3) graphic = Image.createRect(16, 16, GreenBlock.greencolor);
 			else graphic = new Image(TILES, new Rectangle(x * 16, y * 16, 16, 16));

@@ -25,7 +25,7 @@ package entities
 		private var ypattern:Array;
 		private var patternindex:int = -1;
 		private var movementcount:int = -1;
-		private static const movementtime:int = 5;
+		private static const movementtime:int = 8;
 		private var firsttick:Boolean = false;
 		
 		private var xpatstring:String;

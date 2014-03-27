@@ -47,8 +47,8 @@ package
 		private static const text_map:String = "Hold X";
 		public static const text_warp:String = "Hold C";
 		
-		private static var shrineRoomX:int = 7;
-		private static var shrineRoomY:int = 4;
+		private static var shrineRoomX:int = 8;
+		private static var shrineRoomY:int = 5;
 		private static var shrineRoomPlayerX:int = 75;
 		private static var shrineRoomPlayerY:int = 84;
 		

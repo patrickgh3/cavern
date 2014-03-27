@@ -55,7 +55,7 @@ package
 			mapcolorvalues.green = 0xff7BD620;
 			mapcolorvalues.blue = 0xff3CB5B5;
 			mapcolorvalues.brown = 0xffBFA952;
-			mapcolorvalues.purple = 0xff663473;
+			mapcolorvalues.purple = 0xff9C2C9C;
 			
 			sounds = new Array();
 			mapcolors = new Array();

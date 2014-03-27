@@ -149,10 +149,6 @@ package
 				donefadetextmap = true;
 			}
 			
-			Ambiance.update();
-			MemoryTile.update();
-			super.update();
-			
 			// special case: if noclipping and switched rooms diagonally (used to cause a crash)
 			var offleft:Boolean = player.x < -player.width / 2;
 			var offright:Boolean = player.x >= 160 - player.width / 2;
@@ -277,6 +273,10 @@ package
 				overlay_map = false;
 				overlayMap.removeSelf();
 			}
+			
+			Ambiance.update();
+			MemoryTile.update();
+			super.update();
 		}
 		
 		private function switchRoom(x:int, y:int, ignoreCoords:Boolean = false):void
@@ -313,7 +313,6 @@ package
 				fadeText = new FadeText(text_warp, 120);
 				donefadetextwarp = true;
 			}
-			
 			this.removeAll();
 			for (var i:int = 0; i < 12; i++)
 				for (var j:int = 0; j < 10; j++)

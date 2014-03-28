@@ -175,7 +175,7 @@ package
 				{
 					switchRoom(--roomX, roomY);
 					if (world == world_normal) overlayMap.linkRight(roomX, roomY);
-					if (!player.noclip) setSpawn();
+					if (!player.noclip) lookingforspawn = true;
 				}
 			}
 			if (player.x >= 160 - player.width / 2) {
@@ -191,7 +191,7 @@ package
 				{
 					switchRoom(++roomX, roomY);
 					if (world == world_normal) overlayMap.linkLeft(roomX, roomY);
-					if (!player.noclip) setSpawn();
+					if (!player.noclip) lookingforspawn = true;
 				}
 			}
 			if (player.y < -player.height / 2) {
@@ -449,6 +449,11 @@ package
 				add(fadeText);
 				donefadetextwarp = true;
 			}
+		}
+		
+		public function playerSpawnOnLeftSide():Boolean
+		{
+			return spawnX < 80;
 		}
 	}
 

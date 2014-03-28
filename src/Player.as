@@ -245,6 +245,7 @@ package
 			_xspeed = 0;
 			_yspeed = 0;
 			dead = true;
+			_sprite.kill();
 		}
 		
 		public function getSprite():Entity
@@ -294,7 +295,7 @@ package
 		
 		public function setDead(d:Boolean):void
 		{
-			dead = d
+			dead = d;
 		}
 		
 	}

@@ -2,6 +2,7 @@ package
 {
 	import entities.CrystalSpike;
 	import net.flashpunk.Entity;
+	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.Sfx;
 	import tiles.SpikeTile;
@@ -63,7 +64,7 @@ package
 			var prev:String = anim;
 			if (onGround && anim == "jump" && lastYSpeed > 1.5)
 			{
-				anim = "land"
+				anim = "land";
 				sfxLand.playCustom(0.5, this);
 			}
 			else if (onGround && parent.getXSpeed() != 0 && anim != "walk" && anim != "land")
@@ -134,6 +135,15 @@ package
 		public function play(s:String):void
 		{
 			sprite.play(s);
+		}
+		
+		public function kill():void
+		{
+			anim = "stand";
+			count = 0;
+			sprite.flipped = !(GameWorld)(FP.world).playerSpawnOnLeftSide();
+			sfxLand.playCustom(0.5, this);
+			// todo: play custom death sound? this sounds okay.
 		}
 		
 	}
